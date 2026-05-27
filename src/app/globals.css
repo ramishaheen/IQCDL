@@ -7,6 +7,14 @@
   --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-arabic: "Tajawal", "Noto Kufi Arabic", var(--font-sans);
   --bg: #f4f9fd;
+
+  /* Semantic theme channels (light defaults) */
+  --c-fg: 15 34 49;
+  --c-muted: 71 85 105;
+  --c-faint: 100 116 139;
+  --c-surface: 15 34 49;
+  --c-line: 15 34 49;
+  --c-accent: 29 142 194;
 }
 
 @layer base {
@@ -198,6 +206,14 @@
 .theme-dark {
   background-color: #05060f;
   color: #cbd5e1;
+
+  /* Semantic theme channels (dark) */
+  --c-fg: 255 255 255;
+  --c-muted: 203 213 225;
+  --c-faint: 148 163 184;
+  --c-surface: 255 255 255;
+  --c-line: 255 255 255;
+  --c-accent: 125 211 252;
 }
 .theme-dark ::selection {
   background: rgba(56, 189, 248, 0.3);

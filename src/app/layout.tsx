@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { PortalProvider } from "@/lib/portal";
 import en from "@/i18n/dictionaries/en";
 
@@ -56,11 +57,13 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <LocaleProvider>
-          <AuthProvider>
-            <PortalProvider>{children}</PortalProvider>
-          </AuthProvider>
-        </LocaleProvider>
+        <ThemeProvider>
+          <LocaleProvider>
+            <AuthProvider>
+              <PortalProvider>{children}</PortalProvider>
+            </AuthProvider>
+          </LocaleProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

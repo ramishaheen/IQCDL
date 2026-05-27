@@ -36,10 +36,26 @@ const en = {
     titleLine1: "Your license to lead",
     titleLine2: "the quantum era",
     subtitle:
-      "IQCDL is the international, AI-supported certification that turns quantum uncertainty into a measurable plan. Assess your readiness, train your people, and migrate to post-quantum security with confidence.",
-    ctaPrimary: "Measure my quantum readiness",
+      "IQCDL is the world's first international, AI-supported quantum-computing certification. Score your post-quantum risk in 2 minutes, train your teams, and earn a globally-recognized credential.",
+    ctaPrimary: "Get my free readiness score",
     ctaSecondary: "Explore the program",
     trustedBy: "Trusted by security leaders, educators and innovators worldwide",
+    chips: [
+      "Recognized in 50+ countries",
+      "Available in 6 languages",
+      "Aligned to global standards",
+    ],
+    card: {
+      title: "International Quantum Computing Driving License",
+      holder: "Holder",
+      holderValue: "Your name here",
+      level: "Level",
+      levelValue: "Foundation",
+      validity: "Validity",
+      validityValue: "3 years",
+      verified: "Verified",
+      worldwide: "Recognized worldwide",
+    },
   },
   stats: {
     marketValue: "Quantum market by 2040",

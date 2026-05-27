@@ -25,7 +25,7 @@ export function StandardsGrid({ withHeading = true }: { withHeading?: boolean })
           {dict.standards.groups.map((group, i) => (
             <Reveal key={group.name} delay={(i % 2) * 0.08}>
               <div className="card h-full p-6">
-                <h3 className="flex items-center gap-2 text-base font-semibold text-white">
+                <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
                   <BadgeCheck className="h-5 w-5 text-quantum-cyan" />
                   {group.name}
                 </h3>
@@ -33,7 +33,7 @@ export function StandardsGrid({ withHeading = true }: { withHeading?: boolean })
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-2 text-sm text-slate-300"
+                      className="flex items-start gap-2 text-sm text-muted"
                     >
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-quantum-violet" />
                       <span className="font-mono text-[13px]">{item}</span>

@@ -65,19 +65,19 @@ function LoginInner() {
   return (
     <div className="theme-dark relative grid min-h-screen bg-[#05060f] lg:grid-cols-2">
       {/* left: brand / visual */}
-      <div className="relative hidden overflow-hidden border-e border-white/10 lg:block">
+      <div className="relative hidden overflow-hidden border-e border-line/10 lg:block">
         <QuantumField className="absolute inset-0 h-full w-full opacity-60" />
         <div className="absolute inset-0 bg-quantum-radial" />
         <div className="relative flex h-full flex-col justify-between p-12">
-          <Logo variant="full" className="text-sky-300" />
+          <Logo variant="full" className="text-accent" />
           <div>
-            <h2 className="max-w-md text-balance text-3xl font-bold text-white">
+            <h2 className="max-w-md text-balance text-3xl font-bold text-fg">
               {t("hero.titleLine1")}{" "}
               <span className="gradient-text">{t("hero.titleLine2")}</span>
             </h2>
-            <p className="mt-3 max-w-md text-slate-300">{t("hero.subtitle")}</p>
+            <p className="mt-3 max-w-md text-muted">{t("hero.subtitle")}</p>
           </div>
-          <p className="text-xs text-slate-400">{t("footer.rights")}</p>
+          <p className="text-xs text-faint">{t("footer.rights")}</p>
         </div>
       </div>
 
@@ -86,7 +86,7 @@ function LoginInner() {
         <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition hover:text-quantum-cyan"
+            className="inline-flex items-center gap-1.5 text-sm text-faint transition hover:text-quantum-cyan"
           >
             <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
             {t("common.backHome")}
@@ -100,16 +100,16 @@ function LoginInner() {
           className="w-full max-w-md"
         >
           <div className="lg:hidden">
-            <Logo className="text-sky-300" />
+            <Logo className="text-accent" />
           </div>
-          <h1 className="mt-6 text-3xl font-bold text-white">
+          <h1 className="mt-6 text-3xl font-bold text-fg">
             {t("auth.title")}
           </h1>
-          <p className="mt-1.5 text-slate-400">{t("auth.subtitle")}</p>
+          <p className="mt-1.5 text-faint">{t("auth.subtitle")}</p>
 
           <form onSubmit={submit} className="mt-7 space-y-4">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-slate-300">
+              <label className="mb-1.5 block text-sm font-medium text-muted">
                 {t("auth.email")}
               </label>
               <input
@@ -117,11 +117,11 @@ function LoginInner() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@org.com"
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-slate-400 focus:border-quantum-cyan/50 focus:outline-none"
+                className="w-full rounded-xl border border-line/10 bg-surface/5 px-4 py-3 text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-slate-300">
+              <label className="mb-1.5 block text-sm font-medium text-muted">
                 {t("auth.password")}
               </label>
               <input
@@ -129,7 +129,7 @@ function LoginInner() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-slate-400 focus:border-quantum-cyan/50 focus:outline-none"
+                className="w-full rounded-xl border border-line/10 bg-surface/5 px-4 py-3 text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
               />
             </div>
 
@@ -150,7 +150,7 @@ function LoginInner() {
           </form>
 
           <div className="mt-8">
-            <p className="text-center text-xs uppercase tracking-wider text-slate-400">
+            <p className="text-center text-xs uppercase tracking-wider text-faint">
               {t("auth.demoHint")}
             </p>
             <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
@@ -163,7 +163,7 @@ function LoginInner() {
                     onClick={() => quick(role)}
                     disabled={busy}
                     className={cn(
-                      "group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 text-start transition hover:border-quantum-cyan/40 hover:bg-white/10 disabled:opacity-50",
+                      "group flex items-center gap-3 rounded-xl border border-line/10 bg-surface/5 p-3 text-start transition hover:border-quantum-cyan/40 hover:bg-surface/10 disabled:opacity-50",
                       role === "admin" && "sm:col-span-2",
                     )}
                   >
@@ -171,10 +171,10 @@ function LoginInner() {
                       <Icon className="h-5 w-5" />
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-sm font-semibold text-white">
+                      <span className="block text-sm font-semibold text-fg">
                         {t(`auth.roles.${role}`)}
                       </span>
-                      <span className="block truncate text-xs text-slate-400">
+                      <span className="block truncate text-xs text-faint">
                         {acct?.email}
                       </span>
                     </span>

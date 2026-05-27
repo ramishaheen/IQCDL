@@ -156,7 +156,7 @@ export function AssessmentWizard() {
     <div className="mx-auto max-w-2xl">
       {/* progress */}
       <div className="mb-6">
-        <div className="mb-2 flex items-center justify-between text-xs text-slate-400">
+        <div className="mb-2 flex items-center justify-between text-xs text-faint">
           <span>
             {done
               ? t("assessment.resultTitle")
@@ -164,7 +164,7 @@ export function AssessmentWizard() {
           </span>
           <span>{progress}%</span>
         </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface/10">
           <motion.div
             className="h-full rounded-full bg-gradient-to-r from-quantum-cyan to-quantum-violet"
             animate={{ width: `${progress}%` }}
@@ -183,10 +183,10 @@ export function AssessmentWizard() {
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="text-xl font-semibold text-white sm:text-2xl">
+              <h3 className="text-xl font-semibold text-fg sm:text-2xl">
                 {current.q}
               </h3>
-              <p className="mt-2 flex items-start gap-2 text-sm text-slate-400">
+              <p className="mt-2 flex items-start gap-2 text-sm text-faint">
                 <Info className="mt-0.5 h-4 w-4 shrink-0 text-quantum-cyan" />
                 {current.help}
               </p>
@@ -202,7 +202,7 @@ export function AssessmentWizard() {
                         "flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3.5 text-start text-sm transition",
                         selected
                           ? "border-brand-400 bg-brand-500/15 text-brand-200"
-                          : "border-white/10 bg-white/5 text-slate-300 hover:border-white/15 hover:bg-white/10",
+                          : "border-line/10 bg-surface/5 text-muted hover:border-line/20 hover:bg-surface/10",
                       )}
                     >
                       <span>{opt}</span>
@@ -210,8 +210,8 @@ export function AssessmentWizard() {
                         className={cn(
                           "grid h-5 w-5 shrink-0 place-items-center rounded-full border",
                           selected
-                            ? "border-brand-500 bg-brand-500 text-white"
-                            : "border-white/15",
+                            ? "border-brand-500 bg-brand-500 text-fg"
+                            : "border-line/20",
                         )}
                       >
                         {selected && <CheckCircle2 className="h-4 w-4" />}
@@ -254,7 +254,7 @@ export function AssessmentWizard() {
                     pct={result.pct}
                     color={LEVEL_COLOR[result.level]}
                   />
-                  <p className="mt-4 text-sm uppercase tracking-wider text-slate-400">
+                  <p className="mt-4 text-sm uppercase tracking-wider text-faint">
                     {t("assessment.resultScore")}
                   </p>
                   <h3
@@ -267,16 +267,16 @@ export function AssessmentWizard() {
 
                 {/* dimension breakdown */}
                 <div className="mt-7">
-                  <p className="mb-3 text-sm font-semibold text-white">
+                  <p className="mb-3 text-sm font-semibold text-fg">
                     {t("assessment.breakdownTitle")}
                   </p>
                   <div className="space-y-2.5">
                     {result.dimensions.map((d, i) => (
                       <div key={d.key} className="flex items-center gap-3">
-                        <span className="w-28 shrink-0 text-xs text-slate-400 sm:w-36 sm:text-sm">
+                        <span className="w-28 shrink-0 text-xs text-faint sm:w-36 sm:text-sm">
                           {t(`assessment.dimensions.${d.key}`)}
                         </span>
-                        <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+                        <div className="h-2 flex-1 overflow-hidden rounded-full bg-surface/10">
                           <motion.div
                             className="h-full rounded-full"
                             style={{
@@ -292,7 +292,7 @@ export function AssessmentWizard() {
                             transition={{ duration: 0.8, delay: 0.2 + i * 0.08 }}
                           />
                         </div>
-                        <span className="w-9 shrink-0 text-end text-xs tabular-nums text-slate-300">
+                        <span className="w-9 shrink-0 text-end text-xs tabular-nums text-muted">
                           {d.pct}%
                         </span>
                       </div>
@@ -301,16 +301,16 @@ export function AssessmentWizard() {
                 </div>
 
                 {/* recommended track */}
-                <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <p className="text-xs uppercase tracking-wider text-slate-400">
+                <div className="mt-6 rounded-2xl border border-line/10 bg-surface/5 p-5">
+                  <p className="text-xs uppercase tracking-wider text-faint">
                     {t("assessment.recommendedTrack")}
                   </p>
-                  <p className="mt-1 text-lg font-semibold text-white">
+                  <p className="mt-1 text-lg font-semibold text-fg">
                     {result.track === "practitioner"
                       ? dict.tracks.practitioner.name
                       : dict.tracks.foundation.name}
                   </p>
-                  <p className="mt-1 text-sm text-slate-400">
+                  <p className="mt-1 text-sm text-faint">
                     {result.track === "practitioner"
                       ? dict.tracks.practitioner.forWho
                       : dict.tracks.foundation.forWho}
@@ -319,7 +319,7 @@ export function AssessmentWizard() {
 
                 {/* next steps */}
                 <div className="mt-6">
-                  <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+                  <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-fg">
                     <Lightbulb className="h-4 w-4 text-quantum-cyan" />
                     {t("assessment.nextStepsTitle")}
                   </p>
@@ -327,7 +327,7 @@ export function AssessmentWizard() {
                     {result.weakest.map((key) => (
                       <li
                         key={key}
-                        className="flex items-start gap-2.5 text-sm text-slate-300"
+                        className="flex items-start gap-2.5 text-sm text-muted"
                       >
                         <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-quantum-violet rtl:rotate-180" />
                         <span>{t(`assessment.tips.${key}`)}</span>
@@ -336,7 +336,7 @@ export function AssessmentWizard() {
                   </ul>
                 </div>
 
-                <p className="mt-5 rounded-xl border border-white/10 bg-white/5 p-3 text-xs leading-relaxed text-slate-400">
+                <p className="mt-5 rounded-xl border border-line/10 bg-surface/5 p-3 text-xs leading-relaxed text-faint">
                   {t("assessment.moscaNote")}
                 </p>
 
@@ -354,7 +354,7 @@ export function AssessmentWizard() {
 
                 <button
                   onClick={restart}
-                  className="mx-auto mt-5 flex items-center gap-1.5 text-sm text-slate-400 transition hover:text-quantum-cyan"
+                  className="mx-auto mt-5 flex items-center gap-1.5 text-sm text-faint transition hover:text-quantum-cyan"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />
                   {t("assessment.restart")}
@@ -401,7 +401,7 @@ function ScoreGauge({ pct, color }: { pct: number; color: string }) {
       </svg>
       <div className="absolute inset-0 grid place-items-center">
         <motion.span
-          className="font-display text-4xl font-bold text-white"
+          className="font-display text-4xl font-bold text-fg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}

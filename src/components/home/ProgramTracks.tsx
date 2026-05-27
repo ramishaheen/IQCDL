@@ -60,14 +60,14 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                   <div className="flex items-center gap-3">
                     <span
                       className={cn(
-                        "grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br text-white",
+                        "grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br text-fg",
                         track.accent,
                       )}
                     >
                       <Icon className="h-6 w-6" />
                     </span>
                     <div>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className="text-xl font-bold text-fg">
                         {track.data.name}
                       </h3>
                       <p className="text-sm text-quantum-cyan">
@@ -78,25 +78,25 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
 
                   <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
                     <div className="glass rounded-xl px-3 py-2.5">
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-faint">
                         {t("common.duration")}
                       </p>
-                      <p className="font-semibold text-white">
+                      <p className="font-semibold text-fg">
                         {track.data.duration}
                       </p>
                     </div>
                     <div className="glass rounded-xl px-3 py-2.5">
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-faint">
                         {t("common.questions")}
                       </p>
-                      <p className="font-semibold text-white">
+                      <p className="font-semibold text-fg">
                         {track.data.exam}
                       </p>
                     </div>
                   </div>
 
-                  <p className="mt-5 text-sm text-slate-300">
-                    <span className="font-semibold text-white">
+                  <p className="mt-5 text-sm text-muted">
+                    <span className="font-semibold text-fg">
                       {track.data.forWho}
                     </span>
                   </p>
@@ -105,7 +105,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                     {track.data.points.map((p) => (
                       <li key={p} className="flex items-start gap-2.5 text-sm">
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-quantum-cyan" />
-                        <span className="text-slate-300">{p}</span>
+                        <span className="text-muted">{p}</span>
                       </li>
                     ))}
                   </ul>
@@ -115,7 +115,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                     className={cn(
                       "btn mt-7 w-full",
                       track.featured
-                        ? "btn-primary text-white"
+                        ? "btn-primary text-fg"
                         : "border border-brand-500/40 bg-brand-500/15 text-brand-300 hover:bg-brand-500/20",
                     )}
                   >
@@ -128,7 +128,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
           })}
         </div>
 
-        <p className="mt-6 text-center text-sm text-slate-400">
+        <p className="mt-6 text-center text-sm text-faint">
           {dict.tracks.prereq}
         </p>
       </div>

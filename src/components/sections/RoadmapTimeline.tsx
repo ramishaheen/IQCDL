@@ -36,7 +36,7 @@ export function RoadmapTimeline({ withHeading = true }: { withHeading?: boolean 
                 <div className="relative">
                   {/* node */}
                   <motion.span
-                    className="absolute -start-10 top-5 z-10 grid h-7 w-7 -translate-x-0 place-items-center rounded-full bg-white/10 ring-2 ring-quantum-cyan/60 sm:-start-12"
+                    className="absolute -start-10 top-5 z-10 grid h-7 w-7 -translate-x-0 place-items-center rounded-full bg-surface/10 ring-2 ring-quantum-cyan/60 sm:-start-12"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
@@ -54,10 +54,10 @@ export function RoadmapTimeline({ withHeading = true }: { withHeading?: boolean 
                         {phase.tag}
                       </span>
                     </div>
-                    <h3 className="mt-2 text-lg font-semibold text-white">
+                    <h3 className="mt-2 text-lg font-semibold text-fg">
                       {phase.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
+                    <p className="mt-1.5 text-sm leading-relaxed text-faint">
                       {phase.body}
                     </p>
                   </div>

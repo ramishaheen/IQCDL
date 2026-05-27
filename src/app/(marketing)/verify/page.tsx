@@ -76,7 +76,7 @@ function VerifyInner() {
               value={token}
               onChange={(e) => setToken(e.target.value)}
               placeholder="IQCDL-FND-2025-XXXXXX"
-              className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 font-mono text-sm text-white placeholder:text-slate-400 focus:border-brand-400 focus:outline-none"
+              className="flex-1 rounded-xl border border-line/10 bg-surface/5 px-4 py-3 font-mono text-sm text-fg placeholder:text-faint focus:border-brand-400 focus:outline-none"
             />
             <button type="submit" className="btn-primary">
               <Search className="h-4 w-4" />
@@ -100,7 +100,7 @@ function VerifyInner() {
                       <p className="text-lg font-semibold text-emerald-700">
                         Valid certificate
                       </p>
-                      <p className="text-sm text-slate-400">
+                      <p className="text-sm text-faint">
                         This credential is genuine and active.
                       </p>
                     </div>
@@ -127,7 +127,7 @@ function VerifyInner() {
                       <p className="text-lg font-semibold text-rose-700">
                         {result ? "Certificate revoked" : "Not found"}
                       </p>
-                      <p className="text-sm text-slate-400">
+                      <p className="text-sm text-faint">
                         {result
                           ? "This credential has been revoked and is no longer valid."
                           : "No certificate matches that token. Check the code and try again."}
@@ -147,8 +147,8 @@ function VerifyInner() {
 function Row({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
     <div>
-      <dt className="text-xs uppercase tracking-wider text-slate-400">{label}</dt>
-      <dd className={`mt-0.5 font-semibold text-white ${mono ? "font-mono text-[13px]" : ""}`}>
+      <dt className="text-xs uppercase tracking-wider text-faint">{label}</dt>
+      <dd className={`mt-0.5 font-semibold text-fg ${mono ? "font-mono text-[13px]" : ""}`}>
         {value}
       </dd>
     </div>

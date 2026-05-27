@@ -35,20 +35,20 @@ export function Pricing() {
                   )}
                 >
                   {featured && (
-                    <span className="absolute -top-3 start-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-gradient-to-r from-quantum-violet to-quantum-magenta px-3 py-1 text-xs font-semibold text-white rtl:translate-x-1/2">
+                    <span className="absolute -top-3 start-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-gradient-to-r from-quantum-violet to-quantum-magenta px-3 py-1 text-xs font-semibold text-fg rtl:translate-x-1/2">
                       <Star className="h-3 w-3 fill-current" />
                       {dict.pricing.mostPopular}
                     </span>
                   )}
 
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-fg">
                     {plan.name}
                   </h3>
                   <div className="mt-3 flex items-end gap-1.5">
-                    <span className="font-display text-4xl font-bold text-white">
+                    <span className="font-display text-4xl font-bold text-fg">
                       {plan.price}
                     </span>
-                    <span className="pb-1 text-sm text-slate-400">
+                    <span className="pb-1 text-sm text-faint">
                       {plan.period}
                     </span>
                   </div>
@@ -57,7 +57,7 @@ export function Pricing() {
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5 text-sm">
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-quantum-cyan" />
-                        <span className="text-slate-300">{f}</span>
+                        <span className="text-muted">{f}</span>
                       </li>
                     ))}
                   </ul>
@@ -68,7 +68,7 @@ export function Pricing() {
                       "btn mt-7 w-full",
                       featured
                         ? "btn-primary"
-                        : "border border-white/10 bg-white/5 text-brand-300 hover:bg-white/10",
+                        : "border border-line/10 bg-surface/5 text-brand-300 hover:bg-surface/10",
                     )}
                   >
                     {plan.cta}

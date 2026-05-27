@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AssistantWidget } from "@/components/assistant/AssistantWidget";
+import { ThemeScope } from "@/components/providers/ThemeProvider";
 
 export default function MarketingLayout({
   children,
@@ -8,11 +9,11 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="theme-dark relative min-h-screen bg-[#05060f]">
+    <ThemeScope>
       <Navbar />
       <main className="pt-20">{children}</main>
       <Footer />
       <AssistantWidget />
-    </div>
+    </ThemeScope>
   );
 }

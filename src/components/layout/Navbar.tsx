@@ -6,6 +6,7 @@ import { Menu, X, LayoutDashboard } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/cn";
 
@@ -44,14 +45,19 @@ export function Navbar() {
             scrolled ? "glass-strong shadow-card" : "border border-transparent",
           )}
         >
-          <Logo className="text-sky-300" />
+          <Logo className={scrolled ? "text-accent" : "text-sky-300"} />
 
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="rounded-full px-3.5 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-quantum-cyan"
+                className={cn(
+                  "rounded-full px-3.5 py-2 text-sm font-medium transition",
+                  scrolled
+                    ? "text-muted hover:bg-surface/5 hover:text-accent"
+                    : "text-slate-200 hover:bg-white/10 hover:text-white",
+                )}
               >
                 {l.label}
               </Link>
@@ -59,6 +65,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <div className="hidden sm:block">
               <LanguageSwitcher />
             </div>
@@ -75,7 +82,12 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-slate-200 lg:hidden"
+              className={cn(
+                "grid h-10 w-10 place-items-center rounded-xl border lg:hidden",
+                scrolled
+                  ? "border-line/10 bg-surface/5 text-fg"
+                  : "border-white/20 bg-white/10 text-white",
+              )}
               aria-label="Toggle menu"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -90,12 +102,12 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-200 hover:bg-white/5"
+                className="block rounded-xl px-4 py-3 text-sm font-medium text-fg hover:bg-surface/5"
               >
                 {l.label}
               </Link>
             ))}
-            <div className="mt-2 flex items-center justify-between gap-2 border-t border-white/10 pt-3">
+            <div className="mt-2 flex items-center justify-between gap-2 border-t border-line/10 pt-3">
               <LanguageSwitcher />
               {user ? (
                 <Link

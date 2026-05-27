@@ -101,15 +101,15 @@ export function AssistantWidget() {
             className="glass-strong fixed bottom-24 end-5 z-[60] flex h-[min(560px,75vh)] w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl shadow-card"
           >
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-white/10 bg-gradient-to-r from-quantum-indigo/30 to-quantum-cyan/20 px-4 py-3.5">
+            <div className="flex items-center gap-3 border-b border-line/10 bg-gradient-to-r from-quantum-indigo/30 to-quantum-cyan/20 px-4 py-3.5">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan">
-                <Bot className="h-5 w-5 text-white" />
+                <Bot className="h-5 w-5 text-fg" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-white">
+                <p className="truncate text-sm font-semibold text-fg">
                   {t("assistant.title")}
                 </p>
-                <p className="truncate text-xs text-slate-300">
+                <p className="truncate text-xs text-muted">
                   {mode === "live"
                     ? t("assistant.poweredLive")
                     : mode === "local"
@@ -136,8 +136,8 @@ export function AssistantWidget() {
                     className={cn(
                       "max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed",
                       m.role === "user"
-                        ? "bg-quantum-indigo text-white"
-                        : "glass text-slate-100",
+                        ? "bg-quantum-indigo text-fg"
+                        : "glass text-fg",
                     )}
                   >
                     {m.content}
@@ -169,7 +169,7 @@ export function AssistantWidget() {
                     <button
                       key={s}
                       onClick={() => send(s)}
-                      className="block w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-start text-xs text-slate-200 transition hover:border-quantum-cyan/40 hover:bg-white/10"
+                      className="block w-full rounded-xl border border-line/10 bg-surface/5 px-3 py-2 text-start text-xs text-fg transition hover:border-quantum-cyan/40 hover:bg-surface/10"
                     >
                       {s}
                     </button>
@@ -184,18 +184,18 @@ export function AssistantWidget() {
                 e.preventDefault();
                 send(input);
               }}
-              className="flex items-center gap-2 border-t border-white/10 p-3"
+              className="flex items-center gap-2 border-t border-line/10 p-3"
             >
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={t("assistant.placeholder")}
-                className="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-slate-400 focus:border-quantum-cyan/50 focus:outline-none"
+                className="flex-1 rounded-full border border-line/10 bg-surface/5 px-4 py-2.5 text-sm text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-white transition disabled:opacity-40"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-fg transition disabled:opacity-40"
                 aria-label={t("assistant.send")}
               >
                 <Send className="h-4 w-4" />

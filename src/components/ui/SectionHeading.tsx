@@ -38,7 +38,7 @@ export function SectionHeading({
         {title}
       </motion.h2>
       {subtitle && (
-        <p className="mt-4 text-balance text-base leading-relaxed text-slate-300/90 sm:text-lg">
+        <p className="mt-4 text-balance text-base leading-relaxed text-muted/90 sm:text-lg">
           {subtitle}
         </p>
       )}
