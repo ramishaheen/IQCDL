@@ -386,6 +386,9 @@ const ar: DeepPartial<Dictionary> = {
     correct: "صحيحة",
   },
   certificate: {
+    samplesTitle: "شهادتك، معترف بها في جميع أنحاء العالم",
+    samplesSubtitle: "كل مستوى وبرنامج يمنح اعتماد IQCDL قابلًا للتحقق ومختومًا. استعرض الشهادة لكل مسار.",
+    sampleNote: "نموذج — تحمل الشهادات الصادرة اسم صاحبها ومعرّف اعتماد فريد والختم الرسمي لـ IQCDL.",
     title: "شهادة إنجاز",
     presentedTo: "تشهد هذه الوثيقة بأن",
     completed: "قد أكمل بنجاح متطلبات",
@@ -402,6 +405,21 @@ const ar: DeepPartial<Dictionary> = {
     signatory: "مدير مجلس اعتماد IQCDL",
   },
   membership: {
+    badge: {
+      title: "شارك شارة عضويتك",
+      subtitle: "أضف شارة عضو IQCDL إلى صورتك وشاركها على Instagram أو LinkedIn.",
+      open: "إنشاء شارتي",
+      upload: "ارفع صورتك",
+      change: "تغيير الصورة",
+      statement: "تعلّم الممارسات الرائدة باستخدام IQCDL",
+      memberLabel: "عضو IQCDL",
+      download: "تنزيل الشارة",
+      shareInstagram: "مشاركة على Instagram",
+      shareLinkedin: "مشاركة على LinkedIn",
+      copy: "نسخ التعليق",
+      copied: "تم نسخ التعليق",
+      hint: "على الجوال، تفتح «مشاركة» Instagram وWhatsApp والمزيد. على سطح المكتب، نزّل الصورة وأرفقها بمنشورك.",
+    },
     eyebrow: "العضوية",
     title: "كن عضوًا في IQCDL",
     subtitle:

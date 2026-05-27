@@ -554,6 +554,9 @@ const fr: DeepPartial<Dictionary> = {
     correct: "correct",
   },
   certificate: {
+    samplesTitle: "Votre certificat, reconnu dans le monde entier",
+    samplesSubtitle: "Chaque niveau et programme donne lieu à un titre IQCDL vérifiable et tamponné. Prévisualisez le certificat pour chaque parcours.",
+    sampleNote: "Exemple — les certificats délivrés portent le nom du titulaire, un identifiant de titre unique et le cachet officiel IQCDL.",
     title: "Certificat de réussite",
     presentedTo: "Ceci certifie que",
     completed: "a satisfait avec succès aux exigences du",
@@ -571,6 +574,21 @@ const fr: DeepPartial<Dictionary> = {
     signatory: "Directeur, Conseil de certification IQCDL",
   },
   membership: {
+    badge: {
+      title: "Partagez votre badge de membre",
+      subtitle: "Ajoutez votre badge de membre IQCDL à votre photo et partagez-le sur Instagram ou LinkedIn.",
+      open: "Créer mon badge",
+      upload: "Téléverser votre photo",
+      change: "Changer de photo",
+      statement: "Apprenez les meilleures pratiques avec IQCDL",
+      memberLabel: "MEMBRE IQCDL",
+      download: "Télécharger le badge",
+      shareInstagram: "Partager sur Instagram",
+      shareLinkedin: "Partager sur LinkedIn",
+      copy: "Copier la légende",
+      copied: "Légende copiée",
+      hint: "Sur mobile, « Partager » ouvre Instagram, WhatsApp et plus encore. Sur ordinateur, téléchargez l'image et joignez-la à votre publication.",
+    },
     eyebrow: "Adhésion",
     title: "Devenez membre IQCDL",
     subtitle:

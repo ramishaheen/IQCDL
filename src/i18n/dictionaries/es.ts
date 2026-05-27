@@ -554,6 +554,9 @@ const es: DeepPartial<Dictionary> = {
     correct: "correctas",
   },
   certificate: {
+    samplesTitle: "Tu certificado, reconocido en todo el mundo",
+    samplesSubtitle: "Cada nivel y programa otorga una credencial IQCDL verificable y sellada. Previsualiza el certificado de cada ruta.",
+    sampleNote: "Ejemplo — los certificados emitidos incluyen el nombre del titular, un ID de credencial único y el sello oficial de IQCDL.",
     title: "Certificado de Logro",
     presentedTo: "Esto certifica que",
     completed: "ha completado con éxito los requisitos de la",
@@ -571,6 +574,21 @@ const es: DeepPartial<Dictionary> = {
     signatory: "Director, Junta de Certificación IQCDL",
   },
   membership: {
+    badge: {
+      title: "Comparte tu insignia de miembro",
+      subtitle: "Añade tu insignia de miembro IQCDL a tu foto y compártela en Instagram o LinkedIn.",
+      open: "Crear mi insignia",
+      upload: "Sube tu foto",
+      change: "Cambiar foto",
+      statement: "Aprende las mejores prácticas con IQCDL",
+      memberLabel: "MIEMBRO IQCDL",
+      download: "Descargar insignia",
+      shareInstagram: "Compartir en Instagram",
+      shareLinkedin: "Compartir en LinkedIn",
+      copy: "Copiar descripción",
+      copied: "Descripción copiada",
+      hint: "En móvil, «Compartir» abre Instagram, WhatsApp y más. En escritorio, descarga la imagen y adjúntala a tu publicación.",
+    },
     eyebrow: "Membresía",
     title: "Hazte miembro de IQCDL",
     subtitle:

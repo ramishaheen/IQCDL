@@ -8,6 +8,7 @@ export interface IntegrationSettings {
   anthropicPrimary?: string;
   anthropicFallback?: string;
   stripeSecret?: string;
+  stripeWebhookSecret?: string;
 }
 
 const KEY = "iqcdl:settings:v1";
@@ -40,7 +41,7 @@ export async function loadSettings(): Promise<IntegrationSettings> {
 export async function saveSettings(patch: Partial<IntegrationSettings>): Promise<void> {
   const current = await loadSettings();
   const next: IntegrationSettings = { ...current };
-  for (const k of ["anthropicPrimary", "anthropicFallback", "stripeSecret"] as const) {
+  for (const k of ["anthropicPrimary", "anthropicFallback", "stripeSecret", "stripeWebhookSecret"] as const) {
     const v = patch[k];
     if (typeof v === "string" && v.trim()) next[k] = v.trim();
   }
@@ -67,11 +68,13 @@ export async function maskedStatus() {
     anthropicPrimary: mask(s.anthropicPrimary || process.env.ANTHROPIC_API_KEY),
     anthropicFallback: mask(s.anthropicFallback || process.env.ANTHROPIC_API_KEY_FALLBACK),
     stripeSecret: mask(s.stripeSecret || process.env.STRIPE_SECRET_KEY),
+    stripeWebhookSecret: mask(s.stripeWebhookSecret || process.env.STRIPE_WEBHOOK_SECRET),
     // surface where each value comes from (without leaking the value)
     sources: {
       anthropicPrimary: s.anthropicPrimary ? "admin" : process.env.ANTHROPIC_API_KEY ? "env" : "none",
       anthropicFallback: s.anthropicFallback ? "admin" : process.env.ANTHROPIC_API_KEY_FALLBACK ? "env" : "none",
       stripeSecret: s.stripeSecret ? "admin" : process.env.STRIPE_SECRET_KEY ? "env" : "none",
+      stripeWebhookSecret: s.stripeWebhookSecret ? "admin" : process.env.STRIPE_WEBHOOK_SECRET ? "env" : "none",
     },
   };
 }
@@ -87,4 +90,9 @@ export async function getAnthropicKeys(): Promise<string[]> {
 export async function getStripeKey(): Promise<string | undefined> {
   const s = await loadSettings();
   return s.stripeSecret || process.env.STRIPE_SECRET_KEY || undefined;
+}
+
+export async function getStripeWebhookSecret(): Promise<string | undefined> {
+  const s = await loadSettings();
+  return s.stripeWebhookSecret || process.env.STRIPE_WEBHOOK_SECRET || undefined;
 }

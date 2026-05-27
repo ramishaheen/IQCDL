@@ -10,6 +10,7 @@ interface MaskStatus {
   anthropicPrimary: { set: boolean; hint: string };
   anthropicFallback: { set: boolean; hint: string };
   stripeSecret: { set: boolean; hint: string };
+  stripeWebhookSecret: { set: boolean; hint: string };
   sources: Record<string, string>;
 }
 
@@ -21,7 +22,7 @@ interface TestState {
 
 export function SettingsConsole() {
   const [status, setStatus] = useState<MaskStatus | null>(null);
-  const [vals, setVals] = useState({ anthropicPrimary: "", anthropicFallback: "", stripeSecret: "" });
+  const [vals, setVals] = useState({ anthropicPrimary: "", anthropicFallback: "", stripeSecret: "", stripeWebhookSecret: "" });
   const [tests, setTests] = useState<Record<Provider, TestState>>({
     "anthropic-primary": { loading: false },
     "anthropic-fallback": { loading: false },
@@ -70,7 +71,7 @@ export function SettingsConsole() {
       if (res.ok) {
         const data = await res.json();
         setStatus(data.status);
-        setVals({ anthropicPrimary: "", anthropicFallback: "", stripeSecret: "" });
+        setVals({ anthropicPrimary: "", anthropicFallback: "", stripeSecret: "", stripeWebhookSecret: "" });
         setSaved(true);
         setTimeout(() => setSaved(false), 2500);
       }
@@ -113,16 +114,29 @@ export function SettingsConsole() {
         title="Stripe"
         desc="Secret key for live payments — membership ($19/yr), award category ($1,000) and entity assessment ($5,000). Without it, checkout runs in demo mode."
       >
-        <KeyRow
-          icon={<CreditCard className="h-4 w-4" />}
-          label="Stripe secret key"
-          placeholder={status?.stripeSecret.set ? `Saved ${status.stripeSecret.hint} · replace to change` : "sk_live_… or sk_test_…"}
-          source={status?.sources.stripeSecret}
-          value={vals.stripeSecret}
-          onChange={(v) => setVals({ ...vals, stripeSecret: v })}
-          onTest={() => runTest("stripe", vals.stripeSecret)}
-          test={tests.stripe}
-        />
+        <div className="space-y-4">
+          <KeyRow
+            icon={<CreditCard className="h-4 w-4" />}
+            label="Stripe secret key"
+            placeholder={status?.stripeSecret.set ? `Saved ${status.stripeSecret.hint} · replace to change` : "sk_live_… or sk_test_…"}
+            source={status?.sources.stripeSecret}
+            value={vals.stripeSecret}
+            onChange={(v) => setVals({ ...vals, stripeSecret: v })}
+            onTest={() => runTest("stripe", vals.stripeSecret)}
+            test={tests.stripe}
+          />
+          <KeyRow
+            icon={<CreditCard className="h-4 w-4" />}
+            label="Stripe webhook signing secret (auto-activates members on payment)"
+            placeholder={status?.stripeWebhookSecret.set ? `Saved ${status.stripeWebhookSecret.hint} · replace to change` : "whsec_…"}
+            source={status?.sources.stripeWebhookSecret}
+            value={vals.stripeWebhookSecret}
+            onChange={(v) => setVals({ ...vals, stripeWebhookSecret: v })}
+          />
+        </div>
+        <p className="mt-3 text-xs text-slate-400">
+          Add an endpoint in Stripe → Developers → Webhooks pointing to <code>/api/stripe/webhook</code> (events: checkout.session.completed, customer.subscription.deleted), then paste its signing secret here.
+        </p>
       </Panel>
 
       <div className="flex items-center justify-end gap-3">
@@ -154,8 +168,8 @@ function KeyRow({
   source?: string;
   value: string;
   onChange: (v: string) => void;
-  onTest: () => void;
-  test: TestState;
+  onTest?: () => void;
+  test?: TestState;
 }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-4">
@@ -184,15 +198,17 @@ function KeyRow({
             className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 pl-9 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-400 focus:outline-none"
           />
         </div>
-        <Btn variant="soft" onClick={onTest} disabled={test.loading}>
-          {test.loading ? (
-            <span className="inline-flex items-center gap-1.5"><Loader2 className="h-3.5 w-3.5 animate-spin" /> Testing…</span>
-          ) : (
-            "Test"
-          )}
-        </Btn>
+        {onTest && (
+          <Btn variant="soft" onClick={onTest} disabled={test?.loading}>
+            {test?.loading ? (
+              <span className="inline-flex items-center gap-1.5"><Loader2 className="h-3.5 w-3.5 animate-spin" /> Testing…</span>
+            ) : (
+              "Test"
+            )}
+          </Btn>
+        )}
       </div>
-      {test.message && (
+      {test?.message && (
         <p className={`mt-2 inline-flex items-center gap-1.5 text-xs ${test.ok ? "text-emerald-600" : "text-rose-600"}`}>
           {test.ok ? <CheckCircle2 className="h-3.5 w-3.5" /> : <XCircle className="h-3.5 w-3.5" />}
           {test.message}

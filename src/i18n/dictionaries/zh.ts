@@ -330,6 +330,9 @@ const zh: DeepPartial<Dictionary> = {
     correct: "正确",
   },
   certificate: {
+    samplesTitle: "你的证书，全球认可",
+    samplesSubtitle: "每个等级和课程均可获得可验证的、带有印章的 IQCDL 资质证书。预览各方向的证书样式。",
+    sampleNote: "样本 — 正式签发的证书载有持有人姓名、唯一凭据 ID 及 IQCDL 官方印章。",
     title: "成就证书",
     presentedTo: "兹证明",
     completed: "已成功完成以下要求：",
@@ -346,6 +349,21 @@ const zh: DeepPartial<Dictionary> = {
     signatory: "IQCDL 认证委员会主任",
   },
   membership: {
+    badge: {
+      title: "分享你的会员徽章",
+      subtitle: "将你的 IQCDL 会员徽章添加到你的照片，并在 Instagram 或 LinkedIn 上分享。",
+      open: "创建我的徽章",
+      upload: "上传你的照片",
+      change: "更换照片",
+      statement: "使用 IQCDL 学习领先实践",
+      memberLabel: "IQCDL 会员",
+      download: "下载徽章",
+      shareInstagram: "分享到 Instagram",
+      shareLinkedin: "分享到 LinkedIn",
+      copy: "复制说明文字",
+      copied: "说明文字已复制",
+      hint: "在手机上，「分享」可打开 Instagram、WhatsApp 等应用。在桌面端，请下载图片后附加到你的帖子中。",
+    },
     eyebrow: "会员",
     title: "成为 IQCDL 会员",
     subtitle:
