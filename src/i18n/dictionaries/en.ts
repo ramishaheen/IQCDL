@@ -618,6 +618,9 @@ const en = {
       "Pass the Foundation mock exam to unlock and download your certificate.",
     goToExam: "Go to the exam",
     signatory: "Director, IQCDL Certification Board",
+    samplesTitle: "Your certificate, recognized worldwide",
+    samplesSubtitle: "Every level and program earns a verifiable, stamped IQCDL credential. Preview the certificate for each track.",
+    sampleNote: "Sample — issued certificates carry the holder's name, a unique credential ID and the official IQCDL seal.",
   },
   membership: {
     eyebrow: "Membership",

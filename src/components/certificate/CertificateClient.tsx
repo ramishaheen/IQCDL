@@ -3,11 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Award, Lock, Printer, ArrowLeft, ShieldCheck } from "lucide-react";
+import { Lock, Printer, ArrowLeft, ShieldCheck } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { usePortal, scopeForUser } from "@/lib/portal";
 import { Logo } from "@/components/layout/Logo";
+import { CertificateSeal } from "@/components/certificate/CertificateSeal";
 
 export function CertificateClient() {
   const { t, locale } = useLocale();
@@ -103,10 +104,7 @@ export function CertificateClient() {
           </p>
 
           <div className="mt-8 flex justify-center">
-            <span className="relative grid h-20 w-20 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow">
-              <Award className="h-9 w-9" />
-              <span className="absolute inset-0 rounded-full ring-2 ring-inset ring-white/40" />
-            </span>
+            <CertificateSeal className="h-28 w-28" tone="light" />
           </div>
 
           <div className="mx-auto mt-8 grid max-w-xl grid-cols-1 gap-4 text-start sm:grid-cols-3">
@@ -117,7 +115,16 @@ export function CertificateClient() {
 
           <div className="mt-10 flex flex-col items-center justify-between gap-6 border-t border-slate-200 pt-6 sm:flex-row sm:items-end">
             <div className="text-start">
-              <div className="h-8 w-44 border-b border-slate-300" />
+              <svg viewBox="0 0 160 44" className="h-9 w-40" aria-hidden>
+                <path
+                  d="M6 30 C 22 6, 30 6, 34 26 C 38 10, 46 10, 50 28 C 64 0, 78 40, 96 18 C 104 10, 120 10, 132 22 C 140 28, 150 22, 154 16"
+                  fill="none"
+                  stroke="#1e3a8a"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <div className="h-px w-44 bg-slate-300" />
               <p className="mt-2 text-xs text-slate-500">{t("certificate.signatory")}</p>
             </div>
             <Link

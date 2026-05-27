@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getStripeKey } from "@/lib/settings-server";
 
 export const runtime = "nodejs";
 
@@ -59,7 +60,7 @@ export async function POST(request: Request) {
       : `/awards/success?cs={CHECKOUT_SESSION_ID}&p=${product}`;
   const cancelPath = product === "membership" ? "/membership?canceled=1" : "/awards?canceled=1";
 
-  const key = process.env.STRIPE_SECRET_KEY;
+  const key = await getStripeKey();
   if (key) {
     try {
       const { default: Stripe } = await import("stripe");

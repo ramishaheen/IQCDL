@@ -6,6 +6,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { LevelOutline } from "@/components/programs/LevelOutline";
 import { SectionDivider } from "@/components/visuals/SectionDivider";
 import { Pricing } from "@/components/home/Pricing";
+import { SampleCertificates } from "@/components/certificate/SampleCertificates";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export default function ProgramsPage() {
@@ -48,6 +49,7 @@ export default function ProgramsPage() {
         ctaHref="/#pricing"
       />
 
+      <SampleCertificates />
       <Pricing />
       <FinalCTA />
     </>

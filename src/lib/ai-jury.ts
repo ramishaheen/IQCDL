@@ -1,4 +1,5 @@
 import "server-only";
+import { anthropicText } from "./anthropic";
 
 export interface JuryResult {
   score: number; // 0–100
@@ -43,25 +44,15 @@ export async function juryAssess(input: string): Promise<JuryResult> {
   const text = (input ?? "").trim();
   if (!text) return { score: 0, verdict: "Empty submission.", needsEvidence: true, mode: "local" };
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (apiKey) {
-    try {
-      const { default: Anthropic } = await import("@anthropic-ai/sdk");
-      const client = new Anthropic({ apiKey });
-      const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-6";
-      const res = await client.messages.create({
-        model,
-        max_tokens: 400,
-        system: SYSTEM,
-        messages: [{ role: "user", content: text.slice(0, 6000) }],
-      });
-      const raw = res.content
-        .filter((b) => b.type === "text")
-        .map((b) => (b as { text: string }).text)
-        .join("")
-        .trim();
-      const match = raw.match(/\{[\s\S]*\}/);
-      if (match) {
+  const raw = await anthropicText({
+    system: SYSTEM,
+    messages: [{ role: "user", content: text.slice(0, 6000) }],
+    maxTokens: 400,
+  });
+  if (raw) {
+    const match = raw.match(/\{[\s\S]*\}/);
+    if (match) {
+      try {
         const parsed = JSON.parse(match[0]) as Partial<JuryResult>;
         const score = Math.max(0, Math.min(100, Math.round(Number(parsed.score) || 0)));
         return {
@@ -70,9 +61,9 @@ export async function juryAssess(input: string): Promise<JuryResult> {
           needsEvidence: Boolean(parsed.needsEvidence),
           mode: "live",
         };
+      } catch (err) {
+        console.error("AI jury JSON parse failed, falling back:", err);
       }
-    } catch (err) {
-      console.error("AI jury live mode failed, falling back:", err);
     }
   }
   return heuristicScore(text);
@@ -87,28 +78,12 @@ Return only the improved text, no preamble.`;
 export async function improveDraft(input: string): Promise<{ text: string; mode: "live" | "local" }> {
   const text = (input ?? "").trim();
   if (!text) return { text: "", mode: "local" };
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (apiKey) {
-    try {
-      const { default: Anthropic } = await import("@anthropic-ai/sdk");
-      const client = new Anthropic({ apiKey });
-      const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-6";
-      const res = await client.messages.create({
-        model,
-        max_tokens: 900,
-        system: IMPROVE_SYSTEM,
-        messages: [{ role: "user", content: text.slice(0, 6000) }],
-      });
-      const out = res.content
-        .filter((b) => b.type === "text")
-        .map((b) => (b as { text: string }).text)
-        .join("\n")
-        .trim();
-      if (out) return { text: out, mode: "live" };
-    } catch (err) {
-      console.error("AI improve live mode failed, falling back:", err);
-    }
-  }
+  const out = await anthropicText({
+    system: IMPROVE_SYSTEM,
+    messages: [{ role: "user", content: text.slice(0, 6000) }],
+    maxTokens: 900,
+  });
+  if (out) return { text: out, mode: "live" };
   // Local fallback: light structuring of the existing draft.
   const polished = `Idea & impact: ${text}\n\nStandards alignment: This initiative is designed to align with international standards (NIST FIPS 203/204/205, ISO/IEC, IEEE and the EU PQC roadmap). Add specific evidence — publications, deployments, metrics or letters — to strengthen the submission.`;
   return { text: polished, mode: "local" };

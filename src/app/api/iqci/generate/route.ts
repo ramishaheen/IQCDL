@@ -5,6 +5,7 @@ import {
   currentQuarterLabel,
   type QuarterlyEdition,
 } from "@/lib/iqci";
+import { anthropicText } from "@/lib/anthropic";
 
 export const runtime = "nodejs";
 
@@ -31,35 +32,19 @@ export async function POST(request: Request) {
     `Talent pipeline remains the most common gap among emerging quantum nations.`,
   ];
 
-  // Use Claude for a punchier headline when configured.
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (apiKey) {
-    try {
-      const { default: Anthropic } = await import("@anthropic-ai/sdk");
-      const client = new Anthropic({ apiKey });
-      const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-6";
-      const res = await client.messages.create({
-        model,
-        max_tokens: 120,
-        system:
-          "You are the IQCI editorial agent. Write a single neutral, factual press-release headline (max 18 words) for the quarterly International Quantum Computing Index. No quotes, no markdown.",
-        messages: [
-          {
-            role: "user",
-            content: `Edition: ${label}. Leader: ${leader.country} (${leader.score}). Standout climber: ${climber.country}.`,
-          },
-        ],
-      });
-      const out = res.content
-        .filter((b) => b.type === "text")
-        .map((b) => (b as { text: string }).text)
-        .join(" ")
-        .trim();
-      if (out) headline = out.replace(/^["']|["']$/g, "");
-    } catch (err) {
-      console.error("IQCI headline generation failed, using default:", err);
-    }
-  }
+  // Use Claude (primary then fallback key) for a punchier headline when configured.
+  const out = await anthropicText({
+    system:
+      "You are the IQCI editorial agent. Write a single neutral, factual press-release headline (max 18 words) for the quarterly International Quantum Computing Index. No quotes, no markdown.",
+    messages: [
+      {
+        role: "user",
+        content: `Edition: ${label}. Leader: ${leader.country} (${leader.score}). Standout climber: ${climber.country}.`,
+      },
+    ],
+    maxTokens: 120,
+  });
+  if (out) headline = out.replace(/^["']|["']$/g, "");
 
   const edition: QuarterlyEdition = {
     id: label.replace(/\s+/g, "-").toLowerCase(),
