@@ -45,7 +45,7 @@ export function Navbar() {
             scrolled ? "glass-strong shadow-card" : "border border-transparent",
           )}
         >
-          <Logo className={scrolled ? "text-accent" : "text-sky-300"} />
+          <Logo className={scrolled ? "logo-tone" : "text-white"} />
 
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((l) => (

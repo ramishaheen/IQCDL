@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { Stats } from "@/components/home/Stats";
 import { ProgramTracks } from "@/components/home/ProgramTracks";
 import { Features } from "@/components/home/Features";
 import { RoadmapTimeline } from "@/components/sections/RoadmapTimeline";
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <Stats />
       <SectionDivider />
       <ProgramTracks />
       <SectionDivider />

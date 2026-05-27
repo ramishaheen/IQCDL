@@ -44,7 +44,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       <header className="no-print sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-xl">
         <div className="container-x flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
-            <Logo />
+            <Logo className="logo-tone" />
             <span className="hidden rounded-full bg-quantum-violet/20 px-3 py-1 text-xs font-medium text-quantum-violet sm:inline">
               {t(`auth.roles.${user.role}`)}
             </span>

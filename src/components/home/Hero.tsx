@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ShieldCheck, Sparkles, Globe } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
-import { Stats } from "@/components/home/Stats";
 import { LicenseCard } from "@/components/home/LicenseCard";
 
 export function Hero() {
@@ -126,16 +125,6 @@ export function Hero() {
           {/* credential card */}
           <LicenseCard />
         </div>
-
-        {/* stats strip, embedded in the hero */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 lg:mt-16"
-        >
-          <Stats embedded />
-        </motion.div>
       </motion.div>
 
       {/* bottom fade into the page */}

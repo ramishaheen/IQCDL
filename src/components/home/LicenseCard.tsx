@@ -25,7 +25,7 @@ export function LicenseCard() {
       <div className="glass-strong relative animate-float rounded-3xl border border-line/15 p-6 shadow-card sm:p-7">
         {/* header */}
         <div className="flex items-center justify-between gap-3">
-          <Logo className="text-accent" />
+          <Logo className="logo-tone" />
           <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-1 text-xs font-semibold text-emerald-300">
             <BadgeCheck className="h-3.5 w-3.5" />
             {c.verified}
@@ -54,10 +54,15 @@ export function LicenseCard() {
           </div>
         </div>
 
-        {/* token */}
-        <p className="mt-4 font-mono text-sm tracking-wider text-accent">
-          IQCDL-FND-2026-••••••
-        </p>
+        {/* credential id */}
+        <div className="mt-3 flex items-center justify-between gap-2 rounded-xl border border-line/10 bg-surface/5 px-3 py-2.5">
+          <span className="text-[11px] uppercase tracking-wider text-faint">
+            Credential ID
+          </span>
+          <span className="font-mono text-sm tracking-wider text-accent">
+            IQCDL-FND-2026-••••••
+          </span>
+        </div>
 
         {/* footer */}
         <div className="mt-5 flex items-center justify-between gap-3 border-t border-line/10 pt-4">

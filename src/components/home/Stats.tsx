@@ -14,18 +14,18 @@ export function Stats({ embedded = false }: { embedded?: boolean }) {
   ];
 
   const grid = (
-    <div className="card grid grid-cols-2 gap-px overflow-hidden rounded-3xl lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
       {stats.map((s, i) => (
         <Reveal
           key={s.label}
           delay={i * 0.08}
-          className="bg-surface/5 p-6 text-center sm:p-7"
+          className="card p-6 text-center transition duration-300 hover:-translate-y-1 hover:shadow-glow sm:p-7"
         >
           <Counter
             raw={s.value}
-            className="gradient-text block font-display text-3xl font-bold sm:text-4xl"
+            className="gradient-text block font-display text-4xl font-bold sm:text-5xl"
           />
-          <p className="mx-auto mt-2 max-w-[16ch] text-xs leading-snug text-muted sm:text-sm">
+          <p className="mx-auto mt-2 max-w-[18ch] text-xs leading-snug text-muted sm:text-sm">
             {s.label}
           </p>
         </Reveal>
@@ -36,7 +36,7 @@ export function Stats({ embedded = false }: { embedded?: boolean }) {
   if (embedded) return grid;
 
   return (
-    <section className="relative">
+    <section className="relative z-20 -mt-10 sm:-mt-16">
       <div className="container-x">{grid}</div>
     </section>
   );

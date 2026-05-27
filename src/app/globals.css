@@ -286,6 +286,13 @@
   background: rgba(56, 189, 248, 0.15);
   color: #7dd3fc;
 }
+/* Logo: brand blue on light surfaces, white on dark surfaces */
+.logo-tone {
+  color: #1d8ec2;
+}
+.theme-dark .logo-tone {
+  color: #ffffff;
+}
 /* Brighter, baby-blue headline gradient on dark surfaces */
 .theme-dark .gradient-text {
   background-image: linear-gradient(100deg, #38bdf8 0%, #7dd3fc 55%, #e0f2fe 100%);
