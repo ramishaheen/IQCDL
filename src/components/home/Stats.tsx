@@ -19,11 +19,11 @@ export function Stats({ embedded = false }: { embedded?: boolean }) {
         <Reveal
           key={s.label}
           delay={i * 0.08}
-          className="card p-6 text-center transition duration-300 hover:-translate-y-1 hover:shadow-glow sm:p-7"
+          className="card p-4 text-center transition duration-300 hover:-translate-y-1 hover:shadow-glow sm:p-6 lg:p-7"
         >
           <Counter
             raw={s.value}
-            className="gradient-text block font-display text-4xl font-bold sm:text-5xl"
+            className="gradient-text block font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl"
           />
           <p className="mx-auto mt-2 max-w-[18ch] text-xs leading-snug text-muted sm:text-sm">
             {s.label}

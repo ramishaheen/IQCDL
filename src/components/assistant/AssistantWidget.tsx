@@ -3,11 +3,40 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Sparkles, X, Send, Bot, Lock, ArrowRight } from "lucide-react";
+import { X, Send, Bot, Lock, ArrowRight } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { useMembership } from "@/components/providers/MembershipProvider";
 import { cn } from "@/lib/cn";
+
+/** Animated IQCDL atom mark for the launcher: orbits spin and the nucleus blinks. */
+function AtomMark({ className }: { className?: string }) {
+  const orbit = (rot: number, dur: number) => (
+    <g>
+      <ellipse cx="12" cy="12" rx="9" ry="3.4" fill="none" stroke="currentColor" strokeWidth="1.4" />
+      <circle cx="21" cy="12" r="1.5" fill="currentColor" />
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from={`${rot} 12 12`}
+        to={`${rot + 360} 12 12`}
+        dur={`${dur}s`}
+        repeatCount="indefinite"
+      />
+    </g>
+  );
+  return (
+    <svg viewBox="0 0 24 24" className={className} role="img" aria-hidden="true">
+      {orbit(0, 6)}
+      {orbit(60, 7)}
+      {orbit(120, 8)}
+      <circle cx="12" cy="12" r="2.4" fill="currentColor">
+        <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite" />
+        <animate attributeName="r" values="2.4;3.1;2.4" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+    </svg>
+  );
+}
 
 interface Msg {
   role: "user" | "assistant";
@@ -96,7 +125,7 @@ export function AssistantWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        {open ? <X className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
+        {open ? <X className="h-5 w-5" /> : <AtomMark className="h-5 w-5" />}
         <span className="hidden sm:inline">{t("assistant.open")}</span>
       </motion.button>
 
