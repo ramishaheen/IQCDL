@@ -65,12 +65,66 @@ const KB: KbEntry[] = [
 const FALLBACK =
   "I'm the Quantum Guide — I can help with quantum risk, post-quantum cryptography, planning a migration, or choosing between the Foundation and Practitioner tracks. A good first step is the free 2-minute Readiness Assessment, which scores your exposure and recommends a path. What would you like to dig into?";
 
-/** Offline, rule-based answer used when no ANTHROPIC_API_KEY is configured. */
-export function localAnswer(message: string): string {
-  for (const entry of KB) {
+// General-questions system prompt (open to all visitors) — about the
+// organization, programs, the Quantum Index and the Global Quantum Award.
+export const GENERAL_SYSTEM_PROMPT = `You are the IQCDL assistant answering general questions about the organization — the International Quantum Computing Driving License.
+
+Be warm, concise (2–4 short paragraphs), and helpful. You can answer questions about:
+- What IQCDL is: a vendor-neutral international certification body that takes individuals and organizations from quantum-curious to quantum-ready. Established 2025 in the USA, inherited from IAIDL (since 2014, present in 94+ countries). Part of the IAIDL group (iaidl.org, iaidlcollege.co.uk).
+- Programs & levels: "Quantum Computing for Everyone" (free, zero-code), Foundation (3 days, for leaders/decision-makers, no coding) and Practitioner (5 days, hands-on for developers/security architects). Each leads to a verifiable certificate.
+- Membership: $19/year Community membership — member community, AI quantum-expert agents, the Quantum Guide chat, a free course and a 10% course discount.
+- The International Quantum Computing Index (IQCI): an AI-generated, vendor-neutral index scoring every country's quantum readiness across eight categories, refreshed quarterly.
+- The Global Quantum Award (GQA): a biennial award for SMEs and government entities, assessed by a neutral AI jury; proceeds advance the UN SDGs.
+
+Point people to the relevant page when helpful (Programs, Membership, Quantum Index, Awards, or the free Readiness Assessment). Never invent prices beyond the $19/year membership, and never make guarantees. For deep technical PQC tutoring, suggest the "Quantum tutoring & support" option (for members). Respond in the same language the user writes in.`;
+
+const GENERAL_KB: KbEntry[] = [
+  {
+    patterns: [/what is iqcdl|about iqcdl|who are you|what do you do|tell me about/i],
+    answer:
+      "IQCDL — the International Quantum Computing Driving License — is a vendor-neutral certification body that takes individuals and organizations from quantum-curious to quantum-ready. Established in 2025 in the USA and inherited from IAIDL (active since 2014 across 94+ countries), it offers an AI-guided readiness assessment, immersive training and a verifiable, standards-aligned credential. It's part of the IAIDL group (iaidl.org, iaidlcollege.co.uk).",
+  },
+  {
+    patterns: [/program|level|course|training|foundation|practitioner|learn|study|certificat/i],
+    answer:
+      "We offer three tracks: \"Quantum Computing for Everyone\" (free, zero-code), the Foundation level (3 days, for leaders and decision-makers — no coding), and the Practitioner level (5 days, hands-on for developers and security architects). Each leads to a verifiable certificate. Explore them on the Programs page, or start with the free 2-minute Readiness Assessment.",
+  },
+  {
+    patterns: [/member|membership|join|enroll|community|\$19|subscrib|sign up/i],
+    answer:
+      "Community membership is $19/year. It unlocks the member community, AI quantum-expert agents, the Quantum Guide chat, a free online course and a 10% course discount. You can join from the Membership page — after enrolling you also get the deeper \"Quantum tutoring & support\" chat.",
+  },
+  {
+    patterns: [/index|iqci|ranking|country|countries|score/i],
+    answer:
+      "The International Quantum Computing Index (IQCI) is an AI-generated, vendor-neutral index that scores every country's quantum readiness across eight categories — research, talent, investment, infrastructure, policy, PQC security, environmental sustainability and ethics — refreshed every quarter. Visit the Quantum Index page to explore the rankings.",
+  },
+  {
+    patterns: [/award|gqa|prize|recogni|global quantum/i],
+    answer:
+      "The Global Quantum Award (GQA) is a biennial award for SMEs and government entities, assessed by a neutral AI jury against a published rubric. Entry to the international categories is $1,000, and all award proceeds advance the UN Sustainable Development Goals. The Awards page lists the categories and how to submit.",
+  },
+  {
+    patterns: [/contact|reach|support|talk to|speak|phone|help/i],
+    answer:
+      "You can reach the team at info@iqcdl.org — and the details you just shared mean we can follow up with you directly. For member or account help, the \"Quantum tutoring & support\" option (for members) connects you to deeper assistance.",
+  },
+];
+
+const GENERAL_FALLBACK =
+  "I can tell you about IQCDL — who we are, our programs and levels, the $19/year membership, the International Quantum Computing Index, and the Global Quantum Award. What would you like to know?";
+
+/** Offline, rule-based answer used when no AI provider is configured. */
+export function localAnswer(
+  message: string,
+  mode: "general" | "tutor" = "tutor",
+): string {
+  const kb = mode === "general" ? GENERAL_KB : KB;
+  const fallback = mode === "general" ? GENERAL_FALLBACK : FALLBACK;
+  for (const entry of kb) {
     if (entry.patterns.some((p) => p.test(message))) {
       return entry.answer;
     }
   }
-  return FALLBACK;
+  return fallback;
 }

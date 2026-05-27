@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Send, Bot, Lock, ArrowRight } from "lucide-react";
+import { X, Send, Bot, Lock, ArrowRight, ArrowLeft, MessageCircle, GraduationCap } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { useMembership } from "@/components/providers/MembershipProvider";
@@ -43,29 +43,92 @@ interface Msg {
   content: string;
 }
 
+type Topic = "general" | "tutor";
+
 export function AssistantWidget() {
   const { t, dict } = useLocale();
   const { user } = useAuth();
   const { isMember, link } = useMembership();
   const [open, setOpen] = useState(false);
+  const [topic, setTopic] = useState<Topic | null>(null);
   const [idInput, setIdInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<"live" | "local" | null>(null);
+  const [leadCaptured, setLeadCaptured] = useState(false);
+  const [leadName, setLeadName] = useState("");
+  const [leadEmail, setLeadEmail] = useState("");
+  const [leadPhone, setLeadPhone] = useState("");
+  const [leadBusy, setLeadBusy] = useState(false);
+  const [leadError, setLeadError] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  // Portal users (any role) and Community members may chat.
+  // The tutoring & support track is for portal users (any role) and members.
+  // General questions are open to everyone once they leave contact details.
   const allowed = !!user || isMember;
 
-  useEffect(() => {
-    if (open && messages.length === 0) {
-      setMessages([{ role: "assistant", content: t("assistant.greeting") }]);
+  function backToMenu() {
+    setTopic(null);
+    setMessages([]);
+    setMode(null);
+    setInput("");
+  }
+
+  function reset() {
+    backToMenu();
+    setLeadCaptured(false);
+  }
+
+  function pick(next: Topic) {
+    setTopic(next);
+    setMessages([]);
+    setMode(null);
+  }
+
+  async function submitLead(e: FormEvent) {
+    e.preventDefault();
+    setLeadError(null);
+    const email = leadEmail.trim();
+    const phone = leadPhone.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || phone.length < 5) {
+      setLeadError(t("assistant.leadError"));
+      return;
     }
-  }, [open, messages.length, t]);
+    setLeadBusy(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: leadName.trim(), email, phone }),
+      });
+    } catch {
+      // best-effort — still let the visitor chat if the network hiccups
+    } finally {
+      setLeadBusy(false);
+      setLeadCaptured(true);
+    }
+  }
+
+  // Seed the greeting whenever a topic's conversation starts empty.
+  useEffect(() => {
+    if (!open || topic === null || messages.length > 0) return;
+    setMessages([
+      {
+        role: "assistant",
+        content:
+          topic === "general"
+            ? t("assistant.generalGreeting")
+            : t("assistant.greeting"),
+      },
+    ]);
+  }, [open, topic, messages.length, t]);
 
   useEffect(() => {
-    const onOpen = () => setOpen(true);
+    const onOpen = () => {
+      reset();
+      setOpen(true);
+    };
     window.addEventListener("iqcdl:open-guide", onOpen);
     return () => window.removeEventListener("iqcdl:open-guide", onOpen);
   }, []);
@@ -88,7 +151,7 @@ export function AssistantWidget() {
       const res = await fetch("/api/assistant", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: next }),
+        body: JSON.stringify({ messages: next, mode: topic }),
       });
       const data = await res.json();
       setMode(data.mode ?? null);
@@ -109,14 +172,31 @@ export function AssistantWidget() {
     }
   }
 
-  const suggestions = dict.assistant.suggestions;
+  const suggestions =
+    topic === "general"
+      ? dict.assistant.generalSuggestions
+      : dict.assistant.suggestions;
+
+  const headerTitle =
+    topic === "general" ? t("assistant.modeGeneralTitle") : t("assistant.title");
+  const headerSubtitle =
+    topic === null
+      ? t("assistant.subtitle")
+      : mode === "live"
+        ? t("assistant.poweredLive")
+        : mode === "local"
+          ? t("assistant.poweredLocal")
+          : t("assistant.subtitle");
+
+  const showChat =
+    (topic === "general" && leadCaptured) || (topic === "tutor" && allowed);
 
   return (
     <>
       {/* Launcher */}
       <motion.button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => (open ? setOpen(false) : (reset(), setOpen(true)))}
         className="btn-primary fixed bottom-5 end-5 z-[60] !rounded-full !px-4 !py-3.5 shadow-glow"
         aria-label={t("assistant.open")}
         initial={{ scale: 0, opacity: 0 }}
@@ -140,109 +220,198 @@ export function AssistantWidget() {
           >
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-line/10 bg-gradient-to-r from-quantum-indigo/30 to-quantum-cyan/20 px-4 py-3.5">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan">
-                <Bot className="h-5 w-5 text-white" />
-              </span>
+              {topic !== null ? (
+                <button
+                  type="button"
+                  onClick={backToMenu}
+                  aria-label={t("assistant.back")}
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-surface/10 text-fg transition hover:bg-surface/20"
+                >
+                  <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
+                </button>
+              ) : (
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan">
+                  <Bot className="h-5 w-5 text-white" />
+                </span>
+              )}
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-fg">
-                  {t("assistant.title")}
+                  {headerTitle}
                 </p>
-                <p className="truncate text-xs text-muted">
-                  {mode === "live"
-                    ? t("assistant.poweredLive")
-                    : mode === "local"
-                      ? t("assistant.poweredLocal")
-                      : t("assistant.subtitle")}
-                </p>
+                <p className="truncate text-xs text-muted">{headerSubtitle}</p>
               </div>
             </div>
 
-            {allowed ? (
-              <>
-            {/* Messages */}
-            <div
-              ref={scrollRef}
-              className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
-            >
-              {messages.map((m, i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    "flex",
-                    m.role === "user" ? "justify-end" : "justify-start",
-                  )}
+            {topic === null ? (
+              /* Topic picker */
+              <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4">
+                <p className="text-sm text-muted">{t("assistant.chooseMode")}</p>
+                <button
+                  type="button"
+                  onClick={() => pick("general")}
+                  className="flex items-start gap-3 rounded-2xl border border-line/10 bg-surface/5 p-4 text-start transition hover:border-quantum-cyan/40 hover:bg-surface/10"
                 >
-                  <div
-                    className={cn(
-                      "max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed",
-                      m.role === "user"
-                        ? "bg-quantum-indigo text-white"
-                        : "glass text-fg",
-                    )}
-                  >
-                    {m.content}
-                  </div>
-                </div>
-              ))}
-              {loading && (
-                <div className="flex justify-start">
-                  <div className="glass flex items-center gap-1.5 rounded-2xl px-3.5 py-3">
-                    {[0, 1, 2].map((d) => (
-                      <motion.span
-                        key={d}
-                        className="h-1.5 w-1.5 rounded-full bg-quantum-cyan"
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{
-                          duration: 1,
-                          repeat: Infinity,
-                          delay: d * 0.2,
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {messages.length <= 1 && !loading && (
-                <div className="space-y-2 pt-1">
-                  {suggestions.map((s) => (
-                    <button
-                      key={s}
-                      onClick={() => send(s)}
-                      className="block w-full rounded-xl border border-line/10 bg-surface/5 px-3 py-2 text-start text-xs text-fg transition hover:border-quantum-cyan/40 hover:bg-surface/10"
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-quantum-indigo/60 to-quantum-cyan/40 text-white">
+                    <MessageCircle className="h-5 w-5" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-sm font-semibold text-fg">
+                      {t("assistant.modeGeneralTitle")}
+                    </span>
+                    <span className="mt-0.5 block text-xs leading-snug text-muted">
+                      {t("assistant.modeGeneralDesc")}
+                    </span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => pick("tutor")}
+                  className="flex items-start gap-3 rounded-2xl border border-line/10 bg-surface/5 p-4 text-start transition hover:border-quantum-cyan/40 hover:bg-surface/10"
+                >
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-white">
+                    <GraduationCap className="h-5 w-5" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="flex items-center gap-1.5 text-sm font-semibold text-fg">
+                      {t("assistant.modeTutorTitle")}
+                      {!allowed && <Lock className="h-3.5 w-3.5 text-faint" />}
+                    </span>
+                    <span className="mt-0.5 block text-xs leading-snug text-muted">
+                      {t("assistant.modeTutorDesc")}
+                    </span>
+                  </span>
+                </button>
+              </div>
+            ) : showChat ? (
+              <>
+                {/* Messages */}
+                <div
+                  ref={scrollRef}
+                  className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
+                >
+                  {messages.map((m, i) => (
+                    <div
+                      key={i}
+                      className={cn(
+                        "flex",
+                        m.role === "user" ? "justify-end" : "justify-start",
+                      )}
                     >
-                      {s}
-                    </button>
+                      <div
+                        className={cn(
+                          "max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed",
+                          m.role === "user"
+                            ? "bg-quantum-indigo text-white"
+                            : "glass text-fg",
+                        )}
+                      >
+                        {m.content}
+                      </div>
+                    </div>
                   ))}
-                </div>
-              )}
-            </div>
+                  {loading && (
+                    <div className="flex justify-start">
+                      <div className="glass flex items-center gap-1.5 rounded-2xl px-3.5 py-3">
+                        {[0, 1, 2].map((d) => (
+                          <motion.span
+                            key={d}
+                            className="h-1.5 w-1.5 rounded-full bg-quantum-cyan"
+                            animate={{ opacity: [0.3, 1, 0.3] }}
+                            transition={{
+                              duration: 1,
+                              repeat: Infinity,
+                              delay: d * 0.2,
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-            {/* Input */}
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                send(input);
-              }}
-              className="flex items-center gap-2 border-t border-line/10 p-3"
-            >
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={t("assistant.placeholder")}
-                className="flex-1 rounded-full border border-line/10 bg-surface/5 px-4 py-2.5 text-sm text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
-              />
-              <button
-                type="submit"
-                disabled={loading || !input.trim()}
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-white transition disabled:opacity-40"
-                aria-label={t("assistant.send")}
-              >
-                <Send className="h-4 w-4" />
-              </button>
-            </form>
+                  {messages.length <= 1 && !loading && (
+                    <div className="space-y-2 pt-1">
+                      {suggestions.map((s) => (
+                        <button
+                          key={s}
+                          onClick={() => send(s)}
+                          className="block w-full rounded-xl border border-line/10 bg-surface/5 px-3 py-2 text-start text-xs text-fg transition hover:border-quantum-cyan/40 hover:bg-surface/10"
+                        >
+                          {s}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Input */}
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    send(input);
+                  }}
+                  className="flex items-center gap-2 border-t border-line/10 p-3"
+                >
+                  <input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder={t("assistant.placeholder")}
+                    className="flex-1 rounded-full border border-line/10 bg-surface/5 px-4 py-2.5 text-sm text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading || !input.trim()}
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-white transition disabled:opacity-40"
+                    aria-label={t("assistant.send")}
+                  >
+                    <Send className="h-4 w-4" />
+                  </button>
+                </form>
               </>
+            ) : topic === "general" ? (
+              /* General: capture contact details, save + email admin, then chat */
+              <form
+                onSubmit={submitLead}
+                className="flex flex-1 flex-col justify-center gap-3 p-6"
+              >
+                <div className="text-center">
+                  <p className="font-semibold text-fg">{t("assistant.leadTitle")}</p>
+                  <p className="mt-1 text-sm text-muted">{t("assistant.leadPrompt")}</p>
+                </div>
+                <input
+                  value={leadName}
+                  onChange={(e) => setLeadName(e.target.value)}
+                  placeholder={t("assistant.leadName")}
+                  className="w-full rounded-full border border-line/10 bg-surface/5 px-4 py-2.5 text-sm text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
+                />
+                <input
+                  type="email"
+                  value={leadEmail}
+                  onChange={(e) => setLeadEmail(e.target.value)}
+                  placeholder={t("assistant.leadEmail")}
+                  className="w-full rounded-full border border-line/10 bg-surface/5 px-4 py-2.5 text-sm text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
+                />
+                <input
+                  type="tel"
+                  value={leadPhone}
+                  onChange={(e) => setLeadPhone(e.target.value)}
+                  placeholder={t("assistant.leadPhone")}
+                  className="w-full rounded-full border border-line/10 bg-surface/5 px-4 py-2.5 text-sm text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
+                />
+                {leadError && (
+                  <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+                    {leadError}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={leadBusy}
+                  className="btn-primary w-full text-white disabled:opacity-50"
+                >
+                  {leadBusy ? t("assistant.thinking") : t("assistant.leadSubmit")}
+                </button>
+              </form>
             ) : (
+              /* Gate (tutor track, not a member) */
               <div className="flex flex-1 flex-col items-center justify-center gap-5 p-6 text-center">
                 <span className="grid h-12 w-12 place-items-center rounded-2xl bg-surface/10 text-accent">
                   <Lock className="h-6 w-6" />
