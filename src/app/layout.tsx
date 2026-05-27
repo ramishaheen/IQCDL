@@ -3,6 +3,7 @@ import "./globals.css";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { MembershipProvider } from "@/components/providers/MembershipProvider";
 import { PortalProvider } from "@/lib/portal";
 import en from "@/i18n/dictionaries/en";
 
@@ -60,7 +61,9 @@ export default function RootLayout({
         <ThemeProvider>
           <LocaleProvider>
             <AuthProvider>
-              <PortalProvider>{children}</PortalProvider>
+              <MembershipProvider>
+                <PortalProvider>{children}</PortalProvider>
+              </MembershipProvider>
             </AuthProvider>
           </LocaleProvider>
         </ThemeProvider>

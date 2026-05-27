@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Sparkles, X, Send, Bot } from "lucide-react";
+import { Sparkles, X, Send, Bot, Lock, ArrowRight } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { useAuth } from "@/components/providers/AuthProvider";
+import { useMembership } from "@/components/providers/MembershipProvider";
 import { cn } from "@/lib/cn";
 
 interface Msg {
@@ -13,12 +16,18 @@ interface Msg {
 
 export function AssistantWidget() {
   const { t, dict } = useLocale();
+  const { user } = useAuth();
+  const { isMember, link } = useMembership();
   const [open, setOpen] = useState(false);
+  const [idInput, setIdInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<"live" | "local" | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  // Portal users (any role) and Community members may chat.
+  const allowed = !!user || isMember;
 
   useEffect(() => {
     if (open && messages.length === 0) {
@@ -119,6 +128,8 @@ export function AssistantWidget() {
               </div>
             </div>
 
+            {allowed ? (
+              <>
             {/* Messages */}
             <div
               ref={scrollRef}
@@ -201,6 +212,43 @@ export function AssistantWidget() {
                 <Send className="h-4 w-4" />
               </button>
             </form>
+              </>
+            ) : (
+              <div className="flex flex-1 flex-col items-center justify-center gap-5 p-6 text-center">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-surface/10 text-accent">
+                  <Lock className="h-6 w-6" />
+                </span>
+                <div>
+                  <p className="font-semibold text-fg">{t("assistant.gateTitle")}</p>
+                  <p className="mt-1 text-sm text-muted">{t("assistant.gatePrompt")}</p>
+                </div>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (idInput.trim()) link(idInput);
+                  }}
+                  className="w-full space-y-2"
+                >
+                  <input
+                    value={idInput}
+                    onChange={(e) => setIdInput(e.target.value)}
+                    placeholder={t("assistant.idPlaceholder")}
+                    className="w-full rounded-full border border-line/10 bg-surface/5 px-4 py-2.5 text-center text-sm text-fg placeholder:text-faint focus:border-quantum-cyan/50 focus:outline-none"
+                  />
+                  <button type="submit" className="btn-primary w-full text-white">
+                    {t("assistant.unlock")}
+                  </button>
+                </form>
+                <Link
+                  href="/membership"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
+                >
+                  {t("assistant.becomeMember")}
+                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                </Link>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

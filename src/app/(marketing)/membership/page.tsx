@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import {
   Users,
@@ -22,6 +23,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { EnrollModal } from "@/components/membership/EnrollModal";
 
 const BENEFIT_ICONS: LucideIcon[] = [
   BadgeCheck,
@@ -45,6 +47,7 @@ const TIER_ICONS: Record<string, LucideIcon> = {
 export default function MembershipPage() {
   const { dict } = useLocale();
   const m = dict.membership;
+  const [enrollOpen, setEnrollOpen] = useState(false);
 
   return (
     <>
@@ -54,15 +57,16 @@ export default function MembershipPage() {
       <section className="-mt-6 pb-4">
         <div className="container-x">
           <Reveal className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/login" className="btn-primary">
-              {m.enrollNow}
+            <button onClick={() => setEnrollOpen(true)} className="btn-primary text-white">
+              {m.enrollNow} · {m.price}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-            </Link>
+            </button>
             <Link href="/login" className="btn-ghost">
               <LogIn className="h-4 w-4" />
               {m.signedInPrompt} {m.signIn}
             </Link>
           </Reveal>
+          <p className="mt-3 text-center text-xs text-faint">{m.rolesNote}</p>
         </div>
       </section>
 
@@ -103,7 +107,7 @@ export default function MembershipPage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {m.tiers.map((tier, i) => {
               const Icon = TIER_ICONS[tier.key] ?? Users;
-              const free = tier.key === "community";
+              const community = tier.key === "community";
               return (
                 <Reveal key={tier.key} delay={(i % 3) * 0.06}>
                   <div
@@ -114,9 +118,9 @@ export default function MembershipPage() {
                       <span className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-quantum-indigo/40 to-quantum-cyan/30 text-accent">
                         <Icon className="h-5 w-5" />
                       </span>
-                      {free && (
-                        <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-semibold text-emerald-500">
-                          Free
+                      {community && (
+                        <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-semibold text-accent">
+                          {m.price} {m.priceNote}
                         </span>
                       )}
                     </div>
@@ -124,13 +128,23 @@ export default function MembershipPage() {
                     <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted">
                       {tier.desc}
                     </p>
-                    <Link
-                      href="/login"
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition group-hover:gap-2.5"
-                    >
-                      {m.apply}
-                      <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                    </Link>
+                    {community ? (
+                      <button
+                        onClick={() => setEnrollOpen(true)}
+                        className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition hover:gap-2.5"
+                      >
+                        {m.enrollTier}
+                        <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                      </button>
+                    ) : (
+                      <Link
+                        href="/login"
+                        className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition hover:gap-2.5"
+                      >
+                        {m.signInTier}
+                        <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                      </Link>
+                    )}
                   </div>
                 </Reveal>
               );
@@ -150,10 +164,13 @@ export default function MembershipPage() {
                     </li>
                   ))}
                 </ol>
-                <Link href="/login" className="btn-primary mt-5 w-full text-white">
+                <button
+                  onClick={() => setEnrollOpen(true)}
+                  className="btn-primary mt-5 w-full text-white"
+                >
                   {m.cta}
                   <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                </Link>
+                </button>
               </div>
             </Reveal>
           </div>
@@ -161,6 +178,7 @@ export default function MembershipPage() {
       </section>
 
       <FinalCTA />
+      <EnrollModal open={enrollOpen} onClose={() => setEnrollOpen(false)} />
     </>
   );
 }

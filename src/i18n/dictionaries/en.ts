@@ -507,6 +507,12 @@ const en = {
     poweredLocal: "Built-in guide",
     thinking: "Thinking…",
     error: "Something went wrong. Please try again.",
+    gateTitle: "Members only",
+    gatePrompt:
+      "Enter your membership ID to chat with the Quantum Guide — or enroll to get one.",
+    idPlaceholder: "Membership ID (IQCDL-M-…)",
+    unlock: "Unlock chat",
+    becomeMember: "Become a member",
   },
   auth: {
     title: "Welcome back",
@@ -653,7 +659,7 @@ const en = {
       {
         key: "community",
         name: "Community",
-        desc: "Free. Forums, live chat, events and the AI Quantum Guide. The easiest way to start.",
+        desc: "$19 one-time. Community access, the AI Quantum Guide chat, a free online course, free features and a 10% course discount.",
       },
       {
         key: "student",
@@ -688,12 +694,25 @@ const en = {
     ],
     applyTitle: "How to enroll",
     steps: [
-      "Press Enroll and pick your membership",
-      "Create your account or sign in",
-      "Get approved and start right away",
+      "Press Enroll and fill in your details",
+      "Pay the $19 one-time fee securely via Stripe",
+      "Get your membership ID, free course & 10% discount",
     ],
     apply: "Enroll",
     cta: "Enroll now",
+    price: "$19",
+    priceNote: "one-time",
+    enrollTier: "Enroll · $19",
+    signInTier: "Sign in",
+    rolesNote: "Centers, trainers, chapters and admins don't enroll here — just sign in.",
+    modalTitle: "Join the Community",
+    modalNote:
+      "$19 one-time · secure checkout via Stripe · includes a free online course and a 10% course discount.",
+    nameLabel: "Full name",
+    emailLabel: "Email",
+    countryLabel: "Country",
+    pay: "Continue to secure payment — $19",
+    processing: "Setting up payment…",
   },
   about: {
     eyebrow: "About IQCDL",
