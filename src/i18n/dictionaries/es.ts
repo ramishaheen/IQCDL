@@ -35,6 +35,8 @@ const es: DeepPartial<Dictionary> = {
     portal: "Portal",
     membership: "Membresía",
     membershipDesc: "Elige cómo unirte a la red IQCDL",
+    about: "Acerca de",
+    why: "Por qué la IA cuántica",
   },
   hero: {
     badge: "Alineado con NIST · ISO/IEC · IEEE · Hoja de ruta PQC de la UE",
@@ -564,17 +566,114 @@ const es: DeepPartial<Dictionary> = {
   },
   membership: {
     eyebrow: "Membresía",
-    title: "Únete a la red IQCDL",
+    title: "Hazte miembro de IQCDL",
     subtitle:
-      "Cinco formas de participar — del estudiante al administrador. Elige la membresía que encaje y solicítala en minutos.",
-    applyTitle: "Cómo solicitar",
-    steps: [
-      "Elige tu nivel de membresía",
-      "Crea tu cuenta del portal o inicia sesión",
-      "Sé aprobado y comienza a operar",
+      "Únete a una comunidad global preparada para lo cuántico. Aprende con una guía de IA, obtén una credencial reconocida y crece con miembros, centros, formadores y socios de todo el mundo.",
+    enroll: "Inscribirse",
+    enrollNow: "Inscribirse ahora",
+    signedInPrompt: "¿Ya eres miembro?",
+    signIn: "Inicia sesión con tus credenciales",
+    benefitsTitle: "Por qué hacerte miembro",
+    benefitsSubtitle:
+      "Todo para pasar de curioso a certificado en lo cuántico — y mantenerte por delante.",
+    benefits: [
+      { title: "Credencial reconocida mundialmente", body: "Una licencia bilingüe y alineada internacionalmente, reconocida por empleadores y reguladores en más de 50 países." },
+      { title: "Guía Cuántica de IA en el chat", body: "Tu agente de IA 24/7 responde, evalúa tu preparación y planifica tu migración PQC — en cualquier idioma." },
+      { title: "Comunidad de miembros", body: "Foros, chat en vivo, eventos y una red mundial de profesionales cuánticos." },
+      { title: "Aprendizaje continuo", body: "Materiales guiados, laboratorios sin código y exámenes de práctica, al día con NIST, ISO/IEC, IEEE y la hoja de ruta PQC de la UE." },
+      { title: "Certificados verificables", body: "Certificados tokenizados que cualquiera puede verificar en línea — prueba portátil de tus habilidades." },
+      { title: "Programa de socios y agentes", body: "Conviértete en agente o centro autorizado, inscribe a otros y crece con la red." },
     ],
-    apply: "Solicitar / Iniciar sesión",
-    cta: "Hazte miembro",
+    tiersTitle: "Elige tu membresía",
+    tiers: [
+      { key: "community", name: "Comunidad", desc: "Gratis. Foros, chat en vivo, eventos y la Guía Cuántica de IA. La forma más fácil de empezar." },
+      { key: "student", name: "Estudiante", desc: "Aprende, practica y obtén tu certificado con un número de estudiante personal." },
+      { key: "trainer", name: "Formador", desc: "Imparte cursos, sube materiales, sigue el progreso y asigna tareas." },
+      { key: "center", name: "Centro de formación", desc: "Registra estudiantes, añade formadores, reserva exámenes y emite certificados." },
+      { key: "chapter", name: "Propietario de capítulo", desc: "Lidera y aprueba la red de centros de tu continente." },
+      { key: "agent", name: "Agente / Socio", desc: "Agentes y socios autorizados que inscriben y apoyan a miembros y centros." },
+      { key: "admin", name: "Administrador", desc: "Supervisión total — normas, acreditación, exámenes y analítica." },
+    ],
+    applyTitle: "Cómo inscribirse",
+    steps: [
+      "Pulsa Inscribirse y elige tu membresía",
+      "Crea tu cuenta o inicia sesión",
+      "Sé aprobado y empieza de inmediato",
+    ],
+    apply: "Inscribirse",
+    cta: "Inscribirse ahora",
+  },
+  about: {
+    eyebrow: "Acerca de IQCDL",
+    title: "El estándar internacional de preparación cuántica",
+    founded: "Fundada en 2025 · Estados Unidos",
+    intro:
+      "IQCDL existe por una razón: hacer la era cuántica comprensible, medible y segura para todos — desde las juntas directivas hasta las aulas. Convertimos un campo intimidante y veloz en una ruta clara y certificable.",
+    parentTitle: "Una organización hermana de IAIDL",
+    parentBody:
+      "IQCDL es la entidad hermana centrada en lo cuántico de IAIDL — la Licencia Internacional de Conducción en Inteligencia Artificial, creada en Estados Unidos en 2025. Nacida de la misión de IAIDL de hacer la tecnología accesible y confiable, IQCDL hereda su ADN basado en normas y lo extiende de la IA a la era cuántica.",
+    missionTitle: "Nuestra misión",
+    mission:
+      "Certificar a un millón de profesionales preparados en cuántica e IA y preparar a cada organización crítica para el mundo poscuántico — antes de que lleguen las amenazas, no después.",
+    governanceTitle: "Gobernanza",
+    governanceSubtitle:
+      "Independiente, responsable y alineada globalmente — para que la credencial signifique algo en todas partes.",
+    governance: [
+      { name: "Junta Directiva", body: "Supervisión estratégica, independencia y gestión a largo plazo de la misión IQCDL." },
+      { name: "Junta de Certificación", body: "Responsable de la integridad de los exámenes, el marco de credenciales y la calidad de cada certificado." },
+      { name: "Consejo de Normas y Acreditación", body: "Mantiene el plan de estudios alineado con NIST, ISO/IEC, IEEE y la hoja de ruta PQC de la UE." },
+      { name: "Comité de Ética e Integridad", body: "Supervisión en línea, equidad, accesibilidad y antifraude en todos los exámenes." },
+      { name: "Red Global de Capítulos", body: "Gobernanza regional y centros acreditados en cada continente." },
+    ],
+    valuesTitle: "Nuestros valores",
+    values: [
+      { title: "Independencia", body: "Neutrales ante proveedores. Respondemos a las normas y a los estudiantes." },
+      { title: "Rigor", body: "Exámenes reales, supervisión real, normas reales — una credencial confiable." },
+      { title: "Accesibilidad", body: "Bilingüe, multilingüe y sin código para que cualquiera pueda empezar." },
+      { title: "Alineación global", body: "Un referente internacional, reconocido más allá de fronteras y sectores." },
+    ],
+    stats: [
+      { value: "2025", label: "Fundada en EE. UU." },
+      { value: "IAIDL", label: "Organización matriz" },
+      { value: "8+", label: "Normas alineadas" },
+      { value: "50+", label: "Países alcanzados" },
+    ],
+  },
+  whyQuantum: {
+    eyebrow: "Por qué la IA cuántica",
+    title: "La oportunidad — y la amenaza — decisiva de la década",
+    intro:
+      "La inteligencia artificial se vuelve exponencialmente más potente. La computación cuántica es la fuerza que la potenciará y romperá la criptografía sobre la que funciona el mundo. Quienes se preparen ahora liderarán la próxima década. El resto correrá para alcanzarla — o para contener una brecha.",
+    opportunityTitle: "Donde la IA se vuelve realmente potente",
+    opportunitySubtitle:
+      "Lo cuántico no reemplaza a la IA — desbloquea los problemas que la IA clásica no puede abordar.",
+    opportunity: [
+      { title: "Aprendizaje automático cuántico", body: "Entrena sobre representaciones que el hardware clásico no puede calcular eficientemente — modelos más rápidos y ricos." },
+      { title: "Optimización a gran escala", body: "Logística, finanzas, energía y planificación se vuelven abordables." },
+      { title: "Simulación y descubrimiento", body: "Modela moléculas y materiales directamente — acelerando fármacos, baterías y química." },
+      { title: "Una nueva ventaja de cómputo", body: "Los pioneros crean barreras. Las habilidades cuántica-IA son la capacidad escasa y decisiva de la década." },
+    ],
+    factsTitle: "Las cifras",
+    facts: [
+      { value: "106 MM $", label: "Mercado cuántico para 2040 (McKinsey)" },
+      { value: "55 %", label: "de los empleos cuánticos requieren un grado o menos" },
+      { value: "2030", label: "La infraestructura crítica debe estar protegida con PQC (UE)" },
+      { value: "FIPS 203/204/205", label: "Normas PQC ya finalizadas por el NIST" },
+    ],
+    scaryTitle: "Los riesgos que nadie puede ignorar",
+    scarySubtitle: "Por eso esperar es la opción más cara.",
+    scary: [
+      { title: "«Recolectar ahora, descifrar después»", body: "Los adversarios ya capturan tus datos cifrados hoy — para descifrarlos en cuanto lo cuántico esté listo. Tus secretos de larga vida ya están expuestos." },
+      { title: "El cifrado actual se romperá", body: "El algoritmo de Shor hace resolubles RSA y la criptografía de curva elíptica — la base de HTTPS, VPN, firmas y banca." },
+      { title: "El reloj ya corre", body: "Se esperan ordenadores cuánticos criptográficamente relevantes dentro de la década. Por el teorema de Mosca, si tus datos deben permanecer secretos más tiempo, ya vas tarde." },
+      { title: "Los reguladores no esperarán", body: "NIS2 y la hoja de ruta PQC de la UE fijan plazos firmes. Los no preparados se enfrentan a incumplimientos, multas y daño reputacional." },
+      { title: "Cuando sea evidente, será tarde", body: "La migración tarda años. Quienes empiecen ahora estarán seguros; quienes esperen pruebas no tendrán tiempo de reaccionar." },
+    ],
+    ctaTitle: "No te quedes sin preparación",
+    ctaBody:
+      "Conviértete en uno de los primeros profesionales certificados preparados en cuántica e IA. Dos minutos para medir tu riesgo — una credencial que te adelanta una década.",
+    cta: "Certifícate ahora",
+    ctaSecondary: "Medir mi preparación",
   },
 };
 
