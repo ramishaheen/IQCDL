@@ -12,6 +12,10 @@ import {
   BadgeCheck,
   Globe2,
   Sparkles,
+  Lightbulb,
+  Rocket,
+  Leaf,
+  Landmark,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -19,7 +23,17 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionDivider } from "@/components/visuals/SectionDivider";
+import { Book3D } from "@/components/visuals/Book3D";
 import { FinalCTA } from "@/components/home/FinalCTA";
+
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  initiative: Sparkles,
+  idea: Lightbulb,
+  accelerator: Rocket,
+  green: Leaf,
+  government: Landmark,
+  international: Globe2,
+};
 
 const HOW_ICONS: LucideIcon[] = [CalendarClock, Bot, CreditCard, HeartHandshake];
 const BENEFIT_ICONS: LucideIcon[] = [
@@ -82,6 +96,55 @@ export default function AwardsPage() {
       </section>
 
       <SectionDivider />
+
+      {/* categories */}
+      <section className="section pb-0">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <h2 className="gradient-text-animated text-3xl font-bold sm:text-4xl">{g.categoriesTitle}</h2>
+            <p className="mt-3 text-muted">{g.categoriesNote}</p>
+          </Reveal>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {g.categories.map((cat, i) => {
+              const Icon = CATEGORY_ICONS[cat.key] ?? Sparkles;
+              return (
+                <Reveal key={cat.key} delay={(i % 3) * 0.07}>
+                  <div className="card group h-full p-6 transition duration-300 hover:-translate-y-1 hover:shadow-glow">
+                    <div className="flex items-center justify-between">
+                      <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-quantum-indigo/40 to-quantum-cyan/30 text-accent ring-1 ring-line/10">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-semibold text-accent">
+                        {g.categoryPrice}
+                      </span>
+                    </div>
+                    <h3 className="mt-4 font-semibold text-fg">{cat.name}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">{cat.desc}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+          <Reveal className="mt-10 flex flex-col items-center gap-5">
+            <Link href="/awards/submit" className="btn-primary text-white">
+              {g.submitCtaCategory}
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+            </Link>
+            <Book3D
+              coverTitle={g.guideTitle}
+              coverSubtitle={g.guideNote}
+              openLabel={g.guideOpen}
+              accent="from-amber-500 to-quantum-cyan"
+              pages={[
+                { title: g.howTitle, lines: g.how.map((h) => `${h.title}: ${h.body}`) },
+                { title: g.categoriesTitle, lines: g.categories.map((c) => `${c.name}: ${c.desc}`) },
+                { title: g.benefitsTitle, lines: g.benefits.map((b) => `${b.title}: ${b.body}`) },
+                { title: g.sdgTitle, lines: [g.sdgBody, g.criteriaNote] },
+              ]}
+            />
+          </Reveal>
+        </div>
+      </section>
 
       {/* benefits */}
       <section className="section">

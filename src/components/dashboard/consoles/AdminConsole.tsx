@@ -16,6 +16,7 @@ import {
   useModal,
 } from "@/components/dashboard/ui";
 import { usePortal, CONTINENTS, type Level } from "@/lib/portal";
+import { JuryConsole } from "@/components/dashboard/consoles/JuryConsole";
 
 export function AdminConsole() {
   const p = usePortal();
@@ -41,6 +42,7 @@ export function AdminConsole() {
           { id: "approvals", label: "Approvals" },
           { id: "network", label: "Centers & students" },
           { id: "exams", label: "Exams & monitoring" },
+          { id: "jury", label: "Award & Index jury" },
           { id: "content", label: "Content & comms" },
         ]}
       />
@@ -85,6 +87,8 @@ export function AdminConsole() {
       )}
 
       {tab === "exams" && <AdminExamsPanel />}
+
+      {tab === "jury" && <JuryConsole />}
 
       {tab === "content" && (
         <div className="space-y-5">

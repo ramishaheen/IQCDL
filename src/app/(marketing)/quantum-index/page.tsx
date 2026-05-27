@@ -18,6 +18,10 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionDivider } from "@/components/visuals/SectionDivider";
 import { QuantumAccent } from "@/components/visuals/QuantumAccent";
+import { Book3D } from "@/components/visuals/Book3D";
+import { PillarScatter } from "@/components/iqci/PillarScatter";
+import { IndexBook } from "@/components/iqci/IndexBook";
+import { QuarterlyEditions } from "@/components/iqci/QuarterlyEditions";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 const HOW_ICONS: LucideIcon[] = [Bot, FileSearch, RefreshCw, ShieldCheck];
@@ -104,6 +108,64 @@ export default function QuantumIndexPage() {
               </table>
             </div>
           </Reveal>
+
+          {/* scatter plot */}
+          <Reveal className="mx-auto mt-12 max-w-3xl text-center">
+            <h3 className="text-xl font-bold text-fg sm:text-2xl">{x.scatterTitle}</h3>
+            <p className="mt-2 text-sm text-muted">{x.scatterNote}</p>
+          </Reveal>
+          <Reveal className="mx-auto mt-6 max-w-3xl">
+            <PillarScatter
+              pillarNames={x.pillarNames as Record<string, string>}
+              axisXLabel={x.axisX}
+              axisYLabel={x.axisY}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* immersive books */}
+      <section className="section pt-0">
+        <div className="container-x">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <Reveal>
+              <h2 className="gradient-text-animated text-2xl font-bold sm:text-3xl">{x.bookTitle}</h2>
+              <p className="mt-3 text-muted">{x.bookNote}</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <IndexBook
+                coverTitle={x.eyebrow}
+                coverSubtitle={x.title}
+                hint={x.bookHint}
+                openLabel={x.bookOpen}
+                closeLabel={x.bookClose}
+                statusLabel={x.statusLabel}
+                pillarNames={x.pillarNames as Record<string, string>}
+              />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* quarterly editions */}
+      <section className="section pt-0">
+        <div className="container-x">
+          <Reveal>
+            <QuarterlyEditions
+              labels={{
+                title: x.quarterlyTitle,
+                note: x.quarterlyNote,
+                generateBtn: x.generateBtn,
+                generating: x.generating,
+                headlineLabel: x.headlineLabel,
+                highlightsLabel: x.highlightsLabel,
+                distributionTitle: x.distributionTitle,
+                distributionNote: x.distributionNote,
+                reachLabel: x.reachLabel,
+                sentTo: x.sentTo,
+              }}
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -128,15 +190,27 @@ export default function QuantumIndexPage() {
             })}
           </div>
 
-          <Reveal className="mt-10 text-center">
-            <p className="mx-auto max-w-xl text-sm text-muted">{x.submitNote}</p>
-            <Link
-              href="mailto:index@iqcdl.org?subject=IQCI%20evidence%20submission"
-              className="btn-primary mt-4 text-white"
-            >
+          <Reveal className="mt-10 flex flex-col items-center gap-4">
+            <p className="mx-auto max-w-xl text-center text-sm text-muted">{x.submitNote}</p>
+            <Link href="/quantum-index/submit" className="btn-primary text-white">
               {x.submitCta}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
+            <div className="mt-6">
+              <Book3D
+                coverTitle={x.guideTitle}
+                coverSubtitle={x.guideNote}
+                openLabel={x.guideOpen}
+                hint={x.bookHint}
+                closeLabel={x.bookClose}
+                accent="from-brand-600 to-quantum-cyan"
+                pages={[
+                  { title: x.guideTitle, lines: x.how.map((h) => `${h.title}: ${h.body}`) },
+                  { title: x.pillarsTitle, lines: x.pillars as unknown as string[] },
+                  { title: x.benefitsTitle, lines: x.benefits.map((b) => `${b.title}: ${b.body}`) },
+                ]}
+              />
+            </div>
           </Reveal>
         </div>
       </section>

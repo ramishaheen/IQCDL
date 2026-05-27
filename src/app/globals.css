@@ -176,6 +176,18 @@
   .text-balance {
     text-wrap: balance;
   }
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-0 {
+    transform: rotateY(0deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

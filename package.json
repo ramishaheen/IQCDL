@@ -12,6 +12,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
     "@upstash/redis": "^1.38.0",
+    "@vercel/blob": "^2.4.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.17",
     "jose": "^5.9.6",
