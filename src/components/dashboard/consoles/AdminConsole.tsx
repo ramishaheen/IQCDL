@@ -497,19 +497,56 @@ function AnnouncementPanel() {
 function EmailPanel() {
   const p = usePortal();
   const m = useModal();
-  const [form, setForm] = useState({ to: "all students", subject: "", body: "" });
+  const [form, setForm] = useState({
+    segment: "all students",
+    email: "",
+    subject: "",
+    body: "",
+  });
+  const [status, setStatus] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
 
-  function submit() {
-    if (!form.subject) return;
-    p.sendEmail(form);
-    m.hide();
-    setForm({ to: "all students", subject: "", body: "" });
+  async function submit() {
+    if (!form.subject || !form.email) return;
+    setSending(true);
+    setStatus(null);
+    try {
+      const res = await fetch("/api/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to: form.email, subject: form.subject, body: form.body }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        p.sendEmail({
+          to: `${form.segment} · ${form.email}`,
+          subject: form.subject,
+          body: form.body,
+        });
+        setStatus(
+          data.mode === "live"
+            ? "Sent via Resend ✓"
+            : "Logged (no RESEND_API_KEY set) ✓",
+        );
+        setForm({ segment: "all students", email: "", subject: "", body: "" });
+        setTimeout(() => {
+          m.hide();
+          setStatus(null);
+        }, 900);
+      } else {
+        setStatus(data.error || "Failed to send");
+      }
+    } catch {
+      setStatus("Network error");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
     <Panel
       title="Email students"
-      desc="Send campaign or reminder emails (logged in this demo)."
+      desc="Send real emails via Resend (logged when no key is configured)."
       action={<Btn variant="primary" onClick={m.show}>+ Compose email</Btn>}
     >
       <Table head={["To", "Subject", "Sent"]}>
@@ -524,14 +561,24 @@ function EmailPanel() {
       </Table>
       <Modal open={m.open} onClose={m.hide} title="Compose email">
         <div className="space-y-4">
-          <Field label="To">
-            <Select value={form.to} onChange={(e) => setForm({ ...form, to: e.target.value })}>
-              <option>all students</option>
-              <option>foundation students</option>
-              <option>practitioner students</option>
-              <option>self-paced students</option>
-            </Select>
-          </Field>
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Segment">
+              <Select value={form.segment} onChange={(e) => setForm({ ...form, segment: e.target.value })}>
+                <option>all students</option>
+                <option>foundation students</option>
+                <option>practitioner students</option>
+                <option>self-paced students</option>
+              </Select>
+            </Field>
+            <Field label="Recipient email">
+              <TextInput
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                placeholder="name@org.com"
+              />
+            </Field>
+          </div>
           <Field label="Subject">
             <TextInput value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} />
           </Field>
@@ -543,7 +590,10 @@ function EmailPanel() {
               className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-900 focus:border-brand-400 focus:outline-none"
             />
           </Field>
-          <Btn variant="primary" className="w-full" onClick={submit}>Send</Btn>
+          {status && <p className="text-sm text-brand-700">{status}</p>}
+          <Btn variant="primary" className="w-full" onClick={submit} disabled={sending}>
+            {sending ? "Sending…" : "Send"}
+          </Btn>
         </div>
       </Modal>
     </Panel>
