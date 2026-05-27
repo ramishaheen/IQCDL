@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-arabic: "Tajawal", "Noto Kufi Arabic", var(--font-sans);
+  --bg: #f4f9fd;
+
+  /* Semantic theme channels (light defaults) */
+  --c-fg: 15 34 49;
+  --c-muted: 71 85 105;
+  --c-faint: 100 116 139;
+  --c-surface: 15 34 49;
+  --c-line: 15 34 49;
+  --c-accent: 29 142 194;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: #334155;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+
+  ::selection {
+    background: rgba(43, 169, 224, 0.22);
+    color: #0f2231;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    color: #0f2231;
+  }
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3,
+  html[dir="rtl"] h4 {
+    font-family: var(--font-arabic);
+    letter-spacing: 0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #e8f1f8;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(#2ba9e0, #1d8ec2);
+    border-radius: 999px;
+    border: 2px solid #e8f1f8;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(15, 34, 49, 0.08);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(15, 34, 49, 0.1);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(100deg, #1d8ec2 0%, #2ba9e0 50%, #38bdf8 100%);
+  }
+
+  .gradient-text-animated {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(100deg, #1a72a0, #2ba9e0, #38bdf8, #1a72a0);
+    background-size: 250% 100%;
+    animation: gradient-pan 8s ease infinite;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+      text-sm font-semibold transition-all duration-300 will-change-transform
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+      text-sm font-semibold text-white shadow-glow transition-all duration-300
+      will-change-transform focus:outline-none focus-visible:ring-2
+      focus-visible:ring-brand-400/60;
+    background-image: linear-gradient(100deg, #2ba9e0, #1d8ec2);
+    background-size: 200% 100%;
+  }
+  .btn-primary:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px);
+    box-shadow: 0 22px 48px -16px rgba(43, 169, 224, 0.7);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+      text-sm font-semibold transition-all duration-300 focus:outline-none
+      focus-visible:ring-2 focus-visible:ring-brand-400/60 border
+      border-brand-200 bg-white text-brand-700 hover:bg-brand-50
+      hover:border-brand-300;
+  }
+
+  .card {
+    @apply rounded-2xl shadow-card transition-all duration-300;
+    background: #ffffff;
+    border: 1px solid rgba(15, 34, 49, 0.08);
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-brand-100
+      bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600;
+  }
+
+  /* Theme-adaptive language switcher (used on both dark and light surfaces) */
+  .lang-trigger {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-sm font-medium transition;
+    border-color: rgba(15, 34, 49, 0.12);
+    background: rgba(15, 34, 49, 0.04);
+    color: #334155;
+  }
+  .lang-trigger:hover {
+    background: rgba(15, 34, 49, 0.08);
+  }
+  .lang-item {
+    @apply flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm transition;
+    color: #475569;
+  }
+  .lang-item:hover {
+    background: rgba(15, 34, 49, 0.05);
+  }
+  .lang-item-active {
+    background: rgba(43, 169, 224, 0.12);
+    color: #1a72a0;
+  }
+
+  .grid-bg {
+    background-image: theme("backgroundImage.quantum-grid");
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+  }
+
+  .section {
+    @apply relative py-20 sm:py-28;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-0 {
+    transform: rotateY(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   Dark theme scope (marketing / brand surfaces).
+   Unlayered so these override the layered component classes.
+   Portal screens are NOT wrapped in .theme-dark and stay light.
+   ============================================================ */
+.theme-dark {
+  background-color: #05060f;
+  color: #cbd5e1;
+
+  /* Semantic theme channels (dark) */
+  --c-fg: 255 255 255;
+  --c-muted: 203 213 225;
+  --c-faint: 148 163 184;
+  --c-surface: 255 255 255;
+  --c-line: 255 255 255;
+  --c-accent: 125 211 252;
+}
+.theme-dark ::selection {
+  background: rgba(56, 189, 248, 0.3);
+  color: #fff;
+}
+.theme-dark h1,
+.theme-dark h2,
+.theme-dark h3,
+.theme-dark h4 {
+  color: #ffffff;
+}
+.theme-dark .card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 60px -28px rgba(0, 0, 0, 0.8);
+}
+.theme-dark .glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  border-color: rgba(255, 255, 255, 0.09);
+}
+.theme-dark .glass-strong {
+  background: rgba(13, 16, 36, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.theme-dark .eyebrow {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #5ec6f2;
+}
+.theme-dark .btn-ghost {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
+}
+.theme-dark .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.theme-dark ::-webkit-scrollbar-track {
+  background: #05060f;
+}
+.theme-dark ::-webkit-scrollbar-thumb {
+  border-color: #05060f;
+}
+.theme-dark .lang-trigger {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+}
+.theme-dark .lang-trigger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.theme-dark .lang-item {
+  color: #cbd5e1;
+}
+.theme-dark .lang-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.theme-dark .lang-item-active {
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+}
+/* Logo: brand blue on light surfaces, white on dark surfaces */
+.logo-tone {
+  color: #1d8ec2;
+}
+.theme-dark .logo-tone {
+  color: #ffffff;
+}
+/* Brighter, baby-blue headline gradient on dark surfaces */
+.theme-dark .gradient-text {
+  background-image: linear-gradient(100deg, #38bdf8 0%, #7dd3fc 55%, #e0f2fe 100%);
+}
+.theme-dark .gradient-text-animated {
+  background-image: linear-gradient(100deg, #38bdf8, #7dd3fc, #e0f2fe, #38bdf8);
+  background-size: 250% 100%;
+}
