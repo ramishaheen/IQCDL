@@ -22,6 +22,7 @@ export function Footer() {
       links: [
         { href: "/roadmap", label: t("footer.links.roadmap") },
         { href: "/standards", label: t("footer.links.standards") },
+        { href: "/community", label: t("footer.links.community") },
         { href: "/verify", label: t("footer.links.verify") },
         { href: "/login", label: t("footer.links.portal") },
       ],

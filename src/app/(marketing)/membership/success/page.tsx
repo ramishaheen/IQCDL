@@ -4,7 +4,7 @@ import { Suspense, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { CheckCircle2, Sparkles, MessageSquare, Tag } from "lucide-react";
+import { CheckCircle2, Sparkles, MessageSquare, Tag, Users } from "lucide-react";
 import { useMembership } from "@/components/providers/MembershipProvider";
 import { PageHero } from "@/components/ui/PageHero";
 
@@ -76,6 +76,10 @@ function SuccessInner() {
                 <MessageSquare className="h-4 w-4" />
                 Chat with the Quantum Guide
               </button>
+              <Link href="/community" className="btn-ghost">
+                <Users className="h-4 w-4" />
+                Open the community
+              </Link>
               <Link href="/programs" className="btn-ghost">
                 <Sparkles className="h-4 w-4" />
                 Browse courses

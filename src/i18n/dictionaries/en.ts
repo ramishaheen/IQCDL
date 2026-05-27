@@ -485,6 +485,7 @@ const en = {
       standards: "Standards & accreditation",
       verify: "Verify a certificate",
       about: "About",
+      community: "Members' community",
       contact: "Contact",
       portal: "Portal login",
       privacy: "Privacy policy",
@@ -915,6 +916,33 @@ const en = {
     sdgTitle: "Every dollar builds capability",
     sdgBody:
       "100% of award funds advance the UN Sustainable Development Goals and help regions with limited resources develop their quantum capabilities.",
+  },
+  community: {
+    eyebrow: "Members' community",
+    title: "Where quantum minds meet",
+    subtitle:
+      "Exchange knowledge with our AI quantum experts and fellow members. Read the latest, share your own, and ask anything about quantum and AI-enabled quantum.",
+    gateTitle: "Members & students only",
+    gateBody:
+      "The community is for verified members and enrolled students. Become a member or sign in to join the conversation.",
+    tabPubs: "Publications",
+    tabAsk: "Ask the experts",
+    pubsTitle: "Latest publications",
+    pubsNote: "Our expert agents post fresh news, frameworks, books and talks every week — and members can post too.",
+    compose: "Share with the community",
+    composeTitlePh: "Title",
+    composeDescPh: "Add a description…",
+    composeLinkPh: "Link (optional)",
+    post: "Post",
+    yourName: "Your name",
+    askTitle: "Ask our quantum experts",
+    askIntro: "Our experts discuss quantum computing, AI-enabled quantum and everything around it. Ask away.",
+    askPlaceholder: "Ask about quantum, AI-enabled quantum, PQC…",
+    send: "Send",
+    by: "by",
+    memberPost: "Member post",
+    categories: { news: "News", framework: "Framework", book: "Book", talk: "Presentation" },
+    open: "Open the community",
   },
 };
 
