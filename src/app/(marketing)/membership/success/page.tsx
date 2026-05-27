@@ -1,17 +1,21 @@
 "use client";
 
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { CheckCircle2, Sparkles, MessageSquare, Tag, Users } from "lucide-react";
+import { CheckCircle2, Sparkles, MessageSquare, Tag, Users, Share2 } from "lucide-react";
 import { useMembership } from "@/components/providers/MembershipProvider";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
+import { BadgeStudio } from "@/components/membership/BadgeStudio";
 
 function SuccessInner() {
   const params = useSearchParams();
   const { membership, grant } = useMembership();
+  const { dict } = useLocale();
   const granted = useRef(false);
+  const [showBadge, setShowBadge] = useState(false);
 
   useEffect(() => {
     if (granted.current) return;
@@ -85,6 +89,30 @@ function SuccessInner() {
                 Browse courses
               </Link>
             </div>
+          </div>
+
+          {/* shareable member badge */}
+          <div className="card mt-6 p-6 sm:p-8">
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 className="flex items-center gap-2 text-lg font-bold text-fg">
+                  <Share2 className="h-5 w-5 text-accent" />
+                  {dict.membership.badge.title}
+                </h2>
+                <p className="mt-1 max-w-md text-sm text-muted">{dict.membership.badge.subtitle}</p>
+              </div>
+              {!showBadge && (
+                <button onClick={() => setShowBadge(true)} className="btn-primary shrink-0 text-white">
+                  <Share2 className="h-4 w-4" />
+                  {dict.membership.badge.open}
+                </button>
+              )}
+            </div>
+            {showBadge && (
+              <div className="mt-6">
+                <BadgeStudio name={membership?.name || params.get("n") || "IQCDL Member"} />
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
