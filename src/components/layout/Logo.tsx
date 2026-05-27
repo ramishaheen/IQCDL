@@ -69,6 +69,8 @@ export function Logo({
   return (
     <Link
       href="/"
+      dir="ltr"
+      style={{ direction: "ltr" }}
       className={cn(
         "inline-flex items-center text-brand-600",
         className,
