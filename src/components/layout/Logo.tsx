@@ -2,16 +2,19 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 /**
- * Official IQCDL logo (full lockup). The source asset has a white background,
- * so it sits cleanly on the light theme's white surfaces.
+ * IQCDL logo. `mark` is the compact glyph + wordmark (navbar/headers);
+ * `full` is the complete lockup with tagline (footer/login/certificate).
  */
 export function Logo({
   className,
   imgClassName,
+  variant = "mark",
 }: {
   className?: string;
   imgClassName?: string;
+  variant?: "mark" | "full";
 }) {
+  const src = variant === "full" ? "/iqcdl-logo.svg" : "/iqcdl-mark.svg";
   return (
     <Link
       href="/"
@@ -20,9 +23,9 @@ export function Logo({
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/iqcdl-logo.svg"
+        src={src}
         alt="IQCDL — International Quantum Computing Driving License"
-        className={cn("h-9 w-auto select-none", imgClassName)}
+        className={cn("w-auto select-none", variant === "full" ? "h-12" : "h-9", imgClassName)}
       />
     </Link>
   );

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { PortalProvider } from "@/lib/portal";
 import en from "@/i18n/dictionaries/en";
 
 export const metadata: Metadata = {
@@ -56,7 +57,9 @@ export default function RootLayout({
       </head>
       <body>
         <LocaleProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <PortalProvider>{children}</PortalProvider>
+          </AuthProvider>
         </LocaleProvider>
       </body>
     </html>

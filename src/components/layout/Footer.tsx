@@ -22,6 +22,7 @@ export function Footer() {
       links: [
         { href: "/roadmap", label: t("footer.links.roadmap") },
         { href: "/standards", label: t("footer.links.standards") },
+        { href: "/verify", label: t("footer.links.verify") },
         { href: "/login", label: t("footer.links.portal") },
       ],
     },
@@ -40,7 +41,7 @@ export function Footer() {
       <div className="container-x py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="max-w-xs">
-            <Logo />
+            <Logo variant="full" />
             <p className="mt-4 text-sm leading-relaxed text-slate-500">
               {t("footer.tagline")}
             </p>

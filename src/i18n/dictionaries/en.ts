@@ -314,6 +314,7 @@ const en = {
       assessment: "Readiness assessment",
       roadmap: "Transformation roadmap",
       standards: "Standards & accreditation",
+      verify: "Verify a certificate",
       about: "About",
       contact: "Contact",
       portal: "Portal login",

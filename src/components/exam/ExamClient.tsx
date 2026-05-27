@@ -13,6 +13,8 @@ import {
   FileText,
 } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { useAuth } from "@/components/providers/AuthProvider";
+import { usePortal, scopeForUser } from "@/lib/portal";
 import {
   EXAM_PASS_MARK,
   EXAM_QUESTIONS,
@@ -30,6 +32,8 @@ function fmt(seconds: number): string {
 
 export function ExamClient() {
   const { t } = useLocale();
+  const { user } = useAuth();
+  const portal = usePortal();
   const total = EXAM_QUESTIONS.length;
 
   const [phase, setPhase] = useState<Phase>("intro");
@@ -54,11 +58,14 @@ export function ExamClient() {
         localStorage.setItem("iqcdl_exam_passed", "true");
         localStorage.setItem("iqcdl_exam_score", String(score100));
         localStorage.setItem("iqcdl_exam_date", new Date().toISOString());
+        // Issue a tokenized certificate in the portal store.
+        const { studentId } = scopeForUser(user?.role ?? "student");
+        if (studentId) portal.issueCertificate(studentId, "foundation");
       }
     } catch {
       /* ignore */
     }
-  }, [score100]);
+  }, [score100, portal, user]);
 
   useEffect(() => {
     if (phase !== "running") return;

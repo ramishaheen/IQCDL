@@ -69,7 +69,7 @@ function LoginInner() {
         <QuantumField className="absolute inset-0 h-full w-full opacity-60" />
         <div className="absolute inset-0 bg-quantum-radial" />
         <div className="relative flex h-full flex-col justify-between p-12">
-          <Logo />
+          <Logo variant="full" />
           <div>
             <h2 className="max-w-md text-balance text-3xl font-bold text-slate-900">
               {t("hero.titleLine1")}{" "}
