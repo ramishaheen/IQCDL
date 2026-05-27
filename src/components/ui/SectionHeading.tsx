@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/cn";
 
@@ -25,9 +28,15 @@ export function SectionHeading({
       )}
     >
       {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-      <h2 className="mt-5 text-balance text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
+      <motion.h2
+        initial={{ opacity: 0, y: 22, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="gradient-text-animated mt-5 text-balance text-4xl font-bold leading-[1.08] sm:text-5xl md:text-6xl"
+      >
         {title}
-      </h2>
+      </motion.h2>
       {subtitle && (
         <p className="mt-4 text-balance text-base leading-relaxed text-slate-300/90 sm:text-lg">
           {subtitle}

@@ -1,18 +1,32 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { Stats } from "@/components/home/Stats";
 
 export function Hero() {
   const { t } = useLocale();
+  const ref = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 70]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
   return (
-    <section className="relative flex min-h-[88vh] items-center overflow-hidden">
-      {/* video background */}
-      <video
+    <section
+      ref={ref}
+      className="relative flex min-h-[88vh] items-center overflow-hidden"
+    >
+      {/* video background (parallax) */}
+      <motion.video
+        style={{ y: videoY, scale: videoScale }}
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
@@ -22,14 +36,17 @@ export function Hero() {
         aria-hidden="true"
       >
         <source src="/hero.mp4" type="video/mp4" />
-      </video>
+      </motion.video>
 
       {/* legibility overlays */}
       <div className="pointer-events-none absolute inset-0 bg-[#05060f]/55" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#05060f] via-[#05060f]/35 to-[#05060f]/70" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#05060f]/85 via-[#05060f]/30 to-transparent" />
 
-      <div className="container-x relative z-10 py-20">
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="container-x relative z-10 py-20"
+      >
         <div className="max-w-2xl text-center lg:text-start">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
@@ -95,7 +112,7 @@ export function Hero() {
         >
           <Stats embedded />
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* bottom fade into the page */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#05060f]" />

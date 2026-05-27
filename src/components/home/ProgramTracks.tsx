@@ -47,8 +47,8 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                 <div
                   id={track.id}
                   className={cn(
-                    "card group relative h-full overflow-hidden p-7 sm:p-9",
-                    track.featured && "ring-1 ring-quantum-violet/40",
+                    "card group relative h-full overflow-hidden p-7 transition duration-300 hover:-translate-y-1.5 hover:shadow-glow sm:p-9",
+                    track.featured && "ring-1 ring-brand-400/50",
                   )}
                 >
                   <div

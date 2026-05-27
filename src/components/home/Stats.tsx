@@ -2,6 +2,7 @@
 
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { Reveal } from "@/components/ui/Reveal";
+import { Counter } from "@/components/visuals/Counter";
 
 export function Stats({ embedded = false }: { embedded?: boolean }) {
   const { t } = useLocale();
@@ -20,9 +21,10 @@ export function Stats({ embedded = false }: { embedded?: boolean }) {
           delay={i * 0.08}
           className="bg-white/5 p-6 text-center sm:p-7"
         >
-          <div className="gradient-text font-display text-3xl font-bold sm:text-4xl">
-            {s.value}
-          </div>
+          <Counter
+            raw={s.value}
+            className="gradient-text block font-display text-3xl font-bold sm:text-4xl"
+          />
           <p className="mx-auto mt-2 max-w-[16ch] text-xs leading-snug text-slate-300 sm:text-sm">
             {s.label}
           </p>

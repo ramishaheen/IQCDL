@@ -30,9 +30,8 @@ export function Pricing() {
               <Reveal key={plan.name} delay={i * 0.08} className="h-full">
                 <div
                   className={cn(
-                    "card relative flex h-full flex-col p-7",
-                    featured &&
-                      "scale-[1.02] ring-2 ring-quantum-violet/50 shadow-glow",
+                    "card relative flex h-full flex-col p-7 transition duration-300 hover:-translate-y-1.5 hover:shadow-glow",
+                    featured && "scale-[1.02] ring-2 ring-brand-400/60 shadow-glow",
                   )}
                 >
                   {featured && (

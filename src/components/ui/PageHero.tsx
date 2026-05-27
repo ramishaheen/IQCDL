@@ -29,10 +29,10 @@ export function PageHero({
           </motion.span>
         )}
         <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05 }}
-          className="mx-auto mt-5 max-w-3xl text-balance text-4xl font-bold leading-tight text-white sm:text-5xl"
+          initial={{ opacity: 0, y: 18, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="gradient-text-animated mx-auto mt-5 max-w-3xl text-balance text-5xl font-bold leading-[1.05] sm:text-6xl md:text-7xl"
         >
           {title}
         </motion.h1>

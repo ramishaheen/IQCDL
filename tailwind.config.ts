@@ -27,9 +27,9 @@ const config: Config = {
         quantum: {
           cyan: "#38bdf8",
           blue: "#2ba9e0",
-          indigo: "#1d8ec2",
-          violet: "#0ea5e9",
-          magenta: "#22a5db",
+          indigo: "#2ba9e0",
+          violet: "#38bdf8",
+          magenta: "#5ec6f2",
           pink: "#7dd3fc",
         },
         ink: {
