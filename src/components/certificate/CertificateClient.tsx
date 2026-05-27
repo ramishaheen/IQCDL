@@ -99,9 +99,9 @@ export function CertificateClient() {
         <div className="relative text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/iqcdl-logo.jpg"
+            src="/iqcdl-logo.svg"
             alt="IQCDL"
-            className="mx-auto h-12 w-auto"
+            className="mx-auto h-14 w-auto"
           />
 
           <p className="mt-8 text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">

@@ -20,7 +20,7 @@ export function Logo({
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/iqcdl-logo.jpg"
+        src="/iqcdl-logo.svg"
         alt="IQCDL — International Quantum Computing Driving License"
         className={cn("h-9 w-auto select-none", imgClassName)}
       />
