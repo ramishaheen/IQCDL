@@ -51,7 +51,7 @@ export function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="rounded-full px-3.5 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
+                className="rounded-full px-3.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-brand-600"
               >
                 {l.label}
               </Link>
@@ -75,7 +75,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-white lg:hidden"
+              className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700 lg:hidden"
               aria-label="Toggle menu"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -90,12 +90,12 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-200 hover:bg-white/5"
+                className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50"
               >
                 {l.label}
               </Link>
             ))}
-            <div className="mt-2 flex items-center justify-between gap-2 border-t border-white/10 pt-3">
+            <div className="mt-2 flex items-center justify-between gap-2 border-t border-slate-200 pt-3">
               <LanguageSwitcher />
               {user ? (
                 <Link

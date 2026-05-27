@@ -465,6 +465,50 @@ const fr: DeepPartial<Dictionary> = {
       progressLabel: "Progression du niveau Fondation",
     },
   },
+  exam: {
+    title: "Examen blanc Fondation",
+    subtitle:
+      "Un examen blanc chronométré à choix multiples aligné sur le programme Fondation IQCDL. Réussissez-le pour débloquer votre certificat.",
+    start: "Démarrer l'examen",
+    instructions:
+      "Vous disposez d'un temps limité pour répondre à toutes les questions. Vous pouvez naviguer avant de soumettre.",
+    timeLeft: "Temps restant",
+    questionLabel: "Question",
+    of: "sur",
+    next: "Suivant",
+    prev: "Précédent",
+    submit: "Soumettre l'examen",
+    answered: "répondu",
+    passed: "Félicitations — réussi !",
+    failed: "Presque — continuez à réviser",
+    yourScore: "Votre score",
+    passMark: "Seuil de réussite",
+    passBody:
+      "Vous avez atteint le seuil de réussite Fondation. Votre certificat est disponible dans le portail.",
+    failBody:
+      "Vous y êtes presque. Révisez le programme et les conseils du Guide Quantique, puis repassez l'examen.",
+    retake: "Repasser l'examen",
+    viewCertificate: "Voir mon certificat",
+    backToDashboard: "Retour au tableau de bord",
+    correct: "correct",
+  },
+  certificate: {
+    title: "Certificat de réussite",
+    presentedTo: "Ceci certifie que",
+    completed: "a satisfait avec succès aux exigences du",
+    program: "Permis International de Conduite en Informatique Quantique",
+    issued: "Délivré le",
+    expires: "Valable jusqu'au",
+    credentialId: "Identifiant du titre",
+    verify: "Vérifiez sur iqcdl.org/verify",
+    download: "Télécharger / Imprimer",
+    backToDashboard: "Retour au tableau de bord",
+    lockedTitle: "Votre certificat est verrouillé",
+    lockedBody:
+      "Réussissez l'examen blanc Fondation pour débloquer et télécharger votre certificat.",
+    goToExam: "Aller à l'examen",
+    signatory: "Directeur, Conseil de certification IQCDL",
+  },
 };
 
 export default fr;

@@ -9,20 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Deep-space quantum palette
-        void: {
-          DEFAULT: "#05060f",
-          50: "#0a0c1c",
-          100: "#0d1024",
-          200: "#11152e",
+        // IQCDL brand azure (from the logo)
+        brand: {
+          50: "#eef8fd",
+          100: "#d6eefb",
+          200: "#aaddf6",
+          300: "#74c7ef",
+          400: "#3eaee6",
+          500: "#2ba9e0",
+          600: "#1d8ec2",
+          700: "#1a72a0",
+          800: "#1b5d83",
+          900: "#1b4d6c",
         },
+        // Legacy accent tokens retuned to the brand blue family so existing
+        // utility classes shift on-brand automatically.
         quantum: {
-          cyan: "#22d3ee",
-          blue: "#3b82f6",
-          indigo: "#6366f1",
-          violet: "#8b5cf6",
-          magenta: "#d946ef",
-          pink: "#ec4899",
+          cyan: "#38bdf8",
+          blue: "#2ba9e0",
+          indigo: "#1d8ec2",
+          violet: "#0ea5e9",
+          magenta: "#22a5db",
+          pink: "#7dd3fc",
+        },
+        ink: {
+          DEFAULT: "#0f2231",
+          soft: "#334155",
         },
       },
       fontFamily: {
@@ -32,14 +44,14 @@ const config: Config = {
       },
       backgroundImage: {
         "quantum-radial":
-          "radial-gradient(circle at 50% 0%, rgba(99,102,241,0.18), transparent 60%)",
+          "radial-gradient(circle at 50% 0%, rgba(43,169,224,0.12), transparent 60%)",
         "quantum-grid":
-          "linear-gradient(rgba(99,102,241,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.07) 1px, transparent 1px)",
+          "linear-gradient(rgba(43,169,224,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(43,169,224,0.10) 1px, transparent 1px)",
       },
       boxShadow: {
-        glow: "0 0 40px -10px rgba(99,102,241,0.55)",
-        "glow-cyan": "0 0 40px -8px rgba(34,211,238,0.55)",
-        card: "0 1px 0 0 rgba(255,255,255,0.06) inset, 0 20px 60px -20px rgba(0,0,0,0.7)",
+        glow: "0 18px 50px -18px rgba(43,169,224,0.55)",
+        "glow-cyan": "0 18px 50px -16px rgba(56,189,248,0.5)",
+        card: "0 1px 2px rgba(15,34,49,0.04), 0 16px 40px -24px rgba(15,34,49,0.25)",
       },
       keyframes: {
         float: {

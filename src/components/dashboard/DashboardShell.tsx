@@ -27,7 +27,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
 
   if (!user) {
     return (
-      <div className="grid min-h-screen place-items-center text-slate-400">
+      <div className="grid min-h-screen place-items-center text-slate-500">
         <p>Redirecting…</p>
       </div>
     );
@@ -41,7 +41,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* top bar */}
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-void/70 backdrop-blur-xl">
+      <header className="no-print sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-xl">
         <div className="container-x flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
             <Logo />
@@ -51,15 +51,15 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           </div>
           <div className="flex items-center gap-2">
             <LanguageSwitcher compact />
-            <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1 ps-3 pe-1 sm:flex">
-              <span className="text-sm text-slate-300">{user.name}</span>
+            <div className="hidden items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1 ps-3 pe-1 sm:flex">
+              <span className="text-sm text-slate-600">{user.name}</span>
               <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-sm font-semibold text-white">
                 {user.name.charAt(0)}
               </span>
             </div>
             <button
               onClick={handleLogout}
-              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition hover:bg-white/10 hover:text-white"
+              className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 transition hover:bg-slate-100 hover:text-brand-600"
               aria-label={t("common.logout")}
               title={t("common.logout")}
             >

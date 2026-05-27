@@ -29,7 +29,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label="Change language"
-        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10"
+        className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
       >
         <Globe className="h-4 w-4" />
         {!compact && <span>{LOCALE_META[locale].label}</span>}
@@ -58,8 +58,8 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
                 className={cn(
                   "flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm transition",
                   active
-                    ? "bg-quantum-indigo/20 text-white"
-                    : "text-slate-300 hover:bg-white/5",
+                    ? "bg-brand-50 text-brand-700"
+                    : "text-slate-600 hover:bg-slate-50",
                 )}
               >
                 <span className="flex items-center gap-2">

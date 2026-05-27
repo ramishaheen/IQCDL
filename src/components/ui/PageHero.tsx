@@ -32,7 +32,7 @@ export function PageHero({
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="mx-auto mt-5 max-w-3xl text-balance text-4xl font-bold leading-tight text-white sm:text-5xl"
+          className="mx-auto mt-5 max-w-3xl text-balance text-4xl font-bold leading-tight text-slate-900 sm:text-5xl"
         >
           {title}
         </motion.h1>
@@ -41,7 +41,7 @@ export function PageHero({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
-            className="mx-auto mt-5 max-w-2xl text-balance text-base text-slate-300 sm:text-lg"
+            className="mx-auto mt-5 max-w-2xl text-balance text-base text-slate-600 sm:text-lg"
           >
             {subtitle}
           </motion.p>

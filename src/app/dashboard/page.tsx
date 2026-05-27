@@ -28,6 +28,11 @@ const METRIC_VALUES: Record<Role, string[]> = {
 
 const PANEL_ICONS = [BookOpen, ClipboardList, CalendarClock, Award];
 
+// Routes wired for the student portal panels (others are illustrative).
+const PANEL_HREFS: Partial<Record<Role, (string | undefined)[]>> = {
+  student: ["/programs", "/dashboard/exam", "/assessment", "/dashboard/certificate"],
+};
+
 export default function DashboardPage() {
   const { user } = useAuth();
   const { dict, t } = useLocale();
@@ -57,13 +62,13 @@ export default function DashboardPage() {
     <div className="space-y-8">
       {/* greeting */}
       <div>
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-slate-500">
           {t("dashboard.signedInAs")} {user.email}
         </p>
-        <h1 className="mt-1 text-2xl font-bold text-white sm:text-3xl">
+        <h1 className="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">
           {t("dashboard.welcome")}, {user.name.split(" ")[0]} 👋
         </h1>
-        <p className="mt-1 text-slate-400">{data.title}</p>
+        <p className="mt-1 text-slate-500">{data.title}</p>
       </div>
 
       {/* metrics */}
@@ -83,10 +88,10 @@ export default function DashboardPage() {
                   <Icon className="h-5 w-5" />
                 </span>
               </div>
-              <p className="mt-3 font-display text-2xl font-bold text-white">
+              <p className="mt-3 font-display text-2xl font-bold text-slate-900">
                 {values[i]}
               </p>
-              <p className="mt-0.5 text-xs text-slate-400">{label}</p>
+              <p className="mt-0.5 text-xs text-slate-500">{label}</p>
             </motion.div>
           );
         })}
@@ -96,12 +101,12 @@ export default function DashboardPage() {
       {role === "student" && (
         <div className="card p-6">
           <div className="mb-2 flex items-center justify-between text-sm">
-            <span className="font-medium text-white">
+            <span className="font-medium text-slate-900">
               {dict.dashboard.student.progressLabel}
             </span>
             <span className="text-quantum-cyan">64%</span>
           </div>
-          <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
             <motion.div
               className="h-full rounded-full bg-gradient-to-r from-quantum-cyan to-quantum-violet"
               initial={{ width: 0 }}
@@ -114,27 +119,39 @@ export default function DashboardPage() {
 
       {/* panels / quick actions */}
       <div>
-        <h2 className="mb-4 text-lg font-semibold text-white">
+        <h2 className="mb-4 text-lg font-semibold text-slate-900">
           {t("dashboard.quickActions")}
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {panels.map((panel, i) => {
             const Icon = PANEL_ICONS[i % PANEL_ICONS.length];
-            return (
+            const href = PANEL_HREFS[role]?.[i];
+            const cls =
+              "card group flex items-center justify-between gap-4 p-5 transition hover:border-brand-300 hover:shadow-glow";
+            const inner = (
+              <>
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-quantum-indigo/40 to-quantum-cyan/30 text-quantum-cyan">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="font-medium text-slate-900">{panel}</span>
+                </div>
+                <ArrowRight className="h-4 w-4 text-slate-500 transition group-hover:translate-x-1 group-hover:text-quantum-cyan rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+              </>
+            );
+            return href ? (
+              <Link key={panel} href={href} className={cls}>
+                {inner}
+              </Link>
+            ) : (
               <motion.div
                 key={panel}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + i * 0.06 }}
-                className="card group flex items-center justify-between gap-4 p-5 transition hover:border-quantum-cyan/30 hover:shadow-glow"
+                className={cls}
               >
-                <div className="flex items-center gap-3">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-quantum-indigo/40 to-quantum-cyan/30 text-quantum-cyan">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="font-medium text-white">{panel}</span>
-                </div>
-                <ArrowRight className="h-4 w-4 text-slate-500 transition group-hover:translate-x-1 group-hover:text-quantum-cyan rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+                {inner}
               </motion.div>
             );
           })}
@@ -144,8 +161,8 @@ export default function DashboardPage() {
       {/* contextual links */}
       <div className="card flex flex-wrap items-center justify-between gap-4 p-6">
         <div>
-          <p className="font-medium text-white">{dict.cta.title}</p>
-          <p className="text-sm text-slate-400">{dict.cta.subtitle}</p>
+          <p className="font-medium text-slate-900">{dict.cta.title}</p>
+          <p className="text-sm text-slate-500">{dict.cta.subtitle}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           {quickLinks[role].map((link) => (

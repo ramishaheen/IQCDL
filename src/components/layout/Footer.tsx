@@ -36,12 +36,12 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative mt-10 border-t border-white/10 bg-void-50/60">
+    <footer className="relative mt-10 border-t border-slate-200 bg-white">
       <div className="container-x py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="max-w-xs">
             <Logo />
-            <p className="mt-4 text-sm leading-relaxed text-slate-400">
+            <p className="mt-4 text-sm leading-relaxed text-slate-500">
               {t("footer.tagline")}
             </p>
             <p className="mt-4 text-xs leading-relaxed text-slate-500">
@@ -51,13 +51,13 @@ export function Footer() {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <h4 className="text-sm font-semibold text-white">{col.title}</h4>
+              <h4 className="text-sm font-semibold text-slate-900">{col.title}</h4>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="text-sm text-slate-400 transition hover:text-quantum-cyan"
+                      className="text-sm text-slate-500 transition hover:text-quantum-cyan"
                     >
                       {l.label}
                     </Link>
@@ -68,7 +68,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6">
+        <div className="mt-12 border-t border-slate-200 pt-6">
           <p className="text-xs leading-relaxed text-slate-500">
             {t("footer.disclaimer")}
           </p>

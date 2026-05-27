@@ -398,6 +398,50 @@ const en = {
       progressLabel: "Foundation Level progress",
     },
   },
+  exam: {
+    title: "Foundation mock exam",
+    subtitle:
+      "A timed, multiple-choice practice exam aligned to the IQCDL Foundation curriculum. Pass to unlock your certificate.",
+    start: "Start exam",
+    instructions:
+      "You'll have a time limit to answer all questions. You can move back and forth before submitting.",
+    timeLeft: "Time left",
+    questionLabel: "Question",
+    of: "of",
+    next: "Next",
+    prev: "Previous",
+    submit: "Submit exam",
+    answered: "answered",
+    passed: "Congratulations — you passed!",
+    failed: "Not quite — keep studying",
+    yourScore: "Your score",
+    passMark: "Pass mark",
+    passBody:
+      "You've met the Foundation pass mark. Your certificate is now available in the portal.",
+    failBody:
+      "You're close. Review the curriculum and the Quantum Guide's tips, then retake the exam.",
+    retake: "Retake exam",
+    viewCertificate: "View my certificate",
+    backToDashboard: "Back to dashboard",
+    correct: "correct",
+  },
+  certificate: {
+    title: "Certificate of Achievement",
+    presentedTo: "This certifies that",
+    completed: "has successfully completed the requirements for the",
+    program: "International Quantum Computing Driving License",
+    issued: "Issued",
+    expires: "Valid until",
+    credentialId: "Credential ID",
+    verify: "Verify at iqcdl.org/verify",
+    download: "Download / Print",
+    backToDashboard: "Back to dashboard",
+    lockedTitle: "Your certificate is locked",
+    lockedBody:
+      "Pass the Foundation mock exam to unlock and download your certificate.",
+    goToExam: "Go to the exam",
+    signatory: "Director, IQCDL Certification Board",
+  },
 };
 
 export default en;

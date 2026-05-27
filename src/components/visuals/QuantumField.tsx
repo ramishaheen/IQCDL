@@ -56,7 +56,7 @@ export default function QuantumField({ className }: { className?: string }) {
         vx: (Math.random() - 0.5) * 0.35,
         vy: (Math.random() - 0.5) * 0.35,
         r: Math.random() * 1.8 + 0.6,
-        hue: 200 + Math.random() * 100,
+        hue: 198 + Math.random() * 22,
       }));
     }
 
@@ -79,7 +79,7 @@ export default function QuantumField({ className }: { className?: string }) {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 90%, 70%, 0.85)`;
+        ctx.fillStyle = `hsla(${p.hue}, 85%, 52%, 0.55)`;
         ctx.fill();
       }
 
@@ -91,11 +91,11 @@ export default function QuantumField({ className }: { className?: string }) {
           const dy = a.y - b.y;
           const dist2 = dx * dx + dy * dy;
           if (dist2 < 17000) {
-            const alpha = (1 - dist2 / 17000) * 0.5;
+            const alpha = (1 - dist2 / 17000) * 0.32;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `hsla(${(a.hue + b.hue) / 2}, 90%, 65%, ${alpha})`;
+            ctx.strokeStyle = `hsla(${(a.hue + b.hue) / 2}, 85%, 55%, ${alpha})`;
             ctx.lineWidth = 0.7;
             ctx.stroke();
           }

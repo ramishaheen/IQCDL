@@ -36,7 +36,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="mt-6 text-balance text-4xl font-bold leading-[1.05] text-white sm:text-5xl md:text-6xl xl:text-7xl"
+            className="mt-6 text-balance text-4xl font-bold leading-[1.05] text-slate-900 sm:text-5xl md:text-6xl xl:text-7xl"
           >
             {t("hero.titleLine1")}{" "}
             <span className="gradient-text-animated">{t("hero.titleLine2")}</span>
@@ -46,7 +46,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.12 }}
-            className="mx-auto mt-6 max-w-xl text-balance text-base leading-relaxed text-slate-300 sm:text-lg lg:mx-0"
+            className="mx-auto mt-6 max-w-xl text-balance text-base leading-relaxed text-slate-600 sm:text-lg lg:mx-0"
           >
             {t("hero.subtitle")}
           </motion.p>

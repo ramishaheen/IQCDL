@@ -465,6 +465,50 @@ const es: DeepPartial<Dictionary> = {
       progressLabel: "Progreso del nivel Fundación",
     },
   },
+  exam: {
+    title: "Examen de práctica Fundación",
+    subtitle:
+      "Un examen de práctica cronometrado de opción múltiple alineado con el plan de estudios Fundación de IQCDL. Apruébalo para desbloquear tu certificado.",
+    start: "Iniciar examen",
+    instructions:
+      "Tendrás un tiempo límite para responder todas las preguntas. Puedes navegar antes de enviar.",
+    timeLeft: "Tiempo restante",
+    questionLabel: "Pregunta",
+    of: "de",
+    next: "Siguiente",
+    prev: "Anterior",
+    submit: "Enviar examen",
+    answered: "respondida",
+    passed: "¡Enhorabuena — aprobaste!",
+    failed: "Casi — sigue estudiando",
+    yourScore: "Tu puntuación",
+    passMark: "Nota de aprobado",
+    passBody:
+      "Has alcanzado la nota de aprobado Fundación. Tu certificado ya está disponible en el portal.",
+    failBody:
+      "Estás cerca. Repasa el plan de estudios y los consejos de la Guía Cuántica, y vuelve a intentarlo.",
+    retake: "Repetir examen",
+    viewCertificate: "Ver mi certificado",
+    backToDashboard: "Volver al panel",
+    correct: "correctas",
+  },
+  certificate: {
+    title: "Certificado de Logro",
+    presentedTo: "Esto certifica que",
+    completed: "ha completado con éxito los requisitos de la",
+    program: "Licencia Internacional de Conducción en Computación Cuántica",
+    issued: "Emitido",
+    expires: "Válido hasta",
+    credentialId: "ID de credencial",
+    verify: "Verifica en iqcdl.org/verify",
+    download: "Descargar / Imprimir",
+    backToDashboard: "Volver al panel",
+    lockedTitle: "Tu certificado está bloqueado",
+    lockedBody:
+      "Aprueba el examen de práctica Fundación para desbloquear y descargar tu certificado.",
+    goToExam: "Ir al examen",
+    signatory: "Director, Junta de Certificación IQCDL",
+  },
 };
 
 export default es;
