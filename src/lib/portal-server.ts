@@ -6,15 +6,22 @@ const KEY = "iqcdl:portal:v1";
 // In-memory fallback (per server instance) when no Redis is configured.
 let memory: PortalData | null = null;
 
+// Accept either the Upstash Marketplace names or Vercel KV names.
+function redisCreds(): { url: string; token: string } | null {
+  const url =
+    process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+  return url && token ? { url, token } : null;
+}
+
 function redisConfigured(): boolean {
-  return Boolean(
-    process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
-  );
+  return redisCreds() !== null;
 }
 
 async function getRedis() {
   const { Redis } = await import("@upstash/redis");
-  return Redis.fromEnv();
+  return new Redis(redisCreds()!);
 }
 
 export async function loadState(): Promise<PortalData> {
