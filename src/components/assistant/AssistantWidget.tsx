@@ -103,7 +103,7 @@ export function AssistantWidget() {
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-line/10 bg-gradient-to-r from-quantum-indigo/30 to-quantum-cyan/20 px-4 py-3.5">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan">
-                <Bot className="h-5 w-5 text-fg" />
+                <Bot className="h-5 w-5 text-white" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-fg">
@@ -136,7 +136,7 @@ export function AssistantWidget() {
                     className={cn(
                       "max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed",
                       m.role === "user"
-                        ? "bg-quantum-indigo text-fg"
+                        ? "bg-quantum-indigo text-white"
                         : "glass text-fg",
                     )}
                   >
@@ -195,7 +195,7 @@ export function AssistantWidget() {
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-fg transition disabled:opacity-40"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-white transition disabled:opacity-40"
                 aria-label={t("assistant.send")}
               >
                 <Send className="h-4 w-4" />

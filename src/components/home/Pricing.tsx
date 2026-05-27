@@ -35,7 +35,7 @@ export function Pricing() {
                   )}
                 >
                   {featured && (
-                    <span className="absolute -top-3 start-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-gradient-to-r from-quantum-violet to-quantum-magenta px-3 py-1 text-xs font-semibold text-fg rtl:translate-x-1/2">
+                    <span className="absolute -top-3 start-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-gradient-to-r from-quantum-violet to-quantum-magenta px-3 py-1 text-xs font-semibold text-white rtl:translate-x-1/2">
                       <Star className="h-3 w-3 fill-current" />
                       {dict.pricing.mostPopular}
                     </span>
@@ -56,7 +56,7 @@ export function Pricing() {
                   <ul className="mt-6 flex-1 space-y-3">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5 text-sm">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-quantum-cyan" />
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                         <span className="text-muted">{f}</span>
                       </li>
                     ))}

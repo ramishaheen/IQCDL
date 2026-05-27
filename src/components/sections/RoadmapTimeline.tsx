@@ -47,10 +47,10 @@ export function RoadmapTimeline({ withHeading = true }: { withHeading?: boolean 
 
                   <div className="card p-5 transition hover:shadow-glow sm:p-6">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-quantum-cyan">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-accent">
                         {phase.year}
                       </span>
-                      <span className="rounded-full bg-quantum-violet/20 px-2.5 py-0.5 text-xs font-medium text-quantum-violet">
+                      <span className="rounded-full bg-quantum-violet/20 px-2.5 py-0.5 text-xs font-medium text-accent">
                         {phase.tag}
                       </span>
                     </div>

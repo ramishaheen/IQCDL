@@ -7,6 +7,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
+import { MembershipMenu } from "./MembershipMenu";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/cn";
 
@@ -65,6 +66,9 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
+            <div className="hidden sm:block">
+              <MembershipMenu light={!scrolled} />
+            </div>
             <ThemeToggle />
             <div className="hidden sm:block">
               <LanguageSwitcher />
@@ -107,6 +111,9 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
+            <div className="mt-2 border-t border-line/10 pt-2">
+              <MembershipMenu onNavigate={() => setOpen(false)} />
+            </div>
             <div className="mt-2 flex items-center justify-between gap-2 border-t border-line/10 pt-3">
               <LanguageSwitcher />
               {user ? (

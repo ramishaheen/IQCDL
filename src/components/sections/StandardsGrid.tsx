@@ -26,7 +26,7 @@ export function StandardsGrid({ withHeading = true }: { withHeading?: boolean })
             <Reveal key={group.name} delay={(i % 2) * 0.08}>
               <div className="card h-full p-6">
                 <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
-                  <BadgeCheck className="h-5 w-5 text-quantum-cyan" />
+                  <BadgeCheck className="h-5 w-5 text-accent" />
                   {group.name}
                 </h3>
                 <ul className="mt-4 space-y-2">

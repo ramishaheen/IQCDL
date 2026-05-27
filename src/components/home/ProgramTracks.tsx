@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Check, GraduationCap, Cpu, ArrowRight } from "lucide-react";
+import { Check, GraduationCap, Cpu, Sparkles, ArrowRight } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -12,18 +12,31 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
   const { dict, t } = useLocale();
   const tracks = [
     {
+      id: "everyone",
+      data: dict.tracks.everyone,
+      icon: Sparkles,
+      accent: "from-quantum-cyan to-quantum-blue",
+      featured: false,
+      cta: "View outline",
+      href: "/programs",
+    },
+    {
       id: "foundation",
       data: dict.tracks.foundation,
       icon: GraduationCap,
-      accent: "from-quantum-cyan to-quantum-blue",
-      featured: false,
+      accent: "from-quantum-blue to-quantum-indigo",
+      featured: true,
+      cta: t("common.enroll"),
+      href: "/programs",
     },
     {
       id: "practitioner",
       data: dict.tracks.practitioner,
       icon: Cpu,
-      accent: "from-quantum-violet to-quantum-magenta",
-      featured: true,
+      accent: "from-quantum-indigo to-quantum-violet",
+      featured: false,
+      cta: t("common.enroll"),
+      href: "/programs",
     },
   ];
 
@@ -39,7 +52,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
           />
         )}
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {tracks.map((track, idx) => {
             const Icon = track.icon;
             return (
@@ -60,7 +73,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                   <div className="flex items-center gap-3">
                     <span
                       className={cn(
-                        "grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br text-fg",
+                        "grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br text-white",
                         track.accent,
                       )}
                     >
@@ -70,7 +83,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                       <h3 className="text-xl font-bold text-fg">
                         {track.data.name}
                       </h3>
-                      <p className="text-sm text-quantum-cyan">
+                      <p className="text-sm text-accent">
                         {track.data.tagline}
                       </p>
                     </div>
@@ -104,22 +117,22 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                   <ul className="mt-5 space-y-2.5">
                     {track.data.points.map((p) => (
                       <li key={p} className="flex items-start gap-2.5 text-sm">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-quantum-cyan" />
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                         <span className="text-muted">{p}</span>
                       </li>
                     ))}
                   </ul>
 
                   <Link
-                    href="/#pricing"
+                    href={track.href}
                     className={cn(
                       "btn mt-7 w-full",
                       track.featured
-                        ? "btn-primary text-fg"
-                        : "border border-brand-500/40 bg-brand-500/15 text-brand-300 hover:bg-brand-500/20",
+                        ? "btn-primary text-white"
+                        : "border border-brand-500/40 bg-brand-500/15 text-accent hover:bg-brand-500/20",
                     )}
                   >
-                    {t("common.enroll")}
+                    {track.cta}
                     <ArrowRight className="h-4 w-4 rtl:rotate-180" />
                   </Link>
                 </div>

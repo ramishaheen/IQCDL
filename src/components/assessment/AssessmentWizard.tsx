@@ -187,7 +187,7 @@ export function AssessmentWizard() {
                 {current.q}
               </h3>
               <p className="mt-2 flex items-start gap-2 text-sm text-faint">
-                <Info className="mt-0.5 h-4 w-4 shrink-0 text-quantum-cyan" />
+                <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 {current.help}
               </p>
 
@@ -320,7 +320,7 @@ export function AssessmentWizard() {
                 {/* next steps */}
                 <div className="mt-6">
                   <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-fg">
-                    <Lightbulb className="h-4 w-4 text-quantum-cyan" />
+                    <Lightbulb className="h-4 w-4 text-accent" />
                     {t("assessment.nextStepsTitle")}
                   </p>
                   <ul className="space-y-2.5">
@@ -329,7 +329,7 @@ export function AssessmentWizard() {
                         key={key}
                         className="flex items-start gap-2.5 text-sm text-muted"
                       >
-                        <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-quantum-violet rtl:rotate-180" />
+                        <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-accent rtl:rotate-180" />
                         <span>{t(`assessment.tips.${key}`)}</span>
                       </li>
                     ))}
@@ -354,7 +354,7 @@ export function AssessmentWizard() {
 
                 <button
                   onClick={restart}
-                  className="mx-auto mt-5 flex items-center gap-1.5 text-sm text-faint transition hover:text-quantum-cyan"
+                  className="mx-auto mt-5 flex items-center gap-1.5 text-sm text-faint transition hover:text-accent"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />
                   {t("assessment.restart")}

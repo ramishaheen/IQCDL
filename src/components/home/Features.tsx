@@ -34,7 +34,7 @@ export function Features() {
             return (
               <Reveal key={item.title} delay={(i % 3) * 0.08}>
                 <div className="card group h-full p-6 transition hover:-translate-y-1 hover:shadow-glow">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-quantum-indigo/40 to-quantum-cyan/30 text-quantum-cyan ring-1 ring-white/10">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-quantum-indigo/40 to-quantum-cyan/30 text-accent ring-1 ring-white/10">
                     <Icon className="h-5 w-5" />
                   </span>
                   <h3 className="mt-4 text-lg font-semibold text-fg">

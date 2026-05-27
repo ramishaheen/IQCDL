@@ -30,6 +30,8 @@ const en = {
     standards: "Standards",
     pricing: "Pricing",
     portal: "Portal",
+    membership: "Membership",
+    membershipDesc: "Choose how you'll join the IQCDL network",
   },
   hero: {
     badge: "Aligned with NIST · ISO/IEC · IEEE · EU PQC Roadmap",
@@ -68,13 +70,76 @@ const en = {
     standardsUnit: "8+",
   },
   tracks: {
-    eyebrow: "Two progressive levels",
-    title: "A clear path — from quantum literacy to hands-on mastery",
+    eyebrow: "Three progressive levels",
+    title: "A clear path — from quantum-curious to hands-on mastery",
     subtitle:
-      "Start with Foundation to build organization-wide fluency, then advance to Practitioner for hands-on quantum programming and post-quantum migration.",
+      "Start free with Quantum Computing for Everyone, build organization-wide fluency at Foundation, then advance to Practitioner for hands-on programming and post-quantum migration.",
+    outlineTitle: "Full course outline",
+    everyone: {
+      name: "Quantum Computing for Everyone",
+      tagline: "Zero-code · Vibe coding · Free intro",
+      duration: "Self-paced · ~4 hours",
+      exam: "Completion quiz · digital badge",
+      forWho:
+        "Everyone — business leaders, students and the simply curious. No maths or coding required.",
+      points: [
+        "Build real intuition for qubits, superposition & entanglement — no maths",
+        "See why quantum matters for your industry and your data",
+        "Drag-and-drop real quantum circuits with no-code tools",
+        "Use AI ‘vibe coding’ to run your first quantum program",
+        "Finish quantum-confident and ready for Foundation",
+      ],
+      outline: [
+        {
+          label: "Module 1",
+          title: "Quantum, demystified",
+          items: [
+            "What a qubit really is — in plain language",
+            "Superposition & entanglement by analogy",
+            "Quantum vs classical computing",
+          ],
+        },
+        {
+          label: "Module 2",
+          title: "Why it matters now",
+          items: [
+            "Real-world use cases across industries",
+            "The quantum threat to encryption, explained simply",
+            "‘Harvest now, decrypt later’ and your data",
+          ],
+        },
+        {
+          label: "Module 3",
+          title: "Play with quantum (no code)",
+          items: [
+            "Tour IBM Quantum Composer & Quirk",
+            "Build a Bell state by dragging gates",
+            "Read and interpret the results",
+          ],
+        },
+        {
+          label: "Module 4",
+          title: "Vibe-code your first program",
+          items: [
+            "Prompt an AI assistant to generate a Qiskit snippet",
+            "Run it in the cloud — no setup",
+            "Tweak it by describing changes, not memorizing syntax",
+          ],
+        },
+        {
+          label: "Module 5",
+          title: "Your next step",
+          items: [
+            "The quantum-ready mindset",
+            "How to talk quantum with your team",
+            "Bridge into the Foundation level",
+          ],
+        },
+      ],
+    },
     foundation: {
       name: "Foundation Level",
-      tagline: "Quantum for Everyone",
+      tagline: "Quantum literacy for leaders",
       duration: "3 days",
       exam: "150 MCQs · 180 min · 70% to pass",
       forWho: "CISOs, IT leaders, business decision-makers & compliance officers",
@@ -84,6 +149,38 @@ const en = {
         "Mosca's Theorem & organizational risk assessment",
         "Post-quantum cryptography & migration strategy",
         "No-code quantum tools (IBM Quantum Composer, Azure Quantum)",
+      ],
+      outline: [
+        {
+          label: "Day 1",
+          title: "Introduction to Quantum Computing",
+          items: [
+            "Quantum computing fundamentals",
+            "Qubits, superposition & entanglement",
+            "Quantum applications across industries",
+            "Hands-on with no-code quantum simulators",
+          ],
+        },
+        {
+          label: "Day 2",
+          title: "The Quantum Threat to Cryptography",
+          items: [
+            "How quantum breaks today's encryption",
+            "Shor's and Grover's algorithms",
+            "Mosca's Theorem for risk assessment",
+            "Introduction to Post-Quantum Cryptography (PQC)",
+          ],
+        },
+        {
+          label: "Day 3",
+          title: "PQC Migration & Organizational Readiness",
+          items: [
+            "PQC migration strategies",
+            "The three-phase approach: Assess, Plan, Implement",
+            "Crypto-agility principles",
+            "Sector-specific use cases & action plans",
+          ],
+        },
       ],
     },
     practitioner: {
@@ -98,6 +195,58 @@ const en = {
         "Implementing CRYSTALS-Kyber, Dilithium & SPHINCS+",
         "Hybrid classical-PQC systems & crypto-agile TLS",
         "Cryptographic inventory (CBOM) & migration roadmaps",
+      ],
+      outline: [
+        {
+          label: "Day 1",
+          title: "Quantum Programming Fundamentals",
+          items: [
+            "Set up the quantum development environment",
+            "Qiskit basics and quantum circuits",
+            "Implement basic quantum algorithms",
+            "Visualize quantum states",
+          ],
+        },
+        {
+          label: "Day 2",
+          title: "Advanced Quantum Algorithms",
+          items: [
+            "Shor's factoring algorithm",
+            "Grover's search algorithm",
+            "Quantum error correction",
+            "Variational quantum algorithms",
+          ],
+        },
+        {
+          label: "Day 3",
+          title: "Post-Quantum Cryptography Implementation",
+          items: [
+            "CRYSTALS-Kyber (ML-KEM)",
+            "CRYSTALS-Dilithium (digital signatures)",
+            "SPHINCS+ (hash-based signatures)",
+            "Performance benchmarking & comparison",
+          ],
+        },
+        {
+          label: "Day 4",
+          title: "Hybrid Cryptographic Solutions",
+          items: [
+            "Design hybrid classical-PQC systems",
+            "Implement TLS with PQC",
+            "Build crypto-agile architectures",
+            "Key management & rotation strategies",
+          ],
+        },
+        {
+          label: "Day 5",
+          title: "Migration Planning & Case Studies",
+          items: [
+            "Cryptographic inventory (CBOM)",
+            "Develop migration roadmaps",
+            "Analyze real-world case studies",
+            "Create organizational action plans",
+          ],
+        },
       ],
     },
     prereq: "Prerequisite: Foundation Level + basic Python",
