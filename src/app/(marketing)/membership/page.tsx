@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import {
   Users,
@@ -23,7 +22,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { FinalCTA } from "@/components/home/FinalCTA";
-import { EnrollModal } from "@/components/membership/EnrollModal";
+import { openEnroll } from "@/components/membership/MemberButton";
 
 const BENEFIT_ICONS: LucideIcon[] = [
   BadgeCheck,
@@ -47,7 +46,7 @@ const TIER_ICONS: Record<string, LucideIcon> = {
 export default function MembershipPage() {
   const { dict } = useLocale();
   const m = dict.membership;
-  const [enrollOpen, setEnrollOpen] = useState(false);
+  
 
   return (
     <>
@@ -57,7 +56,7 @@ export default function MembershipPage() {
       <section className="-mt-6 pb-4">
         <div className="container-x">
           <Reveal className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <button onClick={() => setEnrollOpen(true)} className="btn-primary text-white">
+            <button onClick={openEnroll} className="btn-primary text-white">
               {m.enrollNow} · {m.price}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </button>
@@ -130,7 +129,7 @@ export default function MembershipPage() {
                     </p>
                     {community ? (
                       <button
-                        onClick={() => setEnrollOpen(true)}
+                        onClick={openEnroll}
                         className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition hover:gap-2.5"
                       >
                         {m.enrollTier}
@@ -165,7 +164,7 @@ export default function MembershipPage() {
                   ))}
                 </ol>
                 <button
-                  onClick={() => setEnrollOpen(true)}
+                  onClick={openEnroll}
                   className="btn-primary mt-5 w-full text-white"
                 >
                   {m.cta}
@@ -178,7 +177,7 @@ export default function MembershipPage() {
       </section>
 
       <FinalCTA />
-      <EnrollModal open={enrollOpen} onClose={() => setEnrollOpen(false)} />
+
     </>
   );
 }

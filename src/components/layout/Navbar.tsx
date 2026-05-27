@@ -7,6 +7,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
+import { MemberButton, openEnroll } from "@/components/membership/MemberButton";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/cn";
 
@@ -75,9 +76,7 @@ export function Navbar() {
                 <Link href="/login" className="btn-ghost hidden sm:inline-flex">
                   {t("common.login")}
                 </Link>
-                <Link href="/membership" className="btn-primary hidden sm:inline-flex">
-                  {dict.membership.enroll}
-                </Link>
+                <MemberButton className="hidden sm:inline-flex" />
               </>
             )}
             <button
@@ -129,13 +128,15 @@ export function Navbar() {
                   >
                     {t("common.login")}
                   </Link>
-                  <Link
-                    href="/membership"
-                    onClick={() => setOpen(false)}
+                  <button
+                    onClick={() => {
+                      setOpen(false);
+                      openEnroll();
+                    }}
                     className="btn-primary flex-1"
                   >
                     {dict.membership.enroll}
-                  </Link>
+                  </button>
                 </>
               )}
             </div>

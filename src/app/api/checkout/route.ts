@@ -27,7 +27,7 @@ export async function POST(request: Request) {
       const { default: Stripe } = await import("stripe");
       const stripe = new Stripe(key);
       const session = await stripe.checkout.sessions.create({
-        mode: "payment",
+        mode: "subscription",
         customer_email: email,
         line_items: [
           {
@@ -35,10 +35,11 @@ export async function POST(request: Request) {
             price_data: {
               currency: "usd",
               unit_amount: PRICE_CENTS,
+              recurring: { interval: "year" },
               product_data: {
-                name: "IQCDL Community Membership",
+                name: "IQCDL Community Membership (yearly)",
                 description:
-                  "Community access, AI Quantum Guide chat, free features and a 10% course discount.",
+                  "Verified members: community, AI expert agents, Quantum Guide chat, a free course and 10% course discount.",
               },
             },
           },
