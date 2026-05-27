@@ -32,6 +32,8 @@ const en = {
     portal: "Portal",
     membership: "Membership",
     membershipDesc: "Choose how you'll join the IQCDL network",
+    about: "About us",
+    why: "Why Quantum AI",
   },
   hero: {
     badge: "Aligned with NIST · ISO/IEC · IEEE · EU PQC Roadmap",
@@ -692,6 +694,78 @@ const en = {
     ],
     apply: "Enroll",
     cta: "Enroll now",
+  },
+  about: {
+    eyebrow: "About IQCDL",
+    title: "The international standard for quantum-readiness",
+    founded: "Founded 2025 · United States",
+    intro:
+      "IQCDL exists for one reason: to make the quantum era understandable, measurable and safe for everyone — from boardrooms to classrooms. We turn an intimidating, fast-moving field into a clear, certifiable path that individuals and organizations can actually follow.",
+    parentTitle: "A sister organization of IAIDL",
+    parentBody:
+      "IQCDL is the quantum-focused sister body of the IAIDL — the International Artificial Intelligence Driving License, established in the United States in 2025. Born from IAIDL's mission to make transformative technology accessible and trustworthy, IQCDL inherits its standards-first DNA and extends that legacy from artificial intelligence into the quantum age.",
+    missionTitle: "Our mission",
+    mission:
+      "To certify one million quantum- and AI-ready professionals and prepare every critical organization for the post-quantum world — before the threats arrive, not after.",
+    governanceTitle: "Governance",
+    governanceSubtitle:
+      "Independent, accountable and globally aligned — so the credential means something everywhere.",
+    governance: [
+      { name: "Board of Directors", body: "Strategic oversight, independence and long-term stewardship of the IQCDL mission." },
+      { name: "Certification Board", body: "Owns exam integrity, the credentialing framework and the quality of every certificate issued." },
+      { name: "Standards & Accreditation Council", body: "Keeps the curriculum aligned to NIST, ISO/IEC, IEEE and the EU PQC roadmap." },
+      { name: "Ethics & Integrity Committee", body: "Online proctoring, fairness, accessibility and anti-fraud across all exams." },
+      { name: "Global Chapters Network", body: "Regional governance and accredited centers across every continent." },
+    ],
+    valuesTitle: "What we stand for",
+    values: [
+      { title: "Independence", body: "Vendor-neutral. We answer to standards and learners, not to any single platform." },
+      { title: "Rigor", body: "Real exams, real proctoring, real standards — a credential employers can trust." },
+      { title: "Accessibility", body: "Bilingual, multi-language and zero-code on-ramps so anyone can start." },
+      { title: "Global alignment", body: "One international benchmark, recognized across borders and sectors." },
+    ],
+    stats: [
+      { value: "2025", label: "Founded in the USA" },
+      { value: "IAIDL", label: "Parent organization" },
+      { value: "8+", label: "Standards aligned" },
+      { value: "50+", label: "Countries reached" },
+    ],
+  },
+  whyQuantum: {
+    eyebrow: "Why Quantum AI",
+    title: "The defining opportunity — and threat — of the next decade",
+    intro:
+      "Artificial intelligence is becoming exponentially more powerful. Quantum computing is the force that will both supercharge it and break the cryptography the world runs on. The people and organizations who get ready now will lead the next decade. Everyone else will be scrambling to catch up — or cleaning up a breach.",
+    opportunityTitle: "Where AI becomes truly powerful",
+    opportunitySubtitle:
+      "Quantum doesn't replace AI — it unlocks the problems classical AI can't touch.",
+    opportunity: [
+      { title: "Quantum machine learning", body: "Train on representations classical hardware can't efficiently compute — faster, richer models." },
+      { title: "Optimization at scale", body: "Logistics, finance, energy and scheduling problems that explode classically become tractable." },
+      { title: "Simulation & discovery", body: "Model molecules and materials directly — accelerating drug discovery, batteries and chemistry." },
+      { title: "A new compute advantage", body: "Early movers build moats. Quantum-AI skills are the scarce, high-leverage capability of the decade." },
+    ],
+    factsTitle: "The numbers",
+    facts: [
+      { value: "$106B", label: "Quantum market by 2040 (McKinsey)" },
+      { value: "55%", label: "of quantum jobs need a bachelor's or less" },
+      { value: "2030", label: "Critical infrastructure must be PQC-protected (EU)" },
+      { value: "FIPS 203/204/205", label: "PQC standards already finalized by NIST" },
+    ],
+    scaryTitle: "The risks no one can afford to ignore",
+    scarySubtitle: "This is why waiting is the most expensive option.",
+    scary: [
+      { title: "“Harvest now, decrypt later”", body: "Adversaries are already capturing your encrypted data today — to decrypt it the moment quantum is ready. Long-lived secrets are effectively exposed right now." },
+      { title: "Today's encryption will break", body: "Shor's algorithm makes RSA and elliptic-curve cryptography — the backbone of HTTPS, VPNs, signatures and banking — solvable." },
+      { title: "The clock is already running", body: "Cryptographically-relevant quantum computers are widely expected within the decade. By Mosca's Theorem, if your data must stay secret longer than that, you are already late." },
+      { title: "Regulators won't wait", body: "NIS2 and the EU PQC roadmap set hard deadlines. Unprepared organizations face compliance failures, fines and reputational damage." },
+      { title: "By the time it's obvious, it's too late", body: "Migration takes years. The organizations that start now will be safe; those that wait for proof will not have time to react." },
+    ],
+    ctaTitle: "Don't get caught unprepared",
+    ctaBody:
+      "Become one of the first certified quantum-AI-ready professionals. Two minutes to measure your risk — a credential that puts you a decade ahead.",
+    cta: "Get certified now",
+    ctaSecondary: "Measure my readiness",
   },
 };
 
