@@ -75,6 +75,26 @@ export function Footer() {
             {t("footer.disclaimer")}
           </p>
           <p className="mt-3 text-xs text-faint">{t("footer.rights")}</p>
+          <p className="mt-3 text-xs text-faint">
+            Part of the IAIDL group —{" "}
+            <a
+              href="https://iaidl.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline-offset-2 transition hover:text-quantum-cyan hover:underline"
+            >
+              iaidl.org
+            </a>
+            <span aria-hidden="true"> · </span>
+            <a
+              href="https://iaidlcollege.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline-offset-2 transition hover:text-quantum-cyan hover:underline"
+            >
+              iaidlcollege.co.uk
+            </a>
+          </p>
         </div>
       </div>
     </footer>
