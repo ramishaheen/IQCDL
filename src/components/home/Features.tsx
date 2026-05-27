@@ -11,6 +11,7 @@ import {
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { QuantumAccent } from "@/components/visuals/QuantumAccent";
 
 const ICONS = [Bot, ShieldCheck, FlaskConical, Map, Globe2, Users];
 
@@ -20,6 +21,7 @@ export function Features() {
   return (
     <section className="section">
       <div className="pointer-events-none absolute inset-0 -z-10 grid-bg opacity-30" />
+      <QuantumAccent className="absolute -top-6 end-0 -z-10 hidden w-[360px] opacity-40 lg:block" />
       <div className="container-x">
         <SectionHeading
           eyebrow={dict.features.eyebrow}

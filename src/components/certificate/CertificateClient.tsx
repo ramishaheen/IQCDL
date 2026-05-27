@@ -7,6 +7,7 @@ import { Award, Lock, Printer, ArrowLeft, ShieldCheck } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { usePortal, scopeForUser } from "@/lib/portal";
+import { Logo } from "@/components/layout/Logo";
 
 export function CertificateClient() {
   const { t, locale } = useLocale();
@@ -79,8 +80,7 @@ export function CertificateClient() {
         <div className="pointer-events-none absolute inset-3 rounded-2xl border border-brand-100" />
 
         <div className="relative text-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/iqcdl-logo.svg" alt="IQCDL" className="mx-auto h-14 w-auto" />
+          <Logo variant="full" className="mx-auto text-brand-600" />
 
           <p className="mt-8 text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
             {t("certificate.title")}

@@ -44,7 +44,7 @@ export function Navbar() {
             scrolled ? "glass-strong shadow-card" : "border border-transparent",
           )}
         >
-          <Logo />
+          <Logo className="text-sky-300" />
 
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((l) => (

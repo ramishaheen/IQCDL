@@ -4,12 +4,14 @@ import { BadgeCheck } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { QuantumAccent } from "@/components/visuals/QuantumAccent";
 
 export function StandardsGrid({ withHeading = true }: { withHeading?: boolean }) {
   const { dict } = useLocale();
 
   return (
     <section id="standards" className="section">
+      <QuantumAccent className="absolute -top-4 start-0 -z-10 hidden w-[340px] opacity-30 lg:block" />
       <div className="container-x">
         {withHeading && (
           <SectionHeading
