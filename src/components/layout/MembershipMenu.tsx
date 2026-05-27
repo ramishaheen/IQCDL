@@ -73,7 +73,7 @@ export function MembershipMenu({
           {ROLES.map(({ role, icon: Icon }) => (
             <Link
               key={role}
-              href="/login"
+              href={`/membership#${role}`}
               role="menuitem"
               onClick={() => {
                 setOpen(false);

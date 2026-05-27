@@ -608,6 +608,20 @@ const en = {
     goToExam: "Go to the exam",
     signatory: "Director, IQCDL Certification Board",
   },
+  membership: {
+    eyebrow: "Membership",
+    title: "Join the IQCDL network",
+    subtitle:
+      "Five ways to take part — from learner to administrator. Choose the membership that fits and apply in minutes.",
+    applyTitle: "How to apply",
+    steps: [
+      "Choose your membership tier",
+      "Create your portal account or sign in",
+      "Get approved and start operating",
+    ],
+    apply: "Apply / Sign in",
+    cta: "Become a member",
+  },
 };
 
 export default en;

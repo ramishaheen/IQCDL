@@ -24,6 +24,16 @@ export function AdminConsole() {
 
   return (
     <div>
+      <div className="mb-2 flex items-center justify-end">
+        <button
+          onClick={() => {
+            if (confirm("Reset all portal data back to the demo seed?")) p.reset();
+          }}
+          className="rounded-full border border-line/10 bg-surface/5 px-3 py-1.5 text-xs font-medium text-faint transition hover:bg-surface/10 hover:text-fg"
+        >
+          Reset demo data
+        </button>
+      </div>
       <Tabs
         active={tab}
         onChange={setTab}
