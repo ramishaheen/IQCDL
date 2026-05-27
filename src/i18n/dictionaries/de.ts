@@ -625,7 +625,6 @@ const de: DeepPartial<Dictionary> = {
     bookHint: "Tippen zum Öffnen",
     quarterlyTitle: "Quartalsweise Ausgaben, automatisch erstellt",
     quarterlyNote: "Jeden Quartal stellt ein redaktioneller KI-Agent eine neue Ausgabe zusammen; ein Verteilungsagent veröffentlicht sie anschließend überall und sendet sie an die Weltpresse.",
-    generateBtn: "Ausgabe dieses Quartals erstellen",
     generating: "Der redaktionelle Agent kompiliert…",
     headlineLabel: "Schlagzeile",
     highlightsLabel: "Highlights",

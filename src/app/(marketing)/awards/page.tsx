@@ -24,6 +24,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionDivider } from "@/components/visuals/SectionDivider";
 import { Book3D } from "@/components/visuals/Book3D";
+import { Rubric } from "@/components/ui/Rubric";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
@@ -145,6 +146,15 @@ export default function AwardsPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* award rubric */}
+      <Rubric
+        title={g.rubricTitle}
+        note={g.rubricNote}
+        categories={g.rubric}
+        scaleLabel={g.rubricScaleLabel}
+        scale={g.rubricScale}
+      />
 
       {/* benefits */}
       <section className="section">

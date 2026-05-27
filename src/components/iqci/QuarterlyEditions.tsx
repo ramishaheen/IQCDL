@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Newspaper, Radio, Sparkles, Globe2, Loader2 } from "lucide-react";
+import { Radio, Sparkles, Globe2, Loader2 } from "lucide-react";
 import type { QuarterlyEdition } from "@/lib/iqci";
 
 interface Labels {
   title: string;
   note: string;
-  generateBtn: string;
   generating: string;
+  liveLabel: string;
+  updatedLabel: string;
   headlineLabel: string;
   highlightsLabel: string;
   distributionTitle: string;
@@ -20,24 +21,29 @@ interface Labels {
 
 export function QuarterlyEditions({ labels }: { labels: Labels }) {
   const [edition, setEdition] = useState<QuarterlyEdition | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const started = useRef(false);
 
-  async function generate() {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/iqci/generate", { method: "POST" });
-      const data = await res.json();
-      setEdition(data.edition as QuarterlyEdition);
-    } catch {
-      /* ignore */
-    } finally {
-      setLoading(false);
-    }
-  }
+  // Auto-generates on view — no button. The quarterly/data agent runs server-side.
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    (async () => {
+      try {
+        const res = await fetch("/api/iqci/generate", { method: "POST" });
+        const data = await res.json();
+        setEdition(data.edition as QuarterlyEdition);
+      } catch {
+        /* ignore */
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
 
   return (
     <div className="card p-6 sm:p-8">
-      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="flex items-center gap-2 text-lg font-bold text-fg">
             <Sparkles className="h-5 w-5 text-accent" />
@@ -45,11 +51,21 @@ export function QuarterlyEditions({ labels }: { labels: Labels }) {
           </h3>
           <p className="mt-1 max-w-xl text-sm text-muted">{labels.note}</p>
         </div>
-        <button onClick={generate} disabled={loading} className="btn-primary shrink-0 text-white disabled:opacity-60">
-          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Newspaper className="h-4 w-4" />}
-          {loading ? labels.generating : labels.generateBtn}
-        </button>
+        <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-500">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          {labels.liveLabel}
+        </span>
       </div>
+
+      {loading && (
+        <div className="mt-6 flex items-center gap-2 text-sm text-muted">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          {labels.generating}
+        </div>
+      )}
 
       {edition && (
         <motion.div
@@ -60,7 +76,7 @@ export function QuarterlyEditions({ labels }: { labels: Labels }) {
           <div className="rounded-2xl border border-line/10 bg-surface/5 p-5">
             <div className="flex items-center justify-between">
               <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-semibold text-accent">{edition.label}</span>
-              <span className="text-xs text-faint">{new Date(edition.generatedAt).toLocaleString()}</span>
+              <span className="text-xs text-faint">{labels.updatedLabel} {new Date(edition.generatedAt).toLocaleString()}</span>
             </div>
             <p className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-faint">{labels.headlineLabel}</p>
             <h4 className="mt-1 text-lg font-bold leading-snug text-fg">{edition.headline}</h4>
@@ -91,14 +107,9 @@ export function QuarterlyEditions({ labels }: { labels: Labels }) {
             <p className="mt-4 text-[11px] font-semibold uppercase tracking-wider text-faint">{labels.sentTo}</p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {edition.distributedTo.map((o) => (
-                <motion.span
-                  key={o}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="rounded-full border border-line/10 bg-surface/5 px-2.5 py-1 text-xs text-muted"
-                >
+                <span key={o} className="rounded-full border border-line/10 bg-surface/5 px-2.5 py-1 text-xs text-muted">
                   {o}
-                </motion.span>
+                </span>
               ))}
             </div>
           </div>

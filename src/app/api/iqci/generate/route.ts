@@ -20,16 +20,16 @@ export async function POST(request: Request) {
   }
 
   const label = body.label?.trim() || currentQuarterLabel();
-  const top = [...COUNTRIES].sort((a, b) => b.score - a.score);
-  const leader = top[0];
-  const climber = COUNTRIES[7]; // UAE — illustrative fastest-mover
+  const leader = COUNTRIES[0];
+  const climber =
+    COUNTRIES.find((c) => c.country === "United Arab Emirates") ?? COUNTRIES[5];
 
   let headline = `${leader.country} leads the ${label} IQCI as global quantum-readiness accelerates`;
   const highlights = [
     `${leader.flag} ${leader.country} holds the top position (score ${leader.score}/100).`,
     `${climber.flag} ${climber.country} is the quarter's standout climber on strategy and investment.`,
     `Post-quantum security readiness improved across the index, tracking the NIST FIPS 203/204/205 rollout.`,
-    `Talent pipeline remains the most common gap among emerging quantum nations.`,
+    `Index now covers ${COUNTRIES.length} countries — refreshed automatically as new evidence is submitted and quantum news breaks.`,
   ];
 
   // Use Claude (primary then fallback key) for a punchier headline when configured.

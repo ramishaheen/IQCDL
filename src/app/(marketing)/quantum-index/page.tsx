@@ -22,6 +22,9 @@ import { Book3D } from "@/components/visuals/Book3D";
 import { PillarScatter } from "@/components/iqci/PillarScatter";
 import { IndexBook } from "@/components/iqci/IndexBook";
 import { QuarterlyEditions } from "@/components/iqci/QuarterlyEditions";
+import { ScoringPipeline } from "@/components/iqci/ScoringPipeline";
+import { Rubric } from "@/components/ui/Rubric";
+import { COUNTRIES, topPillarKey, bottomPillarKey } from "@/lib/iqci";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 const HOW_ICONS: LucideIcon[] = [Bot, FileSearch, RefreshCw, ShieldCheck];
@@ -72,7 +75,21 @@ export default function QuantumIndexPage() {
 
       <SectionDivider />
 
-      {/* ranking snapshot */}
+      {/* methodology: scoring rubric */}
+      <Rubric
+        title={x.rubricTitle}
+        note={x.rubricNote}
+        categories={x.rubric}
+        scaleLabel={x.rubricScaleLabel}
+        scale={x.rubricScale}
+      />
+
+      {/* methodology: how it is scored (data agent pipeline) */}
+      <ScoringPipeline title={x.agentTitle} note={x.agentNote} steps={x.pipeline} />
+
+      <SectionDivider />
+
+      {/* results: ranking snapshot (all countries) */}
       <section className="section">
         <div className="container-x">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -80,32 +97,38 @@ export default function QuantumIndexPage() {
             <p className="mt-2 text-sm text-faint">{x.rankingNote}</p>
           </Reveal>
           <Reveal className="mx-auto mt-8 max-w-3xl">
-            <div className="card overflow-x-auto p-2 sm:p-4">
-              <table className="w-full min-w-[34rem] border-collapse text-sm">
-                <thead>
-                  <tr className="border-b border-line/10 text-start">
-                    {[x.rankLabel, x.countryLabel, x.scoreLabel, x.strengthLabel, x.weaknessLabel].map((h) => (
-                      <th key={h} className="px-3 py-2 text-start text-xs font-semibold uppercase tracking-wider text-faint">
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line/10">
-                  {x.ranking.map((r) => (
-                    <tr key={r.rank}>
-                      <td className="px-3 py-3 font-display font-bold text-accent">{r.rank}</td>
-                      <td className="px-3 py-3 font-medium text-fg">{r.country}</td>
-                      <td className="px-3 py-3">
-                        <span className="font-display font-bold text-fg">{r.score}</span>
-                        <span className="text-faint">/100</span>
-                      </td>
-                      <td className="px-3 py-3 text-emerald-500">{r.strength}</td>
-                      <td className="px-3 py-3 text-amber-500">{r.weakness}</td>
+            <div className="card p-2 sm:p-4">
+              <div className="max-h-[32rem] overflow-auto">
+                <table className="w-full min-w-[34rem] border-collapse text-sm">
+                  <thead className="sticky top-0 bg-bg/95 backdrop-blur">
+                    <tr className="border-b border-line/10 text-start">
+                      {[x.rankLabel, x.countryLabel, x.scoreLabel, x.strengthLabel, x.weaknessLabel].map((h) => (
+                        <th key={h} className="px-3 py-2 text-start text-xs font-semibold uppercase tracking-wider text-faint">
+                          {h}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-line/10">
+                    {COUNTRIES.map((r) => {
+                      const names = x.pillarNames as Record<string, string>;
+                      return (
+                        <tr key={r.country}>
+                          <td className="px-3 py-3 font-display font-bold text-accent">{r.rank}</td>
+                          <td className="px-3 py-3 font-medium text-fg">{r.flag} {r.country}</td>
+                          <td className="px-3 py-3">
+                            <span className="font-display font-bold text-fg">{r.score}</span>
+                            <span className="text-faint">/100</span>
+                          </td>
+                          <td className="px-3 py-3 text-emerald-500">{names[topPillarKey(r.pillars)]}</td>
+                          <td className="px-3 py-3 text-amber-500">{names[bottomPillarKey(r.pillars)]}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-2 px-2 text-xs text-faint">{COUNTRIES.length} countries · {x.rankingNote}</p>
             </div>
           </Reveal>
 
@@ -155,8 +178,9 @@ export default function QuantumIndexPage() {
               labels={{
                 title: x.quarterlyTitle,
                 note: x.quarterlyNote,
-                generateBtn: x.generateBtn,
                 generating: x.generating,
+                liveLabel: x.liveLabel,
+                updatedLabel: x.updatedLabel,
                 headlineLabel: x.headlineLabel,
                 highlightsLabel: x.highlightsLabel,
                 distributionTitle: x.distributionTitle,

@@ -829,7 +829,6 @@ const es: DeepPartial<Dictionary> = {
     bookHint: "Pulsa para abrir",
     quarterlyTitle: "Ediciones trimestrales, generadas automáticamente",
     quarterlyNote: "Cada trimestre un agente editorial de IA compila una nueva edición; un agente de difusión la publica en todas partes y la envía a la prensa mundial para que se haga viral.",
-    generateBtn: "Generar la edición de este trimestre",
     generating: "El agente editorial está compilando…",
     headlineLabel: "Titular",
     highlightsLabel: "Destacados",

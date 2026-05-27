@@ -567,7 +567,6 @@ const zh: DeepPartial<Dictionary> = {
     bookHint: "点击打开",
     quarterlyTitle: "季度版本，自动生成",
     quarterlyNote: "每季度由一个 AI 编辑智能体编撰新版本；分发智能体随后将其发布至各处，并发送给全球媒体以广泛传播。",
-    generateBtn: "生成本季度版本",
     generating: "编辑智能体正在编撰……",
     headlineLabel: "头条",
     highlightsLabel: "亮点",
