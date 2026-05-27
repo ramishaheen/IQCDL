@@ -5,18 +5,48 @@ import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ShieldCheck, ShieldX, Search } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
-import { usePortal, type Certificate } from "@/lib/portal";
+import { usePortal } from "@/lib/portal";
+
+interface VerifiedCert {
+  studentName: string;
+  studentNumber: string;
+  level: string;
+  token: string;
+  issuedAt: string;
+  expiresAt: string;
+  status: string;
+}
 
 function VerifyInner() {
   const portal = usePortal();
   const params = useSearchParams();
   const [token, setToken] = useState("");
   const [checked, setChecked] = useState(false);
-  const [result, setResult] = useState<Certificate | undefined>();
+  const [result, setResult] = useState<VerifiedCert | undefined>();
 
-  function verify(value: string) {
-    const found = portal.certByToken(value);
-    setResult(found);
+  async function verify(value: string) {
+    setChecked(false);
+    try {
+      const res = await fetch(
+        `/api/portal/verify?token=${encodeURIComponent(value)}`,
+        { cache: "no-store" },
+      );
+      const json = await res.json();
+      if (json?.found) {
+        setResult(json.certificate as VerifiedCert);
+        setChecked(true);
+        return;
+      }
+    } catch {
+      // fall back to the local store (offline / demo)
+      const local = portal.certByToken(value);
+      if (local) {
+        setResult(local);
+        setChecked(true);
+        return;
+      }
+    }
+    setResult(undefined);
     setChecked(true);
   }
 
@@ -24,7 +54,7 @@ function VerifyInner() {
     const q = params.get("token");
     if (q) {
       setToken(q);
-      verify(q);
+      void verify(q);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -57,6 +57,23 @@ pnpm build && pnpm start
 | `AUTH_SECRET`       | prod     | Secret used to sign session JWTs (`openssl rand -base64 32`).    |
 | `ANTHROPIC_API_KEY` | optional | Enables the **live** Claude-powered assistant; omit to use the built-in guide. |
 | `ANTHROPIC_MODEL`   | optional | Override the Claude model (default `claude-sonnet-4-6`).          |
+| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | optional | Enable **shared, cross-device portal persistence** via Upstash Redis. When unset, the portal uses per-instance memory + per-browser localStorage. |
+
+## Portal persistence
+
+The portal (centers, students, trainers, exams, certificates, announcements)
+is served through an auth-gated API (`/api/portal`) backed by a storage layer
+in `src/lib/portal-server.ts`:
+
+- **With Upstash Redis** (`UPSTASH_REDIS_REST_*` set) — state is shared across
+  all users and devices. Create a free DB at console.upstash.com, copy the REST
+  URL/token into the env, and it activates automatically.
+- **Without it** — falls back to per-server-instance memory plus each browser's
+  localStorage, which is perfect for the preview/demo.
+
+Certificate verification (`/verify` and `GET /api/portal/verify?token=`) is
+public and reads from the same store, so a tokenized certificate can be
+verified from any device once Redis is configured.
 
 ## Demo portal accounts
 
