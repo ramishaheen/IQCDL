@@ -36,7 +36,7 @@ export function Stats({ embedded = false }: { embedded?: boolean }) {
   if (embedded) return grid;
 
   return (
-    <section className="relative z-20 -mt-10 sm:-mt-16">
+    <section className="relative z-10 pt-12 sm:pt-16">
       <div className="container-x">{grid}</div>
     </section>
   );

@@ -7,12 +7,11 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
-import { MembershipMenu } from "./MembershipMenu";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/cn";
 
 export function Navbar() {
-  const { t } = useLocale();
+  const { t, dict } = useLocale();
   const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -42,23 +41,18 @@ export function Navbar() {
       <div className="container-x">
         <nav
           className={cn(
-            "flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300",
-            scrolled ? "glass-strong shadow-card" : "border border-transparent",
+            "flex items-center justify-between rounded-2xl px-4 py-2.5 glass-strong transition-all duration-300",
+            scrolled ? "shadow-card" : "shadow-sm",
           )}
         >
-          <Logo className={scrolled ? "logo-tone" : "text-white"} />
+          <Logo className="logo-tone" />
 
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className={cn(
-                  "rounded-full px-3.5 py-2 text-sm font-medium transition",
-                  scrolled
-                    ? "text-muted hover:bg-surface/5 hover:text-accent"
-                    : "text-slate-200 hover:bg-white/10 hover:text-white",
-                )}
+                className="rounded-full px-3.5 py-2 text-sm font-medium text-muted transition hover:bg-surface/5 hover:text-accent"
               >
                 {l.label}
               </Link>
@@ -66,9 +60,6 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden sm:block">
-              <MembershipMenu light={!scrolled} />
-            </div>
             <ThemeToggle />
             <div className="hidden sm:block">
               <LanguageSwitcher />
@@ -79,19 +70,19 @@ export function Navbar() {
                 {t("common.dashboard")}
               </Link>
             ) : (
-              <Link href="/login" className="btn-ghost hidden sm:inline-flex">
-                {t("common.login")}
-              </Link>
+              <>
+                <Link href="/login" className="btn-ghost hidden sm:inline-flex">
+                  {t("common.login")}
+                </Link>
+                <Link href="/membership" className="btn-primary hidden sm:inline-flex">
+                  {dict.membership.enroll}
+                </Link>
+              </>
             )}
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className={cn(
-                "grid h-10 w-10 place-items-center rounded-xl border lg:hidden",
-                scrolled
-                  ? "border-line/10 bg-surface/5 text-fg"
-                  : "border-white/20 bg-white/10 text-white",
-              )}
+              className="grid h-10 w-10 place-items-center rounded-xl border border-line/10 bg-surface/5 text-fg lg:hidden"
               aria-label="Toggle menu"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -111,10 +102,14 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <div className="mt-2 border-t border-line/10 pt-2">
-              <MembershipMenu onNavigate={() => setOpen(false)} />
-            </div>
-            <div className="mt-2 flex items-center justify-between gap-2 border-t border-line/10 pt-3">
+            <Link
+              href="/membership"
+              onClick={() => setOpen(false)}
+              className="block rounded-xl px-4 py-3 text-sm font-medium text-fg hover:bg-surface/5"
+            >
+              {t("nav.membership")}
+            </Link>
+            <div className="mt-2 flex items-center gap-2 border-t border-line/10 pt-3">
               <LanguageSwitcher />
               {user ? (
                 <Link
@@ -125,13 +120,22 @@ export function Navbar() {
                   {t("common.dashboard")}
                 </Link>
               ) : (
-                <Link
-                  href="/login"
-                  onClick={() => setOpen(false)}
-                  className="btn-primary flex-1"
-                >
-                  {t("common.login")}
-                </Link>
+                <>
+                  <Link
+                    href="/login"
+                    onClick={() => setOpen(false)}
+                    className="btn-ghost flex-1"
+                  >
+                    {t("common.login")}
+                  </Link>
+                  <Link
+                    href="/membership"
+                    onClick={() => setOpen(false)}
+                    className="btn-primary flex-1"
+                  >
+                    {dict.membership.enroll}
+                  </Link>
+                </>
               )}
             </div>
           </div>

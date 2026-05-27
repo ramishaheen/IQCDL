@@ -610,17 +610,88 @@ const en = {
   },
   membership: {
     eyebrow: "Membership",
-    title: "Join the IQCDL network",
+    title: "Become an IQCDL member",
     subtitle:
-      "Five ways to take part — from learner to administrator. Choose the membership that fits and apply in minutes.",
-    applyTitle: "How to apply",
-    steps: [
-      "Choose your membership tier",
-      "Create your portal account or sign in",
-      "Get approved and start operating",
+      "Join a global, quantum-ready community. Learn with an AI guide, earn a recognized credential, and grow with members, centers, trainers and partners worldwide.",
+    enroll: "Enroll",
+    enrollNow: "Enroll now",
+    signedInPrompt: "Already a member?",
+    signIn: "Sign in with your credentials",
+    benefitsTitle: "Why become a member",
+    benefitsSubtitle:
+      "Everything you need to go from quantum-curious to quantum-certified — and stay ahead.",
+    benefits: [
+      {
+        title: "Globally-recognized credential",
+        body: "A bilingual, internationally aligned license trusted by employers and regulators in 50+ countries.",
+      },
+      {
+        title: "AI Quantum Guide in chat",
+        body: "Your 24/7 AI agent answers questions, scores your readiness and plans your PQC migration — in any language.",
+      },
+      {
+        title: "Member community",
+        body: "Join the IQCDL community — discussion forums, live chat, events and a worldwide network of quantum professionals.",
+      },
+      {
+        title: "Continuous learning",
+        body: "Guided materials, no-code labs and practice exams, kept current with NIST, ISO/IEC, IEEE and the EU PQC roadmap.",
+      },
+      {
+        title: "Verified certificates",
+        body: "Tokenized certificates anyone can verify online — portable proof of your quantum skills.",
+      },
+      {
+        title: "Partner & agent program",
+        body: "Become an authorized agent or center, enroll others, and earn as you grow the network.",
+      },
     ],
-    apply: "Apply / Sign in",
-    cta: "Become a member",
+    tiersTitle: "Choose your membership",
+    tiers: [
+      {
+        key: "community",
+        name: "Community",
+        desc: "Free. Forums, live chat, events and the AI Quantum Guide. The easiest way to start.",
+      },
+      {
+        key: "student",
+        name: "Student",
+        desc: "Learn, practice and earn your certificate with a personal student number.",
+      },
+      {
+        key: "trainer",
+        name: "Trainer",
+        desc: "Deliver courses, upload materials, track progress and assign work.",
+      },
+      {
+        key: "center",
+        name: "Training Center",
+        desc: "Register students, add trainers, book exams and issue certificates.",
+      },
+      {
+        key: "chapter",
+        name: "Chapter Owner",
+        desc: "Lead and approve the center network across your continent.",
+      },
+      {
+        key: "agent",
+        name: "Agent / Partner",
+        desc: "Authorized agents and partners who enroll and support members and centers.",
+      },
+      {
+        key: "admin",
+        name: "Administrator",
+        desc: "Full platform oversight — standards, accreditation, exams and analytics.",
+      },
+    ],
+    applyTitle: "How to enroll",
+    steps: [
+      "Press Enroll and pick your membership",
+      "Create your account or sign in",
+      "Get approved and start right away",
+    ],
+    apply: "Enroll",
+    cta: "Enroll now",
   },
 };
 

@@ -33,17 +33,35 @@ const es: DeepPartial<Dictionary> = {
     standards: "Normas",
     pricing: "Precios",
     portal: "Portal",
+    membership: "Membresía",
+    membershipDesc: "Elige cómo unirte a la red IQCDL",
   },
   hero: {
     badge: "Alineado con NIST · ISO/IEC · IEEE · Hoja de ruta PQC de la UE",
     titleLine1: "Tu licencia para liderar",
     titleLine2: "la era cuántica",
     subtitle:
-      "IQCDL es la certificación internacional asistida por IA que convierte la incertidumbre cuántica en un plan medible. Evalúa tu preparación, forma a tu gente y migra a la seguridad poscuántica con confianza.",
-    ctaPrimary: "Medir mi preparación cuántica",
+      "IQCDL es la primera certificación internacional en computación cuántica asistida por IA. Mide tu riesgo poscuántico en 2 minutos, forma a tus equipos y obtén una credencial reconocida mundialmente.",
+    ctaPrimary: "Obtener mi puntuación gratis",
     ctaSecondary: "Explorar el programa",
     trustedBy:
       "Con la confianza de líderes de seguridad, educadores e innovadores de todo el mundo",
+    chips: [
+      "Reconocido en más de 50 países",
+      "Disponible en 6 idiomas",
+      "Alineado con normas globales",
+    ],
+    card: {
+      title: "Licencia Internacional de Conducción en Computación Cuántica",
+      holder: "Titular",
+      holderValue: "Tu nombre aquí",
+      level: "Nivel",
+      levelValue: "Fundación",
+      validity: "Validez",
+      validityValue: "3 años",
+      verified: "Verificado",
+      worldwide: "Reconocido mundialmente",
+    },
   },
   stats: {
     marketValue: "Mercado cuántico para 2040",
@@ -56,13 +74,36 @@ const es: DeepPartial<Dictionary> = {
     standardsUnit: "8+",
   },
   tracks: {
-    eyebrow: "Dos niveles progresivos",
-    title: "Una ruta clara — de la alfabetización cuántica al dominio práctico",
+    eyebrow: "Tres niveles progresivos",
+    title: "Una ruta clara — de la curiosidad cuántica al dominio práctico",
     subtitle:
-      "Empieza con Fundación para crear fluidez en toda la organización, luego avanza a Practicante para programación cuántica práctica y migración poscuántica.",
+      "Empieza gratis con Computación Cuántica para Todos, crea fluidez en toda la organización en Fundación, y avanza a Practicante para la programación y la migración poscuántica.",
+    outlineTitle: "Temario completo del curso",
+    everyone: {
+      name: "Computación Cuántica para Todos",
+      tagline: "Sin código · Vibe coding · Intro gratis",
+      duration: "A tu ritmo · ~4 horas",
+      exam: "Cuestionario de finalización · insignia digital",
+      forWho:
+        "Todos — líderes de negocio, estudiantes y curiosos. Sin matemáticas ni código.",
+      points: [
+        "Construye una intuición real de cúbits, superposición y entrelazamiento — sin matemáticas",
+        "Entiende por qué lo cuántico importa para tu sector y tus datos",
+        "Arrastra y suelta circuitos cuánticos reales con herramientas sin código",
+        "Ejecuta tu primer programa cuántico con ‘vibe coding’ asistido por IA",
+        "Termina con confianza, listo para Fundación",
+      ],
+      outline: [
+        { label: "Módulo 1", title: "Lo cuántico, desmitificado", items: ["Qué es realmente un cúbit — en lenguaje claro", "Superposición y entrelazamiento por analogía", "Cuántico vs clásico"] },
+        { label: "Módulo 2", title: "Por qué importa ahora", items: ["Casos de uso reales por sector", "La amenaza cuántica al cifrado, explicada simple", "‘Recolectar ahora, descifrar después’"] },
+        { label: "Módulo 3", title: "Juega con lo cuántico (sin código)", items: ["Recorrido por IBM Quantum Composer y Quirk", "Crea un estado de Bell arrastrando puertas", "Lee e interpreta los resultados"] },
+        { label: "Módulo 4", title: "Vibe-codea tu primer programa", items: ["Pide a una IA que genere un fragmento de Qiskit", "Ejecútalo en la nube — sin instalar nada", "Ajústalo describiendo los cambios"] },
+        { label: "Módulo 5", title: "Tu siguiente paso", items: ["La mentalidad quantum-ready", "Cómo hablar de lo cuántico con tu equipo", "Transición al nivel Fundación"] },
+      ],
+    },
     foundation: {
       name: "Nivel Fundación",
-      tagline: "Cuántica para todos",
+      tagline: "Alfabetización cuántica para líderes",
       duration: "3 días",
       exam: "150 preguntas · 180 min · 70 % para aprobar",
       forWho:
@@ -73,6 +114,11 @@ const es: DeepPartial<Dictionary> = {
         "Teorema de Mosca y evaluación de riesgos organizacionales",
         "Criptografía poscuántica y estrategia de migración",
         "Herramientas cuánticas sin código (IBM Quantum Composer, Azure Quantum)",
+      ],
+      outline: [
+        { label: "Día 1", title: "Introducción a la computación cuántica", items: ["Fundamentos de la computación cuántica", "Cúbits, superposición y entrelazamiento", "Aplicaciones cuánticas por sector", "Práctica con simuladores sin código"] },
+        { label: "Día 2", title: "La amenaza cuántica a la criptografía", items: ["Cómo lo cuántico rompe el cifrado actual", "Algoritmos de Shor y Grover", "Teorema de Mosca para evaluar el riesgo", "Introducción a la criptografía poscuántica (PQC)"] },
+        { label: "Día 3", title: "Migración PQC y preparación organizacional", items: ["Estrategias de migración PQC", "El enfoque de tres fases: Evaluar, Planificar, Implementar", "Principios de cripto-agilidad", "Casos de uso por sector y planes de acción"] },
       ],
     },
     practitioner: {
@@ -88,6 +134,13 @@ const es: DeepPartial<Dictionary> = {
         "Implementación de CRYSTALS-Kyber, Dilithium y SPHINCS+",
         "Sistemas híbridos clásicos-PQC y TLS cripto-ágil",
         "Inventario criptográfico (CBOM) y hojas de ruta de migración",
+      ],
+      outline: [
+        { label: "Día 1", title: "Fundamentos de la programación cuántica", items: ["Configurar el entorno de desarrollo", "Bases de Qiskit y circuitos cuánticos", "Implementar algoritmos básicos", "Visualizar estados cuánticos"] },
+        { label: "Día 2", title: "Algoritmos cuánticos avanzados", items: ["Algoritmo de factorización de Shor", "Algoritmo de búsqueda de Grover", "Corrección de errores cuánticos", "Algoritmos cuánticos variacionales"] },
+        { label: "Día 3", title: "Implementación de criptografía poscuántica", items: ["CRYSTALS-Kyber (ML-KEM)", "CRYSTALS-Dilithium (firmas digitales)", "SPHINCS+ (firmas basadas en hash)", "Evaluación y comparación de rendimiento"] },
+        { label: "Día 4", title: "Soluciones criptográficas híbridas", items: ["Diseñar sistemas híbridos clásicos-PQC", "Implementar TLS con PQC", "Construir arquitecturas cripto-ágiles", "Gestión y rotación de claves"] },
+        { label: "Día 5", title: "Planificación de migración y casos de estudio", items: ["Inventario criptográfico (CBOM)", "Desarrollar hojas de ruta de migración", "Analizar casos reales", "Crear planes de acción organizacionales"] },
       ],
     },
     prereq: "Requisito: nivel Fundación + Python básico",
@@ -508,6 +561,20 @@ const es: DeepPartial<Dictionary> = {
       "Aprueba el examen de práctica Fundación para desbloquear y descargar tu certificado.",
     goToExam: "Ir al examen",
     signatory: "Director, Junta de Certificación IQCDL",
+  },
+  membership: {
+    eyebrow: "Membresía",
+    title: "Únete a la red IQCDL",
+    subtitle:
+      "Cinco formas de participar — del estudiante al administrador. Elige la membresía que encaje y solicítala en minutos.",
+    applyTitle: "Cómo solicitar",
+    steps: [
+      "Elige tu nivel de membresía",
+      "Crea tu cuenta del portal o inicia sesión",
+      "Sé aprobado y comienza a operar",
+    ],
+    apply: "Solicitar / Iniciar sesión",
+    cta: "Hazte miembro",
   },
 };
 
