@@ -10,35 +10,93 @@ import {
   Sparkles,
   Info,
   CheckCircle2,
+  Lightbulb,
 } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { cn } from "@/lib/cn";
 
 type LevelKey = "critical" | "developing" | "advancing" | "ready";
+type DimKey =
+  | "exposure"
+  | "visibility"
+  | "agility"
+  | "adoption"
+  | "people"
+  | "governance";
+
+// Maps each question (by index) to a readiness dimension.
+const QUESTION_DIMENSIONS: DimKey[] = [
+  "exposure",
+  "visibility",
+  "agility",
+  "adoption",
+  "people",
+  "governance",
+  "adoption",
+  "governance",
+];
+// Questions where a HIGHER answer means MORE risk (lower readiness).
+const REVERSE_INDICES = new Set<number>([0]);
+
+const DIM_ORDER: DimKey[] = [
+  "exposure",
+  "visibility",
+  "agility",
+  "adoption",
+  "people",
+  "governance",
+];
+
+interface DimResult {
+  key: DimKey;
+  pct: number;
+}
 
 interface Result {
   pct: number;
   level: LevelKey;
   track: "foundation" | "practitioner";
+  dimensions: DimResult[];
+  weakest: DimKey[];
 }
 
 function computeResult(answers: number[]): Result {
-  // answers[0] = data shelf-life (higher = more exposure / Mosca risk)
-  // answers[1..4] = preparedness signals (higher = more ready)
-  const prepared = answers.slice(1).reduce((a, b) => a + b, 0); // 0..12
-  const moscaRisk = answers[0]; // 0..3
-  const adjusted = prepared - moscaRisk; // -3..12
-  const pct = Math.max(3, Math.min(99, Math.round(((adjusted + 3) / 15) * 100)));
+  const contributions = answers.map((ans, i) =>
+    REVERSE_INDICES.has(i) ? 3 - ans : ans,
+  );
+
+  const byDim = new Map<DimKey, number[]>();
+  contributions.forEach((c, i) => {
+    const dim = QUESTION_DIMENSIONS[i];
+    if (!byDim.has(dim)) byDim.set(dim, []);
+    byDim.get(dim)!.push(c);
+  });
+
+  const dimensions: DimResult[] = DIM_ORDER.map((key) => {
+    const vals = byDim.get(key) ?? [0];
+    const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+    return { key, pct: Math.round((avg / 3) * 100) };
+  });
+
+  const mean =
+    contributions.reduce((a, b) => a + b, 0) / contributions.length; // 0..3
+  const pct = Math.max(3, Math.min(99, Math.round((mean / 3) * 100)));
 
   let level: LevelKey = "critical";
   if (pct >= 80) level = "ready";
   else if (pct >= 55) level = "advancing";
   else if (pct >= 30) level = "developing";
 
+  const adoptionPct = dimensions.find((d) => d.key === "adoption")?.pct ?? 0;
   const track: Result["track"] =
-    pct >= 60 && answers[3] >= 2 ? "practitioner" : "foundation";
+    pct >= 60 && adoptionPct >= 50 ? "practitioner" : "foundation";
 
-  return { pct, level, track };
+  const weakest = [...dimensions]
+    .sort((a, b) => a.pct - b.pct)
+    .slice(0, 3)
+    .map((d) => d.key);
+
+  return { pct, level, track, dimensions, weakest };
 }
 
 const LEVEL_COLOR: Record<LevelKey, string> = {
@@ -102,10 +160,7 @@ export function AssessmentWizard() {
           <span>
             {done
               ? t("assessment.resultTitle")
-              : t("assessment.questionOf", {
-                  current: step + 1,
-                  total,
-                })}
+              : t("assessment.questionOf", { current: step + 1, total })}
           </span>
           <span>{progress}%</span>
         </div>
@@ -193,21 +248,60 @@ export function AssessmentWizard() {
                 key="result"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center"
               >
-                <ScoreGauge pct={result.pct} color={LEVEL_COLOR[result.level]} />
+                <div className="text-center">
+                  <ScoreGauge
+                    pct={result.pct}
+                    color={LEVEL_COLOR[result.level]}
+                  />
+                  <p className="mt-4 text-sm uppercase tracking-wider text-slate-400">
+                    {t("assessment.resultScore")}
+                  </p>
+                  <h3
+                    className="mt-1 text-2xl font-bold"
+                    style={{ color: LEVEL_COLOR[result.level] }}
+                  >
+                    {t(`assessment.levels.${result.level}`)}
+                  </h3>
+                </div>
 
-                <p className="mt-4 text-sm uppercase tracking-wider text-slate-400">
-                  {t("assessment.resultScore")}
-                </p>
-                <h3
-                  className="mt-1 text-2xl font-bold"
-                  style={{ color: LEVEL_COLOR[result.level] }}
-                >
-                  {t(`assessment.levels.${result.level}`)}
-                </h3>
+                {/* dimension breakdown */}
+                <div className="mt-7">
+                  <p className="mb-3 text-sm font-semibold text-white">
+                    {t("assessment.breakdownTitle")}
+                  </p>
+                  <div className="space-y-2.5">
+                    {result.dimensions.map((d, i) => (
+                      <div key={d.key} className="flex items-center gap-3">
+                        <span className="w-28 shrink-0 text-xs text-slate-400 sm:w-36 sm:text-sm">
+                          {t(`assessment.dimensions.${d.key}`)}
+                        </span>
+                        <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+                          <motion.div
+                            className="h-full rounded-full"
+                            style={{
+                              background:
+                                d.pct >= 55
+                                  ? "linear-gradient(90deg,#22d3ee,#34d399)"
+                                  : d.pct >= 30
+                                    ? "linear-gradient(90deg,#f59e0b,#22d3ee)"
+                                    : "linear-gradient(90deg,#f43f5e,#f59e0b)",
+                            }}
+                            initial={{ width: 0 }}
+                            animate={{ width: `${d.pct}%` }}
+                            transition={{ duration: 0.8, delay: 0.2 + i * 0.08 }}
+                          />
+                        </div>
+                        <span className="w-9 shrink-0 text-end text-xs tabular-nums text-slate-300">
+                          {d.pct}%
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-                <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5 text-start">
+                {/* recommended track */}
+                <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5">
                   <p className="text-xs uppercase tracking-wider text-slate-400">
                     {t("assessment.recommendedTrack")}
                   </p>
@@ -223,6 +317,29 @@ export function AssessmentWizard() {
                   </p>
                 </div>
 
+                {/* next steps */}
+                <div className="mt-6">
+                  <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+                    <Lightbulb className="h-4 w-4 text-quantum-cyan" />
+                    {t("assessment.nextStepsTitle")}
+                  </p>
+                  <ul className="space-y-2.5">
+                    {result.weakest.map((key) => (
+                      <li
+                        key={key}
+                        className="flex items-start gap-2.5 text-sm text-slate-300"
+                      >
+                        <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-quantum-violet rtl:rotate-180" />
+                        <span>{t(`assessment.tips.${key}`)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <p className="mt-5 rounded-xl border border-white/10 bg-white/5 p-3 text-xs leading-relaxed text-slate-400">
+                  {t("assessment.moscaNote")}
+                </p>
+
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
                   <Link href="/programs" className="btn-primary">
                     <Sparkles className="h-4 w-4" />
@@ -237,7 +354,7 @@ export function AssessmentWizard() {
 
                 <button
                   onClick={restart}
-                  className="mx-auto mt-5 inline-flex items-center gap-1.5 text-sm text-slate-400 transition hover:text-white"
+                  className="mx-auto mt-5 flex items-center gap-1.5 text-sm text-slate-400 transition hover:text-white"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />
                   {t("assessment.restart")}

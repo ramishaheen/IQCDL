@@ -117,7 +117,7 @@ const en = {
     ],
   },
   assessment: {
-    eyebrow: "Free · 2 minutes · AI-supported",
+    eyebrow: "Free · 3 minutes · AI-supported",
     title: "How quantum-ready are you?",
     subtitle:
       "Answer a few questions and our engine applies Mosca's Theorem and PQC best practice to score your exposure and recommend a path.",
@@ -131,11 +131,37 @@ const en = {
     resultScore: "Readiness score",
     talkToGuide: "Discuss this with the Quantum Guide",
     recommendedTrack: "Recommended track",
+    breakdownTitle: "Readiness by dimension",
+    nextStepsTitle: "Your top next steps",
+    moscaNote:
+      "Mosca's Theorem: if (data shelf-life + migration time) exceeds the time until cryptographically-relevant quantum computers, you are already exposed.",
     levels: {
       critical: "Critical exposure",
       developing: "Developing",
       advancing: "Advancing",
       ready: "Quantum-ready",
+    },
+    dimensions: {
+      exposure: "Data exposure",
+      visibility: "Crypto visibility",
+      agility: "Crypto-agility",
+      adoption: "PQC adoption",
+      people: "People & skills",
+      governance: "Governance",
+    },
+    tips: {
+      exposure:
+        "Identify long-shelf-life data and treat it as 'harvest-now, decrypt-later' at risk today.",
+      visibility:
+        "Build a cryptographic inventory (CBOM) — you can't migrate what you can't see.",
+      agility:
+        "Abstract cryptography behind interfaces so algorithms can be swapped without re-architecting.",
+      adoption:
+        "Start piloting NIST PQC (Kyber/Dilithium), ideally as hybrid TLS, on a low-risk service.",
+      people:
+        "Certify leaders at Foundation level and build broad quantum literacy across teams.",
+      governance:
+        "Stand up a PQC migration plan with budget, owners and alignment to NIS2 / regulatory timelines.",
     },
     questions: [
       {
@@ -162,6 +188,21 @@ const en = {
         q: "How quantum-literate is your leadership and workforce?",
         help: "Migration is an organizational change, not just a technical one.",
         options: ["No awareness", "A few champions", "Broad awareness", "Trained & certified"],
+      },
+      {
+        q: "Do you have a funded PQC migration plan with clear owners?",
+        help: "Migration is a multi-year program — it needs budget and accountability.",
+        options: ["No plan", "Informal intent", "Drafted plan", "Funded & owned roadmap"],
+      },
+      {
+        q: "Can your long-lived systems (firmware, certificates, devices) be updated in the field?",
+        help: "Un-updatable long-lived systems are the hardest and riskiest to migrate.",
+        options: ["Not updatable", "Manual / hard", "Mostly updatable", "Fully remote-updatable"],
+      },
+      {
+        q: "How well do you understand your PQC regulatory obligations (e.g. NIS2)?",
+        help: "Regulators are setting PQC timelines; compliance readiness reduces risk and cost.",
+        options: ["Unaware", "Some awareness", "Assessed obligations", "Actively compliant"],
       },
     ],
   },
