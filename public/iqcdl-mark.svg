@@ -9,26 +9,21 @@
 
   <rect x="6" y="14" width="418" height="92" rx="22" fill="none" stroke="url(#igm)" stroke-width="4.5"/>
 
-  <g stroke="url(#igm)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="34" y="32" width="56" height="56" rx="13" stroke-width="4"/>
-    <line x1="26" y1="46" x2="34" y2="46" stroke-width="3"/>
-    <line x1="26" y1="60" x2="34" y2="60" stroke-width="3"/>
-    <line x1="26" y1="74" x2="34" y2="74" stroke-width="3"/>
-    <line x1="90" y1="46" x2="98" y2="46" stroke-width="3"/>
-    <line x1="90" y1="60" x2="98" y2="60" stroke-width="3"/>
-    <line x1="90" y1="74" x2="98" y2="74" stroke-width="3"/>
-    <line x1="48" y1="24" x2="48" y2="32" stroke-width="3"/>
-    <line x1="62" y1="24" x2="62" y2="32" stroke-width="3"/>
-    <line x1="76" y1="24" x2="76" y2="32" stroke-width="3"/>
-    <line x1="48" y1="88" x2="48" y2="96" stroke-width="3"/>
-    <line x1="62" y1="88" x2="62" y2="96" stroke-width="3"/>
-    <line x1="76" y1="88" x2="76" y2="96" stroke-width="3"/>
-    <circle cx="62" cy="60" r="15" stroke-width="4"/>
-    <line x1="71" y1="69" x2="82" y2="80" stroke-width="4.5"/>
+  <!-- quantum atom glyph -->
+  <rect x="34" y="32" width="56" height="56" rx="13" fill="none" stroke="url(#igm)" stroke-width="4"/>
+  <g transform="rotate(0 62 60)">
+    <ellipse cx="62" cy="60" rx="21" ry="7.5" fill="none" stroke="url(#igm)" stroke-width="2.6"/>
+    <circle cx="83" cy="60" r="2.6" fill="url(#igm)"/>
   </g>
-  <g fill="url(#igm)">
-    <circle cx="62" cy="60" r="3.8"/>
-    <circle cx="62" cy="45" r="2.6"/>
-    <text x="112" y="82" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="60" font-weight="900" letter-spacing="2.5">IQCDL</text>
+  <g transform="rotate(60 62 60)">
+    <ellipse cx="62" cy="60" rx="21" ry="7.5" fill="none" stroke="url(#igm)" stroke-width="2.6"/>
+    <circle cx="83" cy="60" r="2.6" fill="url(#igm)"/>
   </g>
+  <g transform="rotate(120 62 60)">
+    <ellipse cx="62" cy="60" rx="21" ry="7.5" fill="none" stroke="url(#igm)" stroke-width="2.6"/>
+    <circle cx="83" cy="60" r="2.6" fill="url(#igm)"/>
+  </g>
+  <circle cx="62" cy="60" r="4.6" fill="url(#igm)"/>
+
+  <text x="112" y="82" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="60" font-weight="900" letter-spacing="2.5" fill="url(#igm)">IQCDL</text>
 </svg>

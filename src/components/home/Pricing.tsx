@@ -34,20 +34,20 @@ export function Pricing() {
                   )}
                 >
                   {featured && (
-                    <span className="absolute -top-3 start-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-gradient-to-r from-quantum-violet to-quantum-magenta px-3 py-1 text-xs font-semibold text-slate-900 rtl:translate-x-1/2">
+                    <span className="absolute -top-3 start-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-gradient-to-r from-quantum-violet to-quantum-magenta px-3 py-1 text-xs font-semibold text-white rtl:translate-x-1/2">
                       <Star className="h-3 w-3 fill-current" />
                       {dict.pricing.mostPopular}
                     </span>
                   )}
 
-                  <h3 className="text-lg font-semibold text-slate-900">
+                  <h3 className="text-lg font-semibold text-white">
                     {plan.name}
                   </h3>
                   <div className="mt-3 flex items-end gap-1.5">
-                    <span className="font-display text-4xl font-bold text-slate-900">
+                    <span className="font-display text-4xl font-bold text-white">
                       {plan.price}
                     </span>
-                    <span className="pb-1 text-sm text-slate-500">
+                    <span className="pb-1 text-sm text-slate-400">
                       {plan.period}
                     </span>
                   </div>
@@ -56,7 +56,7 @@ export function Pricing() {
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5 text-sm">
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-quantum-cyan" />
-                        <span className="text-slate-600">{f}</span>
+                        <span className="text-slate-300">{f}</span>
                       </li>
                     ))}
                   </ul>
@@ -67,7 +67,7 @@ export function Pricing() {
                       "btn mt-7 w-full",
                       featured
                         ? "btn-primary"
-                        : "border border-slate-200 bg-slate-50 text-brand-700 hover:bg-slate-100",
+                        : "border border-white/10 bg-white/5 text-brand-300 hover:bg-white/10",
                     )}
                   >
                     {plan.cta}

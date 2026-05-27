@@ -29,7 +29,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label="Change language"
-        className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+        className="lang-trigger"
       >
         <Globe className="h-4 w-4" />
         {!compact && <span>{LOCALE_META[locale].label}</span>}
@@ -55,12 +55,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
                   setLocale(code);
                   setOpen(false);
                 }}
-                className={cn(
-                  "flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm transition",
-                  active
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-slate-600 hover:bg-slate-50",
-                )}
+                className={cn("lang-item", active && "lang-item-active")}
               >
                 <span className="flex items-center gap-2">
                   <span className="text-base">{meta.flag}</span>

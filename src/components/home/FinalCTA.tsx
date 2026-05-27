@@ -12,15 +12,15 @@ export function FinalCTA() {
     <section className="section">
       <div className="container-x">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-brand-100 p-10 text-center sm:p-16">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-quantum-indigo/25 via-[#0a0c1c] to-quantum-violet/15 p-10 text-center sm:p-16">
             <div className="pointer-events-none absolute inset-0 grid-bg opacity-30" />
             <div className="pointer-events-none absolute -left-10 -top-10 h-48 w-48 rounded-full bg-quantum-cyan/20 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-10 -right-10 h-48 w-48 rounded-full bg-quantum-magenta/20 blur-3xl" />
 
-            <h2 className="relative mx-auto max-w-2xl text-balance text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h2 className="relative mx-auto max-w-2xl text-balance text-3xl font-bold text-white sm:text-4xl">
               {t("cta.title")}
             </h2>
-            <p className="relative mx-auto mt-4 max-w-xl text-balance text-slate-600">
+            <p className="relative mx-auto mt-4 max-w-xl text-balance text-slate-300">
               {t("cta.subtitle")}
             </p>
             <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

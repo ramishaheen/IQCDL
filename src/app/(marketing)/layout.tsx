@@ -8,7 +8,7 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative min-h-screen">
+    <div className="theme-dark relative min-h-screen bg-[#05060f]">
       <Navbar />
       <main className="pt-20">{children}</main>
       <Footer />

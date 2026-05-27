@@ -65,7 +65,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                       <Icon className="h-6 w-6" />
                     </span>
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900">
+                      <h3 className="text-xl font-bold text-white">
                         {track.data.name}
                       </h3>
                       <p className="text-sm text-quantum-cyan">
@@ -76,25 +76,25 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
 
                   <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
                     <div className="glass rounded-xl px-3 py-2.5">
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-slate-400">
                         {t("common.duration")}
                       </p>
-                      <p className="font-semibold text-slate-900">
+                      <p className="font-semibold text-white">
                         {track.data.duration}
                       </p>
                     </div>
                     <div className="glass rounded-xl px-3 py-2.5">
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-slate-400">
                         {t("common.questions")}
                       </p>
-                      <p className="font-semibold text-slate-900">
+                      <p className="font-semibold text-white">
                         {track.data.exam}
                       </p>
                     </div>
                   </div>
 
-                  <p className="mt-5 text-sm text-slate-600">
-                    <span className="font-semibold text-slate-900">
+                  <p className="mt-5 text-sm text-slate-300">
+                    <span className="font-semibold text-white">
                       {track.data.forWho}
                     </span>
                   </p>
@@ -103,7 +103,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                     {track.data.points.map((p) => (
                       <li key={p} className="flex items-start gap-2.5 text-sm">
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-quantum-cyan" />
-                        <span className="text-slate-600">{p}</span>
+                        <span className="text-slate-300">{p}</span>
                       </li>
                     ))}
                   </ul>
@@ -114,7 +114,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
                       "btn mt-7 w-full",
                       track.featured
                         ? "btn-primary text-white"
-                        : "border border-brand-200 bg-brand-50 text-brand-700 hover:bg-brand-100",
+                        : "border border-brand-500/40 bg-brand-500/15 text-brand-300 hover:bg-brand-500/20",
                     )}
                   >
                     {t("common.enroll")}
@@ -126,7 +126,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
           })}
         </div>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-slate-400">
           {dict.tracks.prereq}
         </p>
       </div>

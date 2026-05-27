@@ -4,24 +4,32 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
-import QuantumField from "@/components/visuals/QuantumField";
-import QubitOrb from "@/components/visuals/QubitOrb";
 
 export function Hero() {
   const { t } = useLocale();
 
   return (
-    <section className="relative overflow-hidden">
-      {/* backgrounds */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <QuantumField className="absolute inset-0 h-full w-full opacity-70" />
-        <div className="absolute inset-0 grid-bg opacity-60" />
-        <div className="absolute inset-0 bg-quantum-radial" />
-        <div className="absolute left-1/2 top-[-10%] h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-quantum-indigo/20 blur-[120px]" />
-      </div>
+    <section className="relative flex min-h-[88vh] items-center overflow-hidden">
+      {/* video background */}
+      <video
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/hero-poster.jpg"
+        aria-hidden="true"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
 
-      <div className="container-x grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:py-28">
-        <div className="text-center lg:text-start">
+      {/* legibility overlays */}
+      <div className="pointer-events-none absolute inset-0 bg-[#05060f]/55" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#05060f] via-[#05060f]/35 to-[#05060f]/70" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#05060f]/85 via-[#05060f]/30 to-transparent" />
+
+      <div className="container-x relative py-24">
+        <div className="max-w-2xl text-center lg:text-start">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -36,7 +44,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="mt-6 text-balance text-4xl font-bold leading-[1.05] text-slate-900 sm:text-5xl md:text-6xl xl:text-7xl"
+            className="mt-6 text-balance text-4xl font-bold leading-[1.05] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)] sm:text-5xl md:text-6xl xl:text-7xl"
           >
             {t("hero.titleLine1")}{" "}
             <span className="gradient-text-animated">{t("hero.titleLine2")}</span>
@@ -46,7 +54,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.12 }}
-            className="mx-auto mt-6 max-w-xl text-balance text-base leading-relaxed text-slate-600 sm:text-lg lg:mx-0"
+            className="mx-auto mt-6 max-w-xl text-balance text-base leading-relaxed text-slate-200 sm:text-lg lg:mx-0"
           >
             {t("hero.subtitle")}
           </motion.p>
@@ -71,21 +79,15 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8 text-xs uppercase tracking-wider text-slate-500"
+            className="mt-8 text-xs uppercase tracking-wider text-slate-400"
           >
             {t("hero.trustedBy")}
           </motion.p>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
-        >
-          <QubitOrb className="animate-float" />
-        </motion.div>
       </div>
+
+      {/* bottom fade into the page */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#05060f]" />
     </section>
   );
 }
