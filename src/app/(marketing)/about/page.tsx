@@ -18,6 +18,34 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 
 const GOV_ICONS: LucideIcon[] = [Landmark, ShieldCheck, Scale, Users, Globe2];
 
+function ChartNode({
+  label,
+  primary,
+  muted,
+}: {
+  label: string;
+  primary?: boolean;
+  muted?: boolean;
+}) {
+  return (
+    <div
+      className={
+        primary
+          ? "rounded-xl border border-brand-400/50 bg-gradient-to-br from-brand-500/20 to-brand-400/10 px-5 py-3 text-center text-sm font-semibold text-fg shadow-glow"
+          : muted
+            ? "rounded-xl border border-line/10 bg-surface/[0.03] px-4 py-2.5 text-center text-sm text-muted"
+            : "rounded-xl border border-line/10 bg-surface/5 px-4 py-3 text-center text-sm font-medium text-fg"
+      }
+    >
+      {label}
+    </div>
+  );
+}
+
+function Connector() {
+  return <div className="my-2 h-6 w-px bg-gradient-to-b from-accent/60 to-accent/10" />;
+}
+
 export default function AboutPage() {
   const { dict } = useLocale();
   const a = dict.about;
@@ -77,6 +105,60 @@ export default function AboutPage() {
                 </Reveal>
               );
             })}
+          </div>
+
+          {/* org-style governance chart */}
+          <Reveal className="mt-16">
+            <h3 className="text-center text-lg font-semibold text-fg">{a.chartTitle}</h3>
+            <p className="mx-auto mt-1 max-w-xl text-center text-sm text-muted">
+              {a.chartSubtitle}
+            </p>
+            <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center">
+              {/* tier 1 */}
+              <ChartNode label={a.governance[0].name} primary />
+              <Connector />
+              {/* tier 2 */}
+              <div className="grid w-full gap-4 sm:grid-cols-3">
+                {[a.governance[1], a.governance[2], a.governance[3]].map((g) => (
+                  <ChartNode key={g.name} label={g.name} />
+                ))}
+              </div>
+              <Connector />
+              {/* tier 3 */}
+              <ChartNode label={a.governance[4].name} />
+              <Connector />
+              {/* tier 4 */}
+              <div className="grid w-full gap-4 sm:grid-cols-3">
+                {a.chartBase.map((b) => (
+                  <ChartNode key={b} label={b} muted />
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* leadership */}
+      <section className="section pt-0">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <h2 className="text-2xl font-bold text-fg sm:text-3xl">{a.leadershipTitle}</h2>
+            <p className="mt-3 text-muted">{a.leadershipSubtitle}</p>
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {a.leadership.map((l, i) => (
+              <Reveal key={l.role} delay={(i % 3) * 0.06}>
+                <div className="card flex h-full items-start gap-4 p-5">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-quantum-indigo to-quantum-cyan font-display text-lg font-bold text-white">
+                    {l.role.charAt(0)}
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-fg">{l.role}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">{l.remit}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
