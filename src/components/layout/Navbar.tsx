@@ -26,8 +26,8 @@ export function Navbar() {
   const links = [
     { href: "/why-quantum-ai", label: t("nav.why") },
     { href: "/programs", label: t("nav.program") },
-    { href: "/assessment", label: t("nav.assessment") },
-    { href: "/roadmap", label: t("nav.roadmap") },
+    { href: "/quantum-index", label: t("nav.index") },
+    { href: "/awards", label: t("nav.awards") },
     { href: "/standards", label: t("nav.standards") },
     { href: "/about", label: t("nav.about") },
   ];

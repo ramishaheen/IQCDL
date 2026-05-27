@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Landmark,
   ShieldCheck,
@@ -8,6 +9,7 @@ import {
   Users,
   Target,
   Sparkles,
+  Check,
   type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -15,6 +17,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionDivider } from "@/components/visuals/SectionDivider";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { BoardApplyModal } from "@/components/about/BoardApplyModal";
 
 const GOV_ICONS: LucideIcon[] = [Landmark, ShieldCheck, Scale, Users, Globe2];
 
@@ -49,6 +52,7 @@ function Connector() {
 export default function AboutPage() {
   const { dict } = useLocale();
   const a = dict.about;
+  const [boardOpen, setBoardOpen] = useState(false);
 
   return (
     <>
@@ -196,7 +200,45 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* board of directors */}
+      <section className="section pt-0">
+        <div className="container-x">
+          <Reveal>
+            <div className="card overflow-hidden bg-gradient-to-br from-brand-500/15 to-brand-400/5 p-8 sm:p-10">
+              <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+                <div>
+                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-quantum-indigo to-quantum-cyan text-white">
+                    <Landmark className="h-6 w-6" />
+                  </span>
+                  <h2 className="mt-4 text-2xl font-bold text-fg sm:text-3xl">
+                    {a.boardTitle}
+                  </h2>
+                  <p className="mt-2 leading-relaxed text-muted">{a.boardIntro}</p>
+                  <button onClick={() => setBoardOpen(true)} className="btn-primary mt-6 text-white">
+                    {a.boardApply}
+                  </button>
+                </div>
+                <div>
+                  <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-faint">
+                    {a.boardBenefitsTitle}
+                  </p>
+                  <ul className="grid gap-2.5 sm:grid-cols-2">
+                    {a.boardBenefits.map((b) => (
+                      <li key={b} className="flex items-start gap-2.5 text-sm text-muted">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <FinalCTA />
+      <BoardApplyModal open={boardOpen} onClose={() => setBoardOpen(false)} />
     </>
   );
 }
