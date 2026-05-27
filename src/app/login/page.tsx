@@ -61,6 +61,9 @@ function LoginInner() {
   }
 
   const roles: Role[] = ["admin", "chapter", "center", "trainer", "student"];
+  const demoMode =
+    process.env.NODE_ENV !== "production" ||
+    process.env.NEXT_PUBLIC_ALLOW_DEMO_ACCOUNTS === "true";
 
   return (
     <div className="theme-dark relative grid min-h-screen bg-[#05060f] lg:grid-cols-2">
@@ -149,6 +152,7 @@ function LoginInner() {
             </button>
           </form>
 
+          {demoMode && (
           <div className="mt-8">
             <p className="text-center text-xs uppercase tracking-wider text-faint">
               {t("auth.demoHint")}
@@ -183,6 +187,7 @@ function LoginInner() {
               })}
             </div>
           </div>
+          )}
         </motion.div>
       </div>
     </div>

@@ -40,7 +40,15 @@ export async function POST(request: Request) {
     email: account.email,
     role: account.role,
   };
-  const token = await createSessionToken(user);
+  let token: string;
+  try {
+    token = await createSessionToken(user);
+  } catch {
+    return NextResponse.json(
+      { error: "Server authentication is not configured" },
+      { status: 500 },
+    );
+  }
 
   const res = NextResponse.json({ user });
   res.cookies.set(SESSION_COOKIE, token, {
