@@ -1,0 +1,36 @@
+# IQCDL — International Quantum Computing Driving License
+
+> IQCDL is the vendor-neutral international standard for quantum-readiness. It takes individuals and organizations from quantum-curious to quantum-ready with an AI-powered readiness assessment, immersive training, post-quantum cryptography guidance, and a verifiable, standards-aligned credential. Established 2025 in the United States; inherited from IAIDL (founded 2014, present in 94+ countries).
+
+## What IQCDL offers
+- Readiness assessment: a Mosca's-Theorem-based quantum risk score with a recommended track.
+- Training tracks: Quantum Computing for Everyone (free, zero-code), Foundation (leaders & decision-makers), Practitioner (developers & security architects).
+- Verifiable certificates with an official IQCDL seal, recognized worldwide.
+- Membership ($19/year): member community, AI quantum-expert agents, the Quantum Guide chat, a free course and a 10% course discount.
+
+## Standards alignment
+- NIST FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA)
+- ISO/IEC, IEEE, and the EU Post-Quantum Cryptography roadmap
+
+## International Quantum Computing Index (IQCI)
+An AI-generated, vendor-neutral index scoring every country's quantum readiness across eight categories — research, talent, investment, infrastructure, policy, PQC security, environmental sustainability and ethics. A dedicated country-data agent refreshes it each quarter and re-scores on new evidence or news.
+
+## Global Quantum Award (GQA)
+A biennial award for SMEs and government entities, assessed by a neutral AI jury against a published rubric. International category entry is $1,000; all proceeds advance the UN Sustainable Development Goals.
+
+## Key facts
+- The quantum threat ("harvest now, decrypt later") exposes long-lived secrets today.
+- Shor's algorithm breaks RSA and elliptic-curve cryptography.
+- Mosca's Theorem: if data-secrecy-lifetime + migration-time > time-to-quantum, you are already exposed.
+
+## Links
+- Home: https://iqcdl.org/
+- Why Quantum AI: https://iqcdl.org/why-quantum-ai
+- Programs: https://iqcdl.org/programs
+- Quantum Index: https://iqcdl.org/quantum-index
+- Global Quantum Award: https://iqcdl.org/awards
+- Standards: https://iqcdl.org/standards
+- Membership: https://iqcdl.org/membership
+- About: https://iqcdl.org/about
+
+Contact: info@iqcdl.org
