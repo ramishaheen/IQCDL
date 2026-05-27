@@ -5,6 +5,7 @@ import { Check, Star } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { QuantumAccent } from "@/components/visuals/QuantumAccent";
 import { cn } from "@/lib/cn";
 
 export function Pricing() {
@@ -14,6 +15,7 @@ export function Pricing() {
   return (
     <section id="pricing" className="section">
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-96 bg-quantum-radial" />
+      <QuantumAccent className="absolute -top-4 end-0 -z-10 hidden w-[320px] opacity-25 lg:block" />
       <div className="container-x">
         <SectionHeading
           eyebrow={dict.pricing.eyebrow}

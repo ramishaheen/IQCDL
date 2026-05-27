@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { Stats } from "@/components/home/Stats";
 
 export function Hero() {
   const { t } = useLocale();
@@ -28,7 +29,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#05060f] via-[#05060f]/35 to-[#05060f]/70" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#05060f]/85 via-[#05060f]/30 to-transparent" />
 
-      <div className="container-x relative py-24">
+      <div className="container-x relative z-10 py-20">
         <div className="max-w-2xl text-center lg:text-start">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
@@ -84,6 +85,16 @@ export function Hero() {
             {t("hero.trustedBy")}
           </motion.p>
         </div>
+
+        {/* stats strip, embedded in the hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 lg:mt-16"
+        >
+          <Stats embedded />
+        </motion.div>
       </div>
 
       {/* bottom fade into the page */}

@@ -22,6 +22,13 @@ export function RoadmapTimeline({ withHeading = true }: { withHeading?: boolean 
         <div className="relative mx-auto mt-14 max-w-2xl ps-10 sm:ps-12">
           {/* vertical rail */}
           <div className="absolute start-[14px] top-3 bottom-3 w-0.5 bg-gradient-to-b from-quantum-cyan via-quantum-violet to-quantum-magenta sm:start-[18px]" />
+          {/* flowing pulse down the rail */}
+          <motion.div
+            className="absolute start-[11px] h-10 w-1.5 rounded-full bg-sky-300 blur-[3px] sm:start-[15px]"
+            initial={{ top: "0%", opacity: 0 }}
+            animate={{ top: ["0%", "100%"], opacity: [0, 0.9, 0.9, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          />
 
           <div className="space-y-8">
             {dict.roadmap.phases.map((phase, i) => (

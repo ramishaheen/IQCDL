@@ -5,6 +5,7 @@ import { Check, GraduationCap, Cpu, ArrowRight } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { QuantumAccent } from "@/components/visuals/QuantumAccent";
 import { cn } from "@/lib/cn";
 
 export function ProgramTracks({ withHeading = true }: { withHeading?: boolean }) {
@@ -28,6 +29,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
 
   return (
     <section id="programs" className="section">
+      <QuantumAccent className="absolute -top-4 start-0 -z-10 hidden w-[320px] opacity-25 lg:block" />
       <div className="container-x">
         {withHeading && (
           <SectionHeading
