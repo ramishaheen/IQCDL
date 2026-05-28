@@ -8,11 +8,11 @@ import {
   Globe2,
   Users,
   Target,
-  Sparkles,
   Check,
   Award,
   type LucideIcon,
 } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { Reveal } from "@/components/ui/Reveal";
@@ -195,7 +195,7 @@ function ConversionBoardCTA({
             <div className="relative grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-quantum-cyan/40 bg-quantum-cyan/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-quantum-cyan">
-                  <Sparkles className="h-3.5 w-3.5" /> Limited seats · reviewed
+                  <QuantumSpark className="h-3.5 w-3.5" /> Limited seats · reviewed
                   quarterly
                 </div>
                 <h2 className="mt-5 text-balance text-3xl font-bold leading-tight text-fg sm:text-4xl md:text-5xl">
@@ -312,7 +312,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal className="lg:col-span-2">
             <TiltCard className="card h-full bg-gradient-to-br from-brand-500/15 to-brand-400/5 p-7">
-              <Sparkles className="h-6 w-6 text-accent" />
+              <QuantumSpark className="h-6 w-6 text-accent" />
               <h2 className="mt-3 text-xl font-bold text-fg">{a.parentTitle}</h2>
               <p className="mt-2 leading-relaxed text-muted">{a.parentBody}</p>
               {a.parentHighlights && a.parentHighlights.length > 0 && (

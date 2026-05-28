@@ -1,6 +1,7 @@
 "use client";
 
-import { Sparkles, GraduationCap, Cpu } from "lucide-react";
+import { GraduationCap, Cpu } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
 import { LevelOutline } from "@/components/programs/LevelOutline";
@@ -32,7 +33,7 @@ export default function ProgramsPage() {
 
       <LevelOutline
         level={everyone}
-        icon={Sparkles}
+        icon={QuantumSpark}
         accent="from-quantum-cyan to-quantum-blue"
         index={0}
         badge="Free"

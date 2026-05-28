@@ -467,6 +467,44 @@ const fr: DeepPartial<Dictionary> = {
     idPlaceholder: "ID de membre (IQCDL-M-…)",
     unlock: "Débloquer le chat",
     becomeMember: "Devenir membre",
+    chooseMode: "Comment puis-je vous aider ?",
+    back: "Retour",
+    modeGeneralTitle: "Questions générales",
+    modeGeneralDesc: "À propos d'IQCDL, des programmes, de l'Index Quantique et du Prix",
+    modeTutorTitle: "Tutorat quantique & support",
+    modeTutorDesc: "Tutorat PQC personnel et support membres",
+    generalGreeting:
+      "Bonjour ! Posez-moi des questions sur IQCDL — nos programmes, l'Index de Calcul Quantique, le Prix Mondial Quantique ou l'adhésion.",
+    generalSuggestions: [
+      "Qu'est-ce qu'IQCDL ?",
+      "Quels programmes et niveaux proposez-vous ?",
+      "Qu'est-ce que l'Index de Calcul Quantique (IQCI) ?",
+      "Parlez-moi du Prix Mondial Quantique",
+    ],
+    leadTitle: "Lançons-nous",
+    leadPrompt: "Laissez vos coordonnées pour qu'on vous recontacte — puis posez vos questions.",
+    leadName: "Nom complet",
+    leadEmail: "E-mail",
+    leadPhone: "Numéro de contact",
+    leadSubmit: "Démarrer la discussion",
+    leadError: "Veuillez saisir un e-mail et un numéro valides.",
+  },
+  joinNetwork: {
+    certified: {
+      title: "Prêt à être certifié ?",
+      body: "Parlez à notre équipe d'admissions du parcours de certification adapté à votre profil et vos objectifs.",
+      cta: "Contacter les admissions",
+    },
+    chapter: {
+      title: "Devenez chapitre national",
+      body: "Dirigez IQCDL dans votre pays. Représentez le standard mondial, développez le réseau et pilotez la certification quantique au niveau national.",
+      cta: "Postuler",
+    },
+    center: {
+      title: "Devenez centre accrédité",
+      body: "Ouvrez un centre de formation IQCDL accrédité. Redevance 1 500 $/an avec un engagement minimum de 3 ans.",
+      cta: "Postuler",
+    },
   },
   auth: {
     title: "Bon retour",
@@ -663,6 +701,16 @@ const fr: DeepPartial<Dictionary> = {
     intro:
       "IQCDL existe pour une raison : rendre l'ère quantique compréhensible, mesurable et sûre pour tous — des conseils d'administration aux salles de classe. Nous transformons un domaine intimidant et en évolution rapide en un parcours clair et certifiable.",
     parentTitle: "Héritée d'IAIDL — depuis 2014, dans plus de 94 pays",
+    parentHighlights: [
+      "Groupe international établi · 94+ pays depuis 2014",
+      "Aligné aux indices d'IA mondiaux",
+      "Aligné aux prix mondiaux d'IA",
+      "Programmes de prix internationaux",
+      "Aligné sur l'excellence",
+      "Alliance stratégique WEF",
+      "Aligné ISO",
+      "IAIDL College (Royaume-Uni)",
+    ],
     parentBody:
       "IQCDL a été fondée aux États-Unis en 2025 comme entité sœur quantique d'IAIDL — le Permis International de Conduite en Intelligence Artificielle, créé en 2014 et désormais présent dans plus de 94 pays dans le monde. IQCDL hérite d'une décennie de certification neutre vis-à-vis des fournisseurs et axée sur les normes, et étend ce legs éprouvé de l'intelligence artificielle à l'ère quantique.",
     missionTitle: "Notre mission",

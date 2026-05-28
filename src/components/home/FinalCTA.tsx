@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Sparkles, MessageSquare } from "lucide-react";
+import { MessageSquare } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -25,7 +26,7 @@ export function FinalCTA() {
             </p>
             <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link href="/assessment" className="btn-primary w-full sm:w-auto">
-                <Sparkles className="h-4 w-4" />
+                <QuantumSpark className="h-4 w-4" />
                 {t("cta.primary")}
               </Link>
               <Link href="/programs" className="btn-ghost w-full sm:w-auto">

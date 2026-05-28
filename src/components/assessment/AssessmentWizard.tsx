@@ -7,11 +7,11 @@ import {
   ArrowRight,
   ArrowLeft,
   RotateCcw,
-  Sparkles,
   Info,
   CheckCircle2,
   Lightbulb,
 } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { cn } from "@/lib/cn";
 
@@ -342,7 +342,7 @@ export function AssessmentWizard() {
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
                   <Link href="/programs" className="btn-primary">
-                    <Sparkles className="h-4 w-4" />
+                    <QuantumSpark className="h-4 w-4" />
                     {result.track === "practitioner"
                       ? dict.tracks.practitioner.name
                       : dict.tracks.foundation.name}

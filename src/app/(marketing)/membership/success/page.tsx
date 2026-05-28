@@ -4,7 +4,8 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { CheckCircle2, Sparkles, MessageSquare, Tag, Users, Share2 } from "lucide-react";
+import { CheckCircle2, MessageSquare, Tag, Users, Share2 } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useMembership } from "@/components/providers/MembershipProvider";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
@@ -85,7 +86,7 @@ function SuccessInner() {
                 Open the community
               </Link>
               <Link href="/programs" className="btn-ghost">
-                <Sparkles className="h-4 w-4" />
+                <QuantumSpark className="h-4 w-4" />
                 Browse courses
               </Link>
             </div>
