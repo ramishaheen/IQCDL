@@ -84,15 +84,15 @@ export function Logo({
           role="img"
           aria-label="IQCDL — International Quantum Computing Driving License"
         >
-          <rect x="8" y="24" width="398" height="132" rx="26" fill="none" stroke="currentColor" strokeWidth="5" />
+          <rect x="8" y="24" width="440" height="132" rx="26" fill="none" stroke="currentColor" strokeWidth="5" />
           <AtomGlyph cx={82} cy={90} rx={29} ry={10.5} frame={{ x: 44, y: 52, w: 76, h: 76, r: 16, sw: 4.5 }} />
           <text x="152" y="120" fontFamily={wordmarkFont} fontSize="80" fontWeight="900" letterSpacing="3" fill="currentColor">
             IQCDL
           </text>
           <g fontFamily="Arial,'Helvetica Neue',sans-serif" fontWeight="700" letterSpacing="2" fill="currentColor">
-            <text x="450" y="71" fontSize="26">INTERNATIONAL</text>
-            <text x="450" y="105" fontSize="26">QUANTUM COMPUTING</text>
-            <text x="450" y="139" fontSize="26">DRIVING LICENSE</text>
+            <text x="475" y="71" fontSize="26">INTERNATIONAL</text>
+            <text x="475" y="105" fontSize="26">QUANTUM COMPUTING</text>
+            <text x="475" y="139" fontSize="26">DRIVING LICENSE</text>
           </g>
         </svg>
       ) : (
