@@ -30,6 +30,7 @@ export function Navbar() {
     { href: "/quantum-index", label: t("nav.index") },
     { href: "/awards", label: t("nav.awards") },
     { href: "/standards", label: t("nav.standards") },
+    { href: "/pricing", label: t("nav.pricing") },
     { href: "/about", label: t("nav.about") },
   ];
 
