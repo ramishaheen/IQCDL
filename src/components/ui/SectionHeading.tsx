@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Reveal } from "./Reveal";
+import { Typewriter } from "./Typewriter";
 import { cn } from "@/lib/cn";
 
 interface SectionHeadingProps {
@@ -10,6 +11,8 @@ interface SectionHeadingProps {
   subtitle?: string;
   align?: "center" | "start";
   className?: string;
+  /** When true, types the title out character-by-character with a blinking caret. */
+  typewriter?: boolean;
 }
 
 export function SectionHeading({
@@ -18,7 +21,10 @@ export function SectionHeading({
   subtitle,
   align = "center",
   className,
+  typewriter = false,
 }: SectionHeadingProps) {
+  const headingClass =
+    "gradient-text-animated mt-5 text-balance text-4xl font-bold leading-[1.08] sm:text-5xl md:text-6xl";
   return (
     <Reveal
       className={cn(
@@ -28,15 +34,21 @@ export function SectionHeading({
       )}
     >
       {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-      <motion.h2
-        initial={{ opacity: 0, y: 22, scale: 0.97 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="gradient-text-animated mt-5 text-balance text-4xl font-bold leading-[1.08] sm:text-5xl md:text-6xl"
-      >
-        {title}
-      </motion.h2>
+      {typewriter ? (
+        <h2 className={headingClass}>
+          <Typewriter text={title} />
+        </h2>
+      ) : (
+        <motion.h2
+          initial={{ opacity: 0, y: 22, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className={headingClass}
+        >
+          {title}
+        </motion.h2>
+      )}
       {subtitle && (
         <p className="mt-4 text-balance text-base leading-relaxed text-muted/90 sm:text-lg">
           {subtitle}

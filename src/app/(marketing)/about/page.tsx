@@ -71,6 +71,18 @@ export default function AboutPage() {
               <Sparkles className="h-6 w-6 text-accent" />
               <h2 className="mt-3 text-xl font-bold text-fg">{a.parentTitle}</h2>
               <p className="mt-2 leading-relaxed text-muted">{a.parentBody}</p>
+              {a.parentHighlights && a.parentHighlights.length > 0 && (
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {a.parentHighlights.map((h) => (
+                    <li
+                      key={h}
+                      className="rounded-full border border-quantum-cyan/30 bg-quantum-cyan/10 px-3 py-1 text-xs font-semibold text-quantum-cyan"
+                    >
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </Reveal>
           <Reveal delay={0.08}>
