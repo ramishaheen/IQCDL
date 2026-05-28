@@ -274,6 +274,44 @@ const zh: DeepPartial<Dictionary> = {
     idPlaceholder: "会员 ID（IQCDL-M-…）",
     unlock: "解锁对话",
     becomeMember: "成为会员",
+    chooseMode: "我能帮你什么？",
+    back: "返回",
+    modeGeneralTitle: "一般问题",
+    modeGeneralDesc: "关于 IQCDL、课程、量子指数和奖项",
+    modeTutorTitle: "量子辅导与支持",
+    modeTutorDesc: "个性化 PQC 辅导和会员支持",
+    generalGreeting:
+      "您好！欢迎咨询有关 IQCDL 的任何问题——我们的课程、量子计算指数、全球量子奖或会员资格。",
+    generalSuggestions: [
+      "什么是 IQCDL？",
+      "你们提供哪些课程和级别？",
+      "什么是量子计算指数（IQCI）？",
+      "介绍一下全球量子奖",
+    ],
+    leadTitle: "开始吧",
+    leadPrompt: "留下您的联系方式，我们的团队会跟进——然后随便问吧。",
+    leadName: "姓名",
+    leadEmail: "邮箱",
+    leadPhone: "联系电话",
+    leadSubmit: "开始对话",
+    leadError: "请输入有效的邮箱和联系电话。",
+  },
+  joinNetwork: {
+    certified: {
+      title: "准备好获得认证了吗？",
+      body: "与我们的招生团队联系，了解适合您背景和目标的认证路径。",
+      cta: "联系招生",
+    },
+    chapter: {
+      title: "成为国家分会",
+      body: "在贵国领导 IQCDL。代表全球标准、扩大网络，并在国家层面推动量子认证。",
+      cta: "立即申请",
+    },
+    center: {
+      title: "成为认证中心",
+      body: "开设认证的 IQCDL 培训中心。每年 1,500 美元授权费，最少 3 年承诺。",
+      cta: "立即申请",
+    },
   },
   auth: {
     title: "欢迎回来",
@@ -438,6 +476,16 @@ const zh: DeepPartial<Dictionary> = {
     intro:
       "IQCDL 的存在只有一个目的：让量子时代对所有人都变得可理解、可衡量且安全 — 从董事会到课堂。我们把一个令人生畏、瞬息万变的领域，变成清晰、可认证的路径。",
     parentTitle: "传承自 IAIDL — 自 2014 年，覆盖 94+ 个国家",
+    parentHighlights: [
+      "国际成熟集团 · 自 2014 年以来覆盖 94+ 个国家",
+      "对接全球 AI 指数",
+      "对接全球 AI 奖项",
+      "国际奖项项目",
+      "对标卓越框架",
+      "WEF 战略联盟",
+      "符合 ISO 标准",
+      "IAIDL 学院（英国）",
+    ],
     parentBody:
       "IQCDL 于 2025 年在美国成立，是 IAIDL（国际人工智能驾驶执照，成立于 2014 年，现已覆盖 94 多个国家）专注量子领域的姊妹机构。IQCDL 传承 IAIDL 十年来以标准为先、厂商中立的认证体系，并将其从人工智能扩展到量子时代。",
     missionTitle: "我们的使命",
