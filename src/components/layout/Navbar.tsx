@@ -25,13 +25,11 @@ export function Navbar() {
   }, []);
 
   const links = [
+    { href: "/about", label: t("nav.about") },
+    { href: "/standards", label: t("nav.standards") },
     { href: "/why-quantum-ai", label: t("nav.why") },
-    { href: "/programs", label: t("nav.program") },
     { href: "/quantum-index", label: t("nav.index") },
     { href: "/awards", label: t("nav.awards") },
-    { href: "/standards", label: t("nav.standards") },
-    { href: "/pricing", label: t("nav.pricing") },
-    { href: "/about", label: t("nav.about") },
   ];
 
   return (

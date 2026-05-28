@@ -19,6 +19,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionDivider } from "@/components/visuals/SectionDivider";
 import { QuantumAccent } from "@/components/visuals/QuantumAccent";
 import { Book3D } from "@/components/visuals/Book3D";
+import { QuantumMachine } from "@/components/visuals/QuantumMachine";
 import { PillarScatter } from "@/components/iqci/PillarScatter";
 import { IndexBook } from "@/components/iqci/IndexBook";
 import { QuarterlyEditions } from "@/components/iqci/QuarterlyEditions";
@@ -83,6 +84,36 @@ export default function QuantumIndexPage() {
         scaleLabel={x.rubricScaleLabel}
         scale={x.rubricScale}
       />
+
+      {/* animated quantum machine — fills the dead space and signals "live" computation */}
+      <section className="section pt-0">
+        <div className="container-x">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl border border-line/10 bg-gradient-to-br from-quantum-indigo/20 via-[#070b14] to-quantum-cyan/10 p-6 sm:p-10">
+              <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
+                <QuantumMachine />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                    Live signal
+                  </p>
+                  <h3 className="mt-2 text-2xl font-bold text-fg sm:text-3xl">
+                    A quantum machine, always running
+                  </h3>
+                  <p className="mt-3 leading-relaxed text-muted">
+                    The IQCI is refreshed every quarter by a neutral AI jury — but the underlying readiness signal updates continuously. Watch the lattice fire: each qubit, gate and photonic pulse maps to a category we score across every country.
+                  </p>
+                  <ul className="mt-5 grid gap-2 text-sm text-muted sm:grid-cols-2">
+                    <li>· 12-qubit lattice visualization</li>
+                    <li>· Coherence &amp; gate-fidelity readout</li>
+                    <li>· Quarterly index editions</li>
+                    <li>· Explainable AI scoring</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       {/* methodology: how it is scored (data agent pipeline) */}
       <ScoringPipeline title={x.agentTitle} note={x.agentNote} steps={x.pipeline} />
