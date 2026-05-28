@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
@@ -76,6 +75,18 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <head>
+        {/* Google tag (gtag.js) — GA4. Raw <script> so it ships in SSR HTML
+            and is detectable by GA's tag-assistant verifier. */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-008H8C0BQD"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-008H8C0BQD');",
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -101,19 +112,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {/* Google tag (gtag.js) — GA4 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-008H8C0BQD"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-008H8C0BQD');
-          `}
-        </Script>
         <ThemeProvider>
           <LocaleProvider>
             <AuthProvider>
