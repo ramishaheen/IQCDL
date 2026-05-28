@@ -30,8 +30,21 @@ export function Footer() {
     {
       title: t("footer.legal"),
       links: [
-        { href: "#", label: t("footer.links.privacy") },
-        { href: "#", label: t("footer.links.terms") },
+        {
+          href: "https://www.iubenda.com/privacy-policy/18277291",
+          label: t("footer.links.privacy"),
+          iubenda: true,
+        },
+        {
+          href: "https://www.iubenda.com/privacy-policy/18277291/cookie-policy",
+          label: "Cookie Policy",
+          iubenda: true,
+        },
+        {
+          href: "https://www.iubenda.com/terms-and-conditions/18277291",
+          label: t("footer.links.terms"),
+          iubenda: true,
+        },
         { href: "mailto:info@iqcdl.org", label: t("footer.links.contact") },
       ],
     },
@@ -105,16 +118,32 @@ export function Footer() {
             <div key={col.title}>
               <h4 className="text-sm font-semibold text-fg">{col.title}</h4>
               <ul className="mt-4 space-y-2.5">
-                {col.links.map((l) => (
-                  <li key={l.label}>
-                    <Link
-                      href={l.href}
-                      className="text-sm text-faint transition hover:text-quantum-cyan"
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
+                {col.links.map((l) => {
+                  const isIubenda = (l as { iubenda?: boolean }).iubenda;
+                  if (isIubenda) {
+                    return (
+                      <li key={l.label}>
+                        <a
+                          href={l.href}
+                          title={l.label}
+                          className="iubenda-black iubenda-noiframe iubenda-embed text-sm text-faint transition hover:text-quantum-cyan"
+                        >
+                          {l.label}
+                        </a>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={l.label}>
+                      <Link
+                        href={l.href}
+                        className="text-sm text-faint transition hover:text-quantum-cyan"
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

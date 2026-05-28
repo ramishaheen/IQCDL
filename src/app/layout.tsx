@@ -90,6 +90,14 @@ export default function RootLayout({
           charSet="UTF-8"
           async
         />
+        {/* Iubenda Privacy / Cookie / T&C embed link loader — converts the
+            iubenda-black iubenda-embed <a> tags in the footer into popups. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              '(function(w,d){var loader=function(){var s=d.createElement("script"),tag=d.getElementsByTagName("script")[0];s.src="https://cdn.iubenda.com/iubenda.js";tag.parentNode.insertBefore(s,tag)};if(w.addEventListener){w.addEventListener("load",loader,false)}else if(w.attachEvent){w.attachEvent("onload",loader)}else{w.onload=loader}})(window,document);',
+          }}
+        />
         {/* Google tag (gtag.js) — GA4. Raw <script> so it ships in SSR HTML
             and is detectable by GA's tag-assistant verifier. Loads after the
             Iubenda autoblocker so consent is respected. */}
