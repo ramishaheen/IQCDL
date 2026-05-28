@@ -1,70 +1,151 @@
 {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "Global Quantum & AI Award — 2027 Grand Ceremony",
-  "alternateName": "GQA 2027",
-  "description": "Phase 5 of the IQCDL 2027 Global Cycle. Red carpet, AI innovation showcase, VIP government participation, global AI leaders summit, trophy presentation. Hosted in Dubai.",
-  "startDate": "2027-11-01",
-  "endDate": "2027-11-30",
+  "@id": "https://iqcdl.org/awards#gqa-2027-dubai",
+  "name": "Global Quantum & AI Award — Grand Ceremony, Dubai 2027",
+  "alternateName": ["GQA 2027 Grand Ceremony", "IQCDL Dubai Ceremony 2027"],
+  "description": "The Grand Ceremony of the 2027 Global Cycle of the IQCDL Global Quantum & AI Award (GQA). The fifth phase of a fixed multi-year schedule (Global Kickoff Jan→Mar 2027, Submission & AI Assessment Apr→Jun, Technical Evaluation & Jury Reviews Jul→Sep, Finalists Announcement Oct, Grand Ceremony Nov 2027). The award is AI-jury-assessed against a published rubric and confirmed by a human jury panel. 100% of award proceeds advance the UN Sustainable Development Goals.",
+  "url": "https://iqcdl.org/awards",
+  "image": "https://iqcdl.org/og/awards-dubai-2027.png",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
-  "location": {
-    "@type": "Place",
-    "name": "Dubai",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "AE",
-      "addressLocality": "Dubai"
+  "startDate": "2027-11-01",
+  "endDate": "2027-11-30",
+  "organizer": { "@id": "https://iqcdl.org/#organization" },
+  "location": [
+    {
+      "@type": "Place",
+      "name": "Dubai (venue to be announced)",
+      "address": { "@type": "PostalAddress", "addressCountry": "AE", "addressLocality": "Dubai" }
+    },
+    {
+      "@type": "VirtualLocation",
+      "url": "https://iqcdl.org/awards"
     }
-  },
-  "organizer": {
-    "@type": "Organization",
-    "name": "IQCDL",
-    "url": "https://iqcdl.org"
-  },
-  "image": "https://iqcdl.org/awards/opengraph-image",
+  ],
   "offers": [
     {
       "@type": "Offer",
-      "name": "International category entry",
-      "url": "https://iqcdl.org/awards",
+      "name": "GQA category entry",
       "price": "1000",
       "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
+      "availability": "https://schema.org/InStock",
+      "url": "https://iqcdl.org/awards/submit",
+      "validFrom": "2026-05-28",
+      "validThrough": "2027-06-30"
     },
     {
       "@type": "Offer",
-      "name": "Full entity quantum-readiness assessment",
-      "url": "https://iqcdl.org/awards",
+      "name": "GQA SME tier (emerging markets)",
+      "price": "500",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://iqcdl.org/awards/submit"
+    },
+    {
+      "@type": "Offer",
+      "name": "Full entity quantum-readiness AI assessment",
       "price": "5000",
       "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
+      "availability": "https://schema.org/InStock",
+      "url": "https://iqcdl.org/awards/submit"
     }
+  ],
+  "about": [
+    "Best Initiative",
+    "Best Idea",
+    "Best Accelerator",
+    "Best Green Quantum-AI Idea",
+    "Best Government Programme",
+    "International Open Category"
   ],
   "subEvent": [
     {
       "@type": "Event",
       "name": "Phase 1 — Global Kickoff & Registration",
       "startDate": "2027-01-01",
-      "endDate": "2027-03-31"
+      "endDate": "2027-03-31",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "organizer": { "@id": "https://iqcdl.org/#organization" },
+      "location": [
+        {
+          "@type": "Place",
+          "name": "Regional kickoff venues (TBA)",
+          "address": { "@type": "PostalAddress", "addressCountry": "AE" }
+        },
+        {
+          "@type": "VirtualLocation",
+          "url": "https://iqcdl.org/awards"
+        }
+      ]
     },
     {
       "@type": "Event",
       "name": "Phase 2 — Submission & AI Readiness Assessment",
       "startDate": "2027-04-01",
-      "endDate": "2027-06-30"
+      "endDate": "2027-06-30",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+      "organizer": { "@id": "https://iqcdl.org/#organization" },
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://iqcdl.org/awards/submit"
+      }
     },
     {
       "@type": "Event",
       "name": "Phase 3 — Technical Evaluation & Jury Reviews",
       "startDate": "2027-07-01",
-      "endDate": "2027-09-30"
+      "endDate": "2027-09-30",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+      "organizer": { "@id": "https://iqcdl.org/#organization" },
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://iqcdl.org/awards"
+      }
     },
     {
       "@type": "Event",
       "name": "Phase 4 — Finalists Announcement",
       "startDate": "2027-10-01",
-      "endDate": "2027-10-31"
+      "endDate": "2027-10-31",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "organizer": { "@id": "https://iqcdl.org/#organization" },
+      "location": [
+        {
+          "@type": "Place",
+          "name": "Dubai (venue to be announced)",
+          "address": { "@type": "PostalAddress", "addressCountry": "AE", "addressLocality": "Dubai" }
+        },
+        {
+          "@type": "VirtualLocation",
+          "url": "https://iqcdl.org/awards"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Phase 5 — Grand Ceremony, Dubai",
+      "startDate": "2027-11-01",
+      "endDate": "2027-11-30",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "organizer": { "@id": "https://iqcdl.org/#organization" },
+      "location": [
+        {
+          "@type": "Place",
+          "name": "Dubai (venue to be announced)",
+          "address": { "@type": "PostalAddress", "addressCountry": "AE", "addressLocality": "Dubai" }
+        },
+        {
+          "@type": "VirtualLocation",
+          "url": "https://iqcdl.org/awards"
+        }
+      ]
     }
-  ]
+  ],
+  "audience": { "@type": "Audience", "audienceType": "Governments, SMEs, accelerators, universities, banks, telcos, policymakers" }
 }

@@ -17,33 +17,34 @@ export function PageHero({
   videoPoster?: string;
 }) {
   return (
-    <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        {videoSrc ? (
-          <>
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster={videoPoster}
-            >
-              <source src={videoSrc} type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#05060f]/75 via-[#05060f]/55 to-[#05060f]" />
-            <div className="absolute inset-0 grid-bg opacity-20 mix-blend-screen" />
-          </>
-        ) : (
-          <>
-            <div className="absolute inset-0 grid-bg opacity-40" />
-            <div className="absolute inset-0 bg-quantum-radial" />
-            <div className="absolute left-1/2 top-[-30%] h-72 w-[700px] -translate-x-1/2 rounded-full bg-quantum-indigo/20 blur-[110px]" />
-          </>
-        )}
-      </div>
-      <div className="container-x py-16 text-center sm:py-20">
+    <section className="relative overflow-hidden bg-[#05060f]">
+      {videoSrc ? (
+        <>
+          <video
+            key={videoSrc}
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={videoPoster}
+            aria-hidden
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+          {/* Light overlay so the video reads through. Bottom fades into page bg for legibility. */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#05060f]/25 via-[#05060f]/10 to-[#05060f]/80" />
+          <div className="pointer-events-none absolute inset-0 grid-bg opacity-10 mix-blend-screen" />
+        </>
+      ) : (
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 grid-bg opacity-40" />
+          <div className="absolute inset-0 bg-quantum-radial" />
+          <div className="absolute left-1/2 top-[-30%] h-72 w-[700px] -translate-x-1/2 rounded-full bg-quantum-indigo/20 blur-[110px]" />
+        </div>
+      )}
+      <div className="container-x relative z-10 py-16 text-center sm:py-20">
         {eyebrow && (
           <motion.span
             initial={{ opacity: 0, y: 10 }}

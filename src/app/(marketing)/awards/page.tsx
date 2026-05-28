@@ -28,8 +28,8 @@ import { Rubric } from "@/components/ui/Rubric";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { AwardSchedule } from "@/components/awards/AwardSchedule";
 import JsonLd from "@/components/JsonLd";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import eventGqa from "@/lib/schema/event-gqa.json";
-import eventDubai2027 from "@/lib/schema/event-gqa-dubai-2027.json";
 import faqAwards from "@/lib/schema/faq-awards.json";
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
@@ -57,13 +57,13 @@ export default function AwardsPage() {
   return (
     <>
       <JsonLd data={eventGqa} />
-      <JsonLd data={eventDubai2027} />
       <JsonLd data={faqAwards} />
       <PageHero
         eyebrow={g.eyebrow}
         title={g.title}
         subtitle={g.subtitle}
         videoSrc="/awards-bg.mp4"
+        videoPoster="/awards-bg-poster.jpg"
       />
 
       {/* how it works */}
@@ -255,6 +255,8 @@ export default function AwardsPage() {
           </Reveal>
         </div>
       </section>
+
+      <FaqAccordion schema={faqAwards} title="Award FAQ" />
 
       <FinalCTA />
     </>

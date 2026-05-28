@@ -21,6 +21,7 @@ import { QuantumAccent } from "@/components/visuals/QuantumAccent";
 import { Book3D } from "@/components/visuals/Book3D";
 import { QuantumMachine } from "@/components/visuals/QuantumMachine";
 import JsonLd from "@/components/JsonLd";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import datasetIqci from "@/lib/schema/dataset-iqci.json";
 import faqQuantumIndex from "@/lib/schema/faq-quantum-index.json";
 import { PillarScatter } from "@/components/iqci/PillarScatter";
@@ -275,6 +276,7 @@ export default function QuantumIndexPage() {
         </div>
       </section>
 
+      <FaqAccordion schema={faqQuantumIndex} title="IQCI FAQ" />
       <FinalCTA />
     </>
   );
