@@ -75,8 +75,24 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <head>
+        {/* Iubenda Cookie Solution — must load as high in <head> as possible
+            so autoblocking runs before any tracking scripts (incl. gtag). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'var _iub = _iub || [];\n_iub.csConfiguration = {"siteId":4547624,"cookiePolicyId":18277291,"lang":"en","storage":{"useSiteId":true}};',
+          }}
+        />
+        <script src="https://cs.iubenda.com/autoblocking/4547624.js" />
+        <script src="https://cdn.iubenda.com/cs/gpp/stub.js" />
+        <script
+          src="https://cdn.iubenda.com/cs/iubenda_cs.js"
+          charSet="UTF-8"
+          async
+        />
         {/* Google tag (gtag.js) — GA4. Raw <script> so it ships in SSR HTML
-            and is detectable by GA's tag-assistant verifier. */}
+            and is detectable by GA's tag-assistant verifier. Loads after the
+            Iubenda autoblocker so consent is respected. */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-008H8C0BQD"
