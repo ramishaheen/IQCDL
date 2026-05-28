@@ -7,6 +7,7 @@ import "server-only";
 export interface IntegrationSettings {
   anthropicPrimary?: string;
   anthropicFallback?: string;
+  deepseek?: string;
   stripeSecret?: string;
   stripeWebhookSecret?: string;
 }
@@ -41,7 +42,7 @@ export async function loadSettings(): Promise<IntegrationSettings> {
 export async function saveSettings(patch: Partial<IntegrationSettings>): Promise<void> {
   const current = await loadSettings();
   const next: IntegrationSettings = { ...current };
-  for (const k of ["anthropicPrimary", "anthropicFallback", "stripeSecret", "stripeWebhookSecret"] as const) {
+  for (const k of ["anthropicPrimary", "anthropicFallback", "deepseek", "stripeSecret", "stripeWebhookSecret"] as const) {
     const v = patch[k];
     if (typeof v === "string" && v.trim()) next[k] = v.trim();
   }
@@ -67,12 +68,14 @@ export async function maskedStatus() {
   return {
     anthropicPrimary: mask(s.anthropicPrimary || process.env.ANTHROPIC_API_KEY),
     anthropicFallback: mask(s.anthropicFallback || process.env.ANTHROPIC_API_KEY_FALLBACK),
+    deepseek: mask(s.deepseek || process.env.DEEPSEEK_API_KEY),
     stripeSecret: mask(s.stripeSecret || process.env.STRIPE_SECRET_KEY),
     stripeWebhookSecret: mask(s.stripeWebhookSecret || process.env.STRIPE_WEBHOOK_SECRET),
     // surface where each value comes from (without leaking the value)
     sources: {
       anthropicPrimary: s.anthropicPrimary ? "admin" : process.env.ANTHROPIC_API_KEY ? "env" : "none",
       anthropicFallback: s.anthropicFallback ? "admin" : process.env.ANTHROPIC_API_KEY_FALLBACK ? "env" : "none",
+      deepseek: s.deepseek ? "admin" : process.env.DEEPSEEK_API_KEY ? "env" : "none",
       stripeSecret: s.stripeSecret ? "admin" : process.env.STRIPE_SECRET_KEY ? "env" : "none",
       stripeWebhookSecret: s.stripeWebhookSecret ? "admin" : process.env.STRIPE_WEBHOOK_SECRET ? "env" : "none",
     },
@@ -85,6 +88,11 @@ export async function getAnthropicKeys(): Promise<string[]> {
   const primary = s.anthropicPrimary || process.env.ANTHROPIC_API_KEY;
   const fallback = s.anthropicFallback || process.env.ANTHROPIC_API_KEY_FALLBACK;
   return [primary, fallback].filter((k): k is string => !!k && k.trim().length > 0);
+}
+
+export async function getDeepseekKey(): Promise<string | undefined> {
+  const s = await loadSettings();
+  return s.deepseek || process.env.DEEPSEEK_API_KEY || undefined;
 }
 
 export async function getStripeKey(): Promise<string | undefined> {
