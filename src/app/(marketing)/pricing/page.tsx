@@ -200,10 +200,10 @@ export default function PricingPage() {
             </svg>
           </div>
 
-          {/* Region detail panel */}
-          <div className="rounded-3xl border border-line/10 bg-surface/5 p-6">
+          {/* Region detail + live estimator (merged) */}
+          <div className="flex flex-col gap-5 rounded-3xl border border-line/10 bg-surface/5 p-6">
             {activeRegion ? (
-              <>
+              <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-accent">
                   {activeRegion.name}
                 </p>
@@ -227,18 +227,63 @@ export default function PricingPage() {
                 <p className="mt-3 text-xs text-faint">
                   {activeRegion.countries.length} listed countries
                 </p>
-              </>
+              </div>
             ) : (
-              <>
+              <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-accent">
                   Select a region
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
-                  Move over a region on the map to view its per-token price,
-                  rationale and country coverage.
+                  Hover, tap or pick a region below to see its per-token price,
+                  rationale and country coverage — and run a live estimate.
                 </p>
-              </>
+              </div>
             )}
+
+            {/* Live estimator (was Quick Estimator) */}
+            <div className="border-t border-line/10 pt-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                Quick estimator
+              </p>
+              <label className="mt-3 block text-sm text-muted">
+                Region
+                <select
+                  value={hovered ?? ""}
+                  onChange={(e) => setHovered(e.target.value || null)}
+                  className="mt-1 w-full rounded-xl border border-quantum-cyan/30 bg-surface/10 px-3 py-2 text-sm font-semibold text-quantum-cyan focus:outline-none focus:ring-2 focus:ring-quantum-cyan/40 [&>option]:bg-[#0f1726] [&>option]:text-quantum-cyan"
+                >
+                  <option value="">Choose a region…</option>
+                  {REGIONS.map((r) => (
+                    <option key={r.key} value={r.key}>
+                      {r.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="mt-4 block text-sm text-muted">
+                Tokens
+                <input
+                  type="number"
+                  min={1}
+                  value={qty}
+                  onChange={(e) => setQty(Math.max(1, Number(e.target.value) || 1))}
+                  className="mt-1 w-full rounded-xl border border-line/10 bg-surface/10 px-3 py-2 text-sm text-fg focus:outline-none focus:ring-2 focus:ring-quantum-cyan/40"
+                />
+              </label>
+              <div className="mt-5 rounded-2xl border border-quantum-cyan/30 bg-quantum-cyan/10 p-4">
+                <p className="text-xs uppercase tracking-wider text-muted">Estimated total</p>
+                <p className="mt-1 text-3xl font-bold text-fg">
+                  {activeRegion ? fmt(totalFor(activeRegion, qty)) : "—"}
+                </p>
+                <p className="mt-1 text-xs text-muted">
+                  {activeRegion
+                    ? `${fmt(pricePerToken(activeRegion))} × ${qty}${
+                        discount > 0 ? ` − ${Math.round(discount * 100)}% bundle` : ""
+                      }`
+                    : "Pick a region to estimate."}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -274,72 +319,26 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Bundle tiers + live calculator */}
-      <section className="mt-14 grid gap-8 lg:grid-cols-[1.4fr,1fr]">
-        <div>
-          <h2 className="text-2xl font-bold text-fg">Bundle discounts</h2>
-          <p className="mt-2 text-sm text-muted">
-            Volume tokens are discounted automatically — applied on top of the
-            regional unit price.
-          </p>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {BUNDLE_TIERS.map((t) => (
-              <li
-                key={t.label}
-                className="rounded-2xl border border-line/10 bg-surface/5 p-4"
-              >
-                <p className="text-sm font-semibold text-fg">{t.label}</p>
-                <p className="mt-1 text-2xl font-bold text-quantum-cyan">
-                  {t.discount === 0 ? "—" : `-${Math.round(t.discount * 100)}%`}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="rounded-3xl border border-line/10 bg-surface/5 p-6">
-          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-            Quick estimator
-          </p>
-          <label className="mt-3 block text-sm text-muted">
-            Region
-            <select
-              defaultValue=""
-              onChange={(e) => setHovered(e.target.value || null)}
-              className="mt-1 w-full rounded-xl border border-quantum-cyan/30 bg-surface/10 px-3 py-2 text-sm font-semibold text-quantum-cyan focus:outline-none focus:ring-2 focus:ring-quantum-cyan/40 [&>option]:bg-[#0f1726] [&>option]:text-quantum-cyan"
+      {/* Bundle tiers (full width — estimator moved into the map's side panel) */}
+      <section className="mt-14">
+        <h2 className="text-2xl font-bold text-fg">Bundle discounts</h2>
+        <p className="mt-2 text-sm text-muted">
+          Volume tokens are discounted automatically — applied on top of the
+          regional unit price.
+        </p>
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {BUNDLE_TIERS.map((t) => (
+            <li
+              key={t.label}
+              className="rounded-2xl border border-line/10 bg-surface/5 p-4"
             >
-              <option value="">Choose a region…</option>
-              {REGIONS.map((r) => (
-                <option key={r.key} value={r.key}>
-                  {r.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="mt-4 block text-sm text-muted">
-            Tokens
-            <input
-              type="number"
-              min={1}
-              value={qty}
-              onChange={(e) => setQty(Math.max(1, Number(e.target.value) || 1))}
-              className="mt-1 w-full rounded-xl border border-line/10 bg-surface/10 px-3 py-2 text-sm text-fg focus:outline-none focus:ring-2 focus:ring-quantum-cyan/40"
-            />
-          </label>
-          <div className="mt-5 rounded-2xl border border-quantum-cyan/30 bg-quantum-cyan/10 p-4">
-            <p className="text-xs uppercase tracking-wider text-muted">Estimated total</p>
-            <p className="mt-1 text-3xl font-bold text-fg">
-              {activeRegion ? fmt(totalFor(activeRegion, qty)) : "—"}
-            </p>
-            <p className="mt-1 text-xs text-muted">
-              {activeRegion
-                ? `${fmt(pricePerToken(activeRegion))} × ${qty}${
-                    discount > 0 ? ` − ${Math.round(discount * 100)}% bundle` : ""
-                  }`
-                : "Pick a region to estimate."}
-            </p>
-          </div>
-        </div>
+              <p className="text-sm font-semibold text-fg">{t.label}</p>
+              <p className="mt-1 text-2xl font-bold text-quantum-cyan">
+                {t.discount === 0 ? "—" : `-${Math.round(t.discount * 100)}%`}
+              </p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Other products */}

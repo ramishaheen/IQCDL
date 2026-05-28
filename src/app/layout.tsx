@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
@@ -100,6 +101,19 @@ export default function RootLayout({
         />
       </head>
       <body>
+        {/* Google tag (gtag.js) — GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-008H8C0BQD"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-008H8C0BQD');
+          `}
+        </Script>
         <ThemeProvider>
           <LocaleProvider>
             <AuthProvider>
