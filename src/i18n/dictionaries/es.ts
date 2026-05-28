@@ -467,6 +467,44 @@ const es: DeepPartial<Dictionary> = {
     idPlaceholder: "ID de membresía (IQCDL-M-…)",
     unlock: "Desbloquear chat",
     becomeMember: "Hazte miembro",
+    chooseMode: "¿En qué puedo ayudarte?",
+    back: "Atrás",
+    modeGeneralTitle: "Preguntas generales",
+    modeGeneralDesc: "Sobre IQCDL, los programas, el Índice Cuántico y el Premio",
+    modeTutorTitle: "Tutoría cuántica y soporte",
+    modeTutorDesc: "Tutoría PQC personal y soporte para miembros",
+    generalGreeting:
+      "¡Hola! Pregúntame cualquier cosa sobre IQCDL: nuestros programas, el Índice de Computación Cuántica, el Premio Global Cuántico o la membresía.",
+    generalSuggestions: [
+      "¿Qué es IQCDL?",
+      "¿Qué programas y niveles ofrecen?",
+      "¿Qué es el Índice de Computación Cuántica (IQCI)?",
+      "Cuéntame sobre el Premio Global Cuántico",
+    ],
+    leadTitle: "Empecemos",
+    leadPrompt: "Deja tus datos para que nuestro equipo te dé seguimiento, y luego pregunta lo que quieras.",
+    leadName: "Nombre completo",
+    leadEmail: "Correo electrónico",
+    leadPhone: "Número de contacto",
+    leadSubmit: "Iniciar conversación",
+    leadError: "Ingresa un correo y número de contacto válidos.",
+  },
+  joinNetwork: {
+    certified: {
+      title: "¿Listo para certificarte?",
+      body: "Habla con nuestro equipo de admisiones sobre la ruta de certificación adecuada a tu perfil y objetivos.",
+      cta: "Contactar admisiones",
+    },
+    chapter: {
+      title: "Conviértete en capítulo nacional",
+      body: "Lidera IQCDL en tu país. Representa el estándar global, expande la red e impulsa la certificación cuántica a nivel nacional.",
+      cta: "Postular",
+    },
+    center: {
+      title: "Conviértete en centro acreditado",
+      body: "Abre un centro de capacitación IQCDL acreditado. Regalía anual de $1,500 con un compromiso mínimo de 3 años.",
+      cta: "Postular",
+    },
   },
   auth: {
     title: "Bienvenido de nuevo",
@@ -663,6 +701,16 @@ const es: DeepPartial<Dictionary> = {
     intro:
       "IQCDL existe por una razón: hacer la era cuántica comprensible, medible y segura para todos — desde las juntas directivas hasta las aulas. Convertimos un campo intimidante y veloz en una ruta clara y certificable.",
     parentTitle: "Heredada de IAIDL — desde 2014, en más de 94 países",
+    parentHighlights: [
+      "Grupo internacional consolidado · 94+ países desde 2014",
+      "Alineado con los índices globales de IA",
+      "Alineado con los premios globales de IA",
+      "Programas de premios internacionales",
+      "Alineado con la excelencia",
+      "Alianza estratégica con el WEF",
+      "Alineado con ISO",
+      "IAIDL College (Reino Unido)",
+    ],
     parentBody:
       "IQCDL fue fundada en Estados Unidos en 2025 como entidad hermana cuántica de IAIDL — la Licencia Internacional de Conducción en Inteligencia Artificial, creada en 2014 y presente hoy en más de 94 países. IQCDL hereda una década de certificación neutral respecto a proveedores y centrada en estándares, y extiende ese legado probado de la inteligencia artificial a la era cuántica.",
     missionTitle: "Nuestra misión",

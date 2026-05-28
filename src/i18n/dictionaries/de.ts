@@ -297,6 +297,44 @@ const de: DeepPartial<Dictionary> = {
     idPlaceholder: "Mitglieds-ID (IQCDL-M-…)",
     unlock: "Chat freischalten",
     becomeMember: "Mitglied werden",
+    chooseMode: "Wie kann ich helfen?",
+    back: "Zurück",
+    modeGeneralTitle: "Allgemeine Fragen",
+    modeGeneralDesc: "Zu IQCDL, Programmen, Quantum-Index & Award",
+    modeTutorTitle: "Quantum-Tutoring & Support",
+    modeTutorDesc: "Persönliches PQC-Tutoring und Mitglieder-Support",
+    generalGreeting:
+      "Hallo! Fragen Sie mich alles über IQCDL — Programme, den Quantum-Computing-Index, den Global Quantum Award oder die Mitgliedschaft.",
+    generalSuggestions: [
+      "Was ist IQCDL?",
+      "Welche Programme und Stufen bieten Sie an?",
+      "Was ist der Quantum-Computing-Index (IQCI)?",
+      "Erzählen Sie mir vom Global Quantum Award",
+    ],
+    leadTitle: "Los geht's",
+    leadPrompt: "Hinterlassen Sie Ihre Daten, damit unser Team Sie kontaktieren kann — dann fragen Sie los.",
+    leadName: "Vollständiger Name",
+    leadEmail: "E-Mail",
+    leadPhone: "Kontaktnummer",
+    leadSubmit: "Chat starten",
+    leadError: "Bitte geben Sie eine gültige E-Mail und Kontaktnummer ein.",
+  },
+  joinNetwork: {
+    certified: {
+      title: "Bereit für die Zertifizierung?",
+      body: "Sprechen Sie mit unserem Zulassungsteam über den passenden Zertifizierungspfad für Ihr Profil und Ihre Ziele.",
+      cta: "Zulassung kontaktieren",
+    },
+    chapter: {
+      title: "Werden Sie nationales Chapter",
+      body: "Führen Sie IQCDL in Ihrem Land. Repräsentieren Sie den globalen Standard, vergrößern Sie das Netzwerk und treiben Sie die Quantum-Zertifizierung national voran.",
+      cta: "Jetzt bewerben",
+    },
+    center: {
+      title: "Werden Sie akkreditiertes Center",
+      body: "Eröffnen Sie ein akkreditiertes IQCDL-Trainingscenter. $1.500/Jahr Lizenzgebühr mit mindestens 3 Jahren Bindung.",
+      cta: "Jetzt bewerben",
+    },
   },
   auth: {
     title: "Willkommen zurück",
@@ -461,6 +499,16 @@ const de: DeepPartial<Dictionary> = {
     intro:
       "IQCDL existiert aus einem Grund: das Quantenzeitalter für alle verständlich, messbar und sicher zu machen — von Vorständen bis zu Klassenzimmern. Wir verwandeln ein einschüchterndes, schnelllebiges Feld in einen klaren, zertifizierbaren Weg, den Einzelpersonen und Organisationen tatsächlich gehen können.",
     parentTitle: "Hervorgegangen aus IAIDL — seit 2014, in über 94 Ländern",
+    parentHighlights: [
+      "International etablierte Gruppe · 94+ Länder seit 2014",
+      "Abgestimmt auf globale KI-Indizes",
+      "Abgestimmt auf globale KI-Awards",
+      "Internationale Award-Programme",
+      "Auf Exzellenz ausgerichtet",
+      "Strategische Allianz mit dem WEF",
+      "ISO-konform",
+      "IAIDL College (Vereinigtes Königreich)",
+    ],
     parentBody:
       "IQCDL wurde 2025 in den USA als quantenorientierte Schwesterorganisation von IAIDL gegründet — dem International Artificial Intelligence Driving License, 2014 gegründet und heute in über 94 Ländern weltweit präsent. IQCDL erbt ein Jahrzehnt herstellerneutraler, standardsorientierter Zertifizierung und erweitert dieses bewährte Erbe von der Künstlichen Intelligenz auf das Quantenzeitalter.",
     missionTitle: "Unsere Mission",
