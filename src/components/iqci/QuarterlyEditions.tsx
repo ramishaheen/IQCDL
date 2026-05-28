@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Radio, Sparkles, Globe2, Loader2 } from "lucide-react";
+import { Radio, Globe2, Loader2 } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import type { QuarterlyEdition } from "@/lib/iqci";
 
 interface Labels {
@@ -46,7 +47,7 @@ export function QuarterlyEditions({ labels }: { labels: Labels }) {
       <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="flex items-center gap-2 text-lg font-bold text-fg">
-            <Sparkles className="h-5 w-5 text-accent" />
+            <QuantumSpark className="h-5 w-5 text-accent" />
             {labels.title}
           </h3>
           <p className="mt-1 max-w-xl text-sm text-muted">{labels.note}</p>

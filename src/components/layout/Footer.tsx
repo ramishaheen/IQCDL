@@ -14,6 +14,7 @@ export function Footer() {
         { href: "/programs", label: t("footer.links.program") },
         { href: "/programs#foundation", label: t("footer.links.foundation") },
         { href: "/programs#practitioner", label: t("footer.links.practitioner") },
+        { href: "/pricing", label: t("nav.pricing") },
         { href: "/assessment", label: t("footer.links.assessment") },
       ],
     },

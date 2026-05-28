@@ -8,9 +8,9 @@ import {
   Rocket,
   AlertTriangle,
   ArrowRight,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
@@ -121,7 +121,7 @@ export default function WhyQuantumAiPage() {
               </p>
               <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link href="/membership" className="btn-primary">
-                  <Sparkles className="h-4 w-4" />
+                  <QuantumSpark className="h-4 w-4" />
                   {w.cta}
                 </Link>
                 <Link href="/assessment" className="btn-ghost">

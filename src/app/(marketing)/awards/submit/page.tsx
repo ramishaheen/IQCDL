@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Bot, Loader2, Sparkles, Wand2 } from "lucide-react";
+import { Bot, Loader2, Wand2 } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
 import { FileUpload, type UploadedFile } from "@/components/ui/FileUpload";
@@ -136,7 +137,7 @@ export default function SubmitAwardPage() {
                   {scoring ? s.scoring : s.score}
                 </button>
                 <button onClick={pay} disabled={!canPay || paying} className="btn-primary flex-1 text-white disabled:opacity-50">
-                  {paying ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+                  {paying ? <Loader2 className="h-4 w-4 animate-spin" /> : <QuantumSpark className="h-4 w-4" />}
                   {paying ? s.processing : s.pay}
                 </button>
               </div>

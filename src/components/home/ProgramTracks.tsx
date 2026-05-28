@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Check, GraduationCap, Cpu, Sparkles, ArrowRight } from "lucide-react";
+import { Check, GraduationCap, Cpu, ArrowRight } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -14,7 +15,7 @@ export function ProgramTracks({ withHeading = true }: { withHeading?: boolean })
     {
       id: "everyone",
       data: dict.tracks.everyone,
-      icon: Sparkles,
+      icon: QuantumSpark,
       accent: "from-quantum-cyan to-quantum-blue",
       featured: false,
       cta: "View outline",

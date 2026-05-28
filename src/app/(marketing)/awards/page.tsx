@@ -11,7 +11,6 @@ import {
   TrendingUp,
   BadgeCheck,
   Globe2,
-  Sparkles,
   Lightbulb,
   Rocket,
   Leaf,
@@ -19,6 +18,7 @@ import {
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
@@ -32,7 +32,7 @@ import eventGqa from "@/lib/schema/event-gqa.json";
 import faqAwards from "@/lib/schema/faq-awards.json";
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
-  initiative: Sparkles,
+  initiative: QuantumSpark,
   idea: Lightbulb,
   accelerator: Rocket,
   green: Leaf,
@@ -47,7 +47,6 @@ const BENEFIT_ICONS: LucideIcon[] = [
   BadgeCheck,
   Globe2,
   HeartHandshake,
-  Sparkles,
 ];
 
 export default function AwardsPage() {
@@ -118,7 +117,7 @@ export default function AwardsPage() {
           </Reveal>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {g.categories.map((cat, i) => {
-              const Icon = CATEGORY_ICONS[cat.key] ?? Sparkles;
+              const Icon = CATEGORY_ICONS[cat.key] ?? QuantumSpark;
               return (
                 <Reveal key={cat.key} delay={(i % 3) * 0.07}>
                   <div className="card group h-full p-6 transition duration-300 hover:-translate-y-1 hover:shadow-glow">

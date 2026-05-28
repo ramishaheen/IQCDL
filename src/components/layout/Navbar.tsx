@@ -30,6 +30,7 @@ export function Navbar() {
     { href: "/why-quantum-ai", label: t("nav.why") },
     { href: "/quantum-index", label: t("nav.index") },
     { href: "/awards", label: t("nav.awards") },
+    { href: "/pricing", label: t("nav.pricing") },
   ];
 
   return (

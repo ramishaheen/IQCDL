@@ -7,11 +7,11 @@ import {
   ScanLine,
   Gavel,
   Trophy,
-  Sparkles,
   Globe2,
   Flame,
   CalendarDays,
 } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { Reveal } from "@/components/ui/Reveal";
 
 type Phase = {
@@ -90,7 +90,7 @@ const CYCLES: Cycle[] = [
         badge: "Phase 4",
         date: "October 2027",
         title: "Finalists Announcement",
-        icon: Sparkles,
+        icon: QuantumSpark,
         activities: [
           "Global finalists reveal",
           "Media exposure campaign",

@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ShieldCheck, Sparkles, Globe } from "lucide-react";
+import { ArrowRight, ShieldCheck, Globe } from "lucide-react";
+import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { LicenseCard } from "@/components/home/LicenseCard";
 
@@ -85,7 +86,7 @@ export function Hero() {
               className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start lg:justify-start sm:justify-center"
             >
               <Link href="/assessment" className="btn-primary w-full sm:w-auto">
-                <Sparkles className="h-4 w-4" />
+                <QuantumSpark className="h-4 w-4" />
                 {t("hero.ctaPrimary")}
               </Link>
               <Link href="/programs" className="btn-ghost w-full sm:w-auto">
