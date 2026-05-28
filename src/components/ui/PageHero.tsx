@@ -6,17 +6,42 @@ export function PageHero({
   eyebrow,
   title,
   subtitle,
+  videoSrc,
+  videoPoster,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  /** Optional background video (e.g. "/awards-bg.mp4"). Falls back to the default gradient. */
+  videoSrc?: string;
+  videoPoster?: string;
 }) {
   return (
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 grid-bg opacity-40" />
-        <div className="absolute inset-0 bg-quantum-radial" />
-        <div className="absolute left-1/2 top-[-30%] h-72 w-[700px] -translate-x-1/2 rounded-full bg-quantum-indigo/20 blur-[110px]" />
+        {videoSrc ? (
+          <>
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={videoPoster}
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#05060f]/75 via-[#05060f]/55 to-[#05060f]" />
+            <div className="absolute inset-0 grid-bg opacity-20 mix-blend-screen" />
+          </>
+        ) : (
+          <>
+            <div className="absolute inset-0 grid-bg opacity-40" />
+            <div className="absolute inset-0 bg-quantum-radial" />
+            <div className="absolute left-1/2 top-[-30%] h-72 w-[700px] -translate-x-1/2 rounded-full bg-quantum-indigo/20 blur-[110px]" />
+          </>
+        )}
       </div>
       <div className="container-x py-16 text-center sm:py-20">
         {eyebrow && (

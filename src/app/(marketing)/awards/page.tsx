@@ -53,7 +53,12 @@ export default function AwardsPage() {
 
   return (
     <>
-      <PageHero eyebrow={g.eyebrow} title={g.title} subtitle={g.subtitle} />
+      <PageHero
+        eyebrow={g.eyebrow}
+        title={g.title}
+        subtitle={g.subtitle}
+        videoSrc="/awards-bg.mp4"
+      />
 
       {/* how it works */}
       <section className="section pt-0">
