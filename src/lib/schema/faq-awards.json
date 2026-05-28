@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does the Global Quantum & AI Award cost to enter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "International category entry is $1,000 (SME tier $500 for emerging markets). The full entity quantum-readiness assessment is $5,000 per the IQCDL pricing scheme. See the full booklet at https://iqcdl.org/pricing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When and where is the next ceremony?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Phase 5 Grand Ceremony of the 2027 Global Cycle takes place in November 2027 in Dubai. The next major cycle is the 2029 Global Mega Edition with the theme \"AI Beyond Humanity\"."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can enter the award?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SMEs, government entities, accelerators and partner organisations worldwide. Categories include Best Idea, Best Initiative, Best Accelerator, Best Green Quantum-AI Idea, Best Government Programme and the International Open Category."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do the award proceeds go?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "100% of award proceeds advance the UN Sustainable Development Goals and support quantum-capability building in resource-constrained regions."
+      }
+    }
+  ]
+}

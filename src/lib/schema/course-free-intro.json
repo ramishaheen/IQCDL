@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Quantum Computing for Everyone",
+  "description": "Free, zero-code introduction to quantum computing and post-quantum cryptography — the on-ramp before Foundation or Practitioner. Built for boardrooms, classrooms and the merely curious.",
+  "url": "https://iqcdl.org/programs",
+  "courseCode": "IQCDL-INTRO",
+  "educationalLevel": "Beginner",
+  "teaches": "Plain-language foundations of quantum computing, quantum risk and PQC. No mathematics required.",
+  "inLanguage": ["en", "ar", "fr", "es", "de", "zh"],
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "IQCDL",
+    "url": "https://iqcdl.org"
+  },
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+}

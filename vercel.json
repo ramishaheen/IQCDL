@@ -1,4 +1,9 @@
 {
+  "redirects": [
+    { "source": "/award", "destination": "/awards", "permanent": true },
+    { "source": "/awards/", "destination": "/awards", "permanent": true },
+    { "source": "/programs/", "destination": "/programs", "permanent": true }
+  ],
   "crons": [
     {
       "path": "/api/cron/marketing",

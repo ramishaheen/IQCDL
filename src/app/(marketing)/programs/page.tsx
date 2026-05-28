@@ -8,6 +8,11 @@ import { SectionDivider } from "@/components/visuals/SectionDivider";
 import { Pricing } from "@/components/home/Pricing";
 import { SampleCertificates } from "@/components/certificate/SampleCertificates";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import JsonLd from "@/components/JsonLd";
+import courseFoundation from "@/lib/schema/course-foundation.json";
+import coursePractitioner from "@/lib/schema/course-practitioner.json";
+import courseFreeIntro from "@/lib/schema/course-free-intro.json";
+import faqPrograms from "@/lib/schema/faq-programs.json";
 
 export default function ProgramsPage() {
   const { dict } = useLocale();
@@ -15,6 +20,10 @@ export default function ProgramsPage() {
 
   return (
     <>
+      <JsonLd data={courseFoundation} />
+      <JsonLd data={coursePractitioner} />
+      <JsonLd data={courseFreeIntro} />
+      <JsonLd data={faqPrograms} />
       <PageHero
         eyebrow={dict.tracks.eyebrow}
         title={dict.tracks.title}

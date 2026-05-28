@@ -1,0 +1,29 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "IQCDL Foundation Level",
+  "description": "3-day Foundation certification for leaders, CISOs, IT managers and compliance — covers quantum risk, post-quantum cryptography, Mosca's Theorem, NIST FIPS 203/204/205 and migration planning. No coding required.",
+  "url": "https://iqcdl.org/programs#foundation",
+  "courseCode": "IQCDL-F",
+  "educationalLevel": "Foundation",
+  "teaches": "Quantum risk, post-quantum cryptography (PQC), NIST FIPS 203/204/205, Mosca's Theorem, migration planning, leadership-level cryptographic literacy.",
+  "timeRequired": "P3D",
+  "inLanguage": ["en", "ar", "fr", "es", "de", "zh"],
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "IQCDL",
+    "url": "https://iqcdl.org"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://iqcdl.org/pricing",
+    "priceCurrency": "USD",
+    "price": "390",
+    "category": "International base price; regional pricing applies (see https://iqcdl.org/pricing)"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": ["Online", "Onsite"],
+    "courseWorkload": "P3D"
+  }
+}

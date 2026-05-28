@@ -7,6 +7,8 @@ import { MembershipProvider } from "@/components/providers/MembershipProvider";
 import { PortalProvider } from "@/lib/portal";
 import en from "@/i18n/dictionaries/en";
 import { SITE, organizationLd, websiteLd, faqLd } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import organizationSchema from "@/lib/schema/organization.json";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -87,6 +89,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd()) }}
         />
+        <JsonLd data={organizationSchema} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd()) }}

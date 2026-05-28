@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which IQCDL track is right for me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Foundation (3 days, no coding) is for leaders, CISOs, IT managers and compliance. Practitioner (5 days, hands-on) is for developers, cryptographers and security architects implementing PQC. If you're driving strategy, start with Foundation. If you'll be implementing, you'll want both."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are IQCDL programs internationally recognised?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IQCDL is aligned with NIST FIPS 203/204/205, ISO/IEC 4879, IEEE P7131/P7132 and the EU Post-Quantum Cryptography Roadmap, and is part of the IAIDL group active in 94+ countries since 2014."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the price change by country?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — IQCDL uses purchasing-power-adjusted regional pricing. Africa is capped at $45 per token, GCC is floored at $150 per token, and other regions are calibrated by market. See the full pricing booklet at https://iqcdl.org/pricing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free way to start?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The free \"Quantum Computing for Everyone\" course and the 2-minute Readiness Assessment require no payment or sign-up — both are linked from the Programs page."
+      }
+    }
+  ]
+}

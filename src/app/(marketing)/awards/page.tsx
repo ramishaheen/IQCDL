@@ -27,6 +27,9 @@ import { Book3D } from "@/components/visuals/Book3D";
 import { Rubric } from "@/components/ui/Rubric";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { AwardSchedule } from "@/components/awards/AwardSchedule";
+import JsonLd from "@/components/JsonLd";
+import eventGqa from "@/lib/schema/event-gqa.json";
+import faqAwards from "@/lib/schema/faq-awards.json";
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   initiative: Sparkles,
@@ -53,6 +56,8 @@ export default function AwardsPage() {
 
   return (
     <>
+      <JsonLd data={eventGqa} />
+      <JsonLd data={faqAwards} />
       <PageHero
         eyebrow={g.eyebrow}
         title={g.title}

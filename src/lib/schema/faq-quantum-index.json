@@ -1,0 +1,30 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is the IQCI scored?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eight weighted categories — research, talent, investment, infrastructure, policy, PQC security, environmental sustainability and ethics — scored quarterly by a neutral AI jury against a published rubric. A country-data agent gathers evidence and weighs submissions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the IQCI vendor-neutral?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. IQCDL endorses no platform or hardware vendor. The criteria serve standards (NIST, ISO/IEC, IEEE, EU PQC) and learners — not commercial interests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often is the index refreshed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quarterly. A dedicated editorial agent compiles each edition and a distribution agent makes it available to press, partners and the public."
+      }
+    }
+  ]
+}

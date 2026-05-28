@@ -13,14 +13,54 @@ import {
 } from "@/lib/pricing";
 
 // Stylized regional tiles — approximate world layout for hover-by-region pricing.
-const MAP_TILES: { key: string; left: string; top: string; width: string; height: string }[] = [
-  { key: "north-america", left: "4%",  top: "12%", width: "22%", height: "26%" },
-  { key: "latam",         left: "16%", top: "44%", width: "20%", height: "42%" },
-  { key: "eu",            left: "42%", top: "8%",  width: "16%", height: "18%" },
-  { key: "africa",        left: "44%", top: "32%", width: "20%", height: "40%" },
-  { key: "gcc",           left: "60%", top: "26%", width: "11%", height: "12%" },
-  { key: "asia",          left: "60%", top: "6%",  width: "30%", height: "30%" },
-  { key: "oceania",       left: "76%", top: "62%", width: "18%", height: "22%" },
+// Stylised but recognizable continent paths (rough but map-ish) over a
+// 1000×500 viewBox. Each region has a path, a label position and a price
+// position for the on-region price tag.
+interface MapShape {
+  key: string;
+  path: string; // SVG path data
+  labelX: number;
+  labelY: number;
+  priceX: number;
+  priceY: number;
+}
+
+const MAP_SHAPES: MapShape[] = [
+  {
+    key: "north-america",
+    path: "M 65 85 L 215 70 L 290 105 L 295 165 L 270 215 L 230 240 L 175 235 L 95 215 L 55 165 L 50 125 Z",
+    labelX: 175, labelY: 145, priceX: 175, priceY: 175,
+  },
+  {
+    key: "latam",
+    path: "M 200 250 L 280 260 L 295 305 L 280 360 L 250 420 L 215 455 L 195 430 L 185 360 L 190 295 Z",
+    labelX: 240, labelY: 340, priceX: 240, priceY: 370,
+  },
+  {
+    key: "eu",
+    path: "M 460 85 L 575 78 L 595 130 L 575 180 L 500 180 L 465 150 L 450 110 Z",
+    labelX: 522, labelY: 125, priceX: 522, priceY: 150,
+  },
+  {
+    key: "africa",
+    path: "M 495 230 L 605 225 L 625 285 L 615 345 L 580 395 L 530 405 L 485 360 L 475 295 L 480 255 Z",
+    labelX: 550, labelY: 305, priceX: 550, priceY: 335,
+  },
+  {
+    key: "gcc",
+    path: "M 615 200 L 675 195 L 685 235 L 660 270 L 620 260 L 608 225 Z",
+    labelX: 645, labelY: 225, priceX: 645, priceY: 248,
+  },
+  {
+    key: "asia",
+    path: "M 600 70 L 890 75 L 920 145 L 905 215 L 850 270 L 770 285 L 700 280 L 685 240 L 685 200 L 615 190 L 590 130 Z",
+    labelX: 770, labelY: 155, priceX: 770, priceY: 195,
+  },
+  {
+    key: "oceania",
+    path: "M 800 365 L 925 370 L 935 415 L 895 445 L 815 445 L 790 415 Z",
+    labelX: 860, labelY: 400, priceX: 860, priceY: 425,
+  },
 ];
 
 function fmt(n: number): string {
@@ -76,41 +116,88 @@ export default function PricingPage() {
 
         <div className="mt-6 grid gap-8 lg:grid-cols-[2fr,1fr]">
           <div className="relative aspect-[2/1] w-full overflow-hidden rounded-3xl border border-line/10 bg-gradient-to-br from-quantum-indigo/15 via-[#070b14] to-quantum-cyan/10">
-            {/* faint grid background */}
             <div className="pointer-events-none absolute inset-0 opacity-30 [background:linear-gradient(rgba(56,189,248,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.08)_1px,transparent_1px)] [background-size:32px_32px]" />
-            {MAP_TILES.map((t) => {
-              const region = REGIONS.find((r) => r.key === t.key);
-              if (!region) return null;
-              const isActive = hovered === t.key;
-              return (
-                <button
-                  key={t.key}
-                  type="button"
-                  onMouseEnter={() => setHovered(t.key)}
-                  onMouseLeave={() => setHovered((cur) => (cur === t.key ? null : cur))}
-                  onFocus={() => setHovered(t.key)}
-                  onBlur={() => setHovered((cur) => (cur === t.key ? null : cur))}
-                  onClick={() => setHovered(t.key)}
-                  className={`absolute flex flex-col items-center justify-center rounded-2xl border text-center transition ${
-                    isActive
-                      ? "border-quantum-cyan bg-quantum-cyan/25 shadow-[0_0_28px_rgba(56,189,248,0.55)]"
-                      : "border-quantum-cyan/30 bg-quantum-cyan/8 hover:border-quantum-cyan/60 hover:bg-quantum-cyan/15"
-                  }`}
-                  style={{ left: t.left, top: t.top, width: t.width, height: t.height }}
-                  aria-label={`${region.name} — ${fmt(pricePerToken(region))} per token`}
-                >
-                  <span className="px-2 text-xs font-semibold uppercase tracking-wider text-fg sm:text-sm">
-                    {region.name}
-                  </span>
-                  <span className="mt-0.5 text-base font-bold text-quantum-cyan sm:text-lg">
-                    {fmt(pricePerToken(region))}
-                  </span>
-                  <span className="text-[10px] uppercase tracking-wider text-muted/80 sm:text-xs">
-                    / token
-                  </span>
-                </button>
-              );
-            })}
+            <svg
+              viewBox="0 0 1000 500"
+              className="absolute inset-0 h-full w-full"
+              role="img"
+              aria-label="Regional pricing map"
+            >
+              {MAP_SHAPES.map((shape) => {
+                const region = REGIONS.find((r) => r.key === shape.key);
+                if (!region) return null;
+                const isActive = hovered === shape.key;
+                return (
+                  <g
+                    key={shape.key}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${region.name} — ${fmt(pricePerToken(region))} per token`}
+                    onMouseEnter={() => setHovered(shape.key)}
+                    onMouseLeave={() =>
+                      setHovered((cur) => (cur === shape.key ? null : cur))
+                    }
+                    onFocus={() => setHovered(shape.key)}
+                    onBlur={() =>
+                      setHovered((cur) => (cur === shape.key ? null : cur))
+                    }
+                    onClick={() => setHovered(shape.key)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <path
+                      d={shape.path}
+                      fill={
+                        isActive
+                          ? "rgba(56,189,248,0.32)"
+                          : "rgba(56,189,248,0.10)"
+                      }
+                      stroke="#38bdf8"
+                      strokeOpacity={isActive ? 0.95 : 0.55}
+                      strokeWidth={isActive ? 2.5 : 1.5}
+                      style={{
+                        filter: isActive
+                          ? "drop-shadow(0 0 18px rgba(56,189,248,0.6))"
+                          : "none",
+                        transition: "all 200ms ease",
+                      }}
+                    />
+                    <text
+                      x={shape.labelX}
+                      y={shape.labelY}
+                      textAnchor="middle"
+                      fontFamily="Arial, Helvetica, sans-serif"
+                      fontSize="14"
+                      fontWeight="700"
+                      letterSpacing="1.5"
+                      fill="#e2e8f0"
+                      style={{ textTransform: "uppercase", pointerEvents: "none" }}
+                    >
+                      {region.name}
+                    </text>
+                    <text
+                      x={shape.priceX}
+                      y={shape.priceY}
+                      textAnchor="middle"
+                      fontFamily="Arial, Helvetica, sans-serif"
+                      fontSize="18"
+                      fontWeight="700"
+                      fill="#38bdf8"
+                      style={{ pointerEvents: "none" }}
+                    >
+                      {fmt(pricePerToken(region))}
+                      <tspan
+                        fontSize="10"
+                        fontWeight="400"
+                        fill="#94a3b8"
+                        dx="4"
+                      >
+                        / token
+                      </tspan>
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
           </div>
 
           {/* Region detail panel */}
@@ -219,7 +306,7 @@ export default function PricingPage() {
             <select
               defaultValue=""
               onChange={(e) => setHovered(e.target.value || null)}
-              className="mt-1 w-full rounded-xl border border-line/10 bg-surface/10 px-3 py-2 text-sm text-fg focus:outline-none focus:ring-2 focus:ring-quantum-cyan/40"
+              className="mt-1 w-full rounded-xl border border-quantum-cyan/30 bg-surface/10 px-3 py-2 text-sm font-semibold text-quantum-cyan focus:outline-none focus:ring-2 focus:ring-quantum-cyan/40 [&>option]:bg-[#0f1726] [&>option]:text-quantum-cyan"
             >
               <option value="">Choose a region…</option>
               {REGIONS.map((r) => (
