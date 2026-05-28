@@ -22,6 +22,23 @@ const en = {
     soon: "Coming soon",
     new: "New",
   },
+  joinNetwork: {
+    certified: {
+      title: "Ready to get certified?",
+      body: "Talk to our admissions team about the right certification pathway for your background and goals.",
+      cta: "Contact admissions",
+    },
+    chapter: {
+      title: "Become a country chapter",
+      body: "Lead IQCDL in your country. Represent the global standard, grow the network, and drive quantum certification nationally.",
+      cta: "Apply now",
+    },
+    center: {
+      title: "Become an accredited center",
+      body: "Open an accredited IQCDL training center. $1,500 / year royalty with a minimum 3-year commitment.",
+      cta: "Apply now",
+    },
+  },
   nav: {
     program: "Program",
     assessment: "Readiness",

@@ -90,9 +90,9 @@ export function Logo({
             IQCDL
           </text>
           <g fontFamily="Arial,'Helvetica Neue',sans-serif" fontWeight="700" letterSpacing="2" fill="currentColor">
-            <text x="426" y="71" fontSize="26">INTERNATIONAL</text>
-            <text x="426" y="105" fontSize="26">QUANTUM COMPUTING</text>
-            <text x="426" y="139" fontSize="26">DRIVING LICENSE</text>
+            <text x="450" y="71" fontSize="26">INTERNATIONAL</text>
+            <text x="450" y="105" fontSize="26">QUANTUM COMPUTING</text>
+            <text x="450" y="139" fontSize="26">DRIVING LICENSE</text>
           </g>
         </svg>
       ) : (
