@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
@@ -76,6 +75,34 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <head>
+        {/* Iubenda Cookie Solution — must load as high in <head> as possible
+            so autoblocking runs before any tracking scripts (incl. gtag). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'var _iub = _iub || [];\n_iub.csConfiguration = {"siteId":4547624,"cookiePolicyId":18277291,"lang":"en","storage":{"useSiteId":true}};',
+          }}
+        />
+        <script src="https://cs.iubenda.com/autoblocking/4547624.js" />
+        <script src="https://cdn.iubenda.com/cs/gpp/stub.js" />
+        <script
+          src="https://cdn.iubenda.com/cs/iubenda_cs.js"
+          charSet="UTF-8"
+          async
+        />
+        {/* Google tag (gtag.js) — GA4. Raw <script> so it ships in SSR HTML
+            and is detectable by GA's tag-assistant verifier. Loads after the
+            Iubenda autoblocker so consent is respected. */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-008H8C0BQD"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-008H8C0BQD');",
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -101,19 +128,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {/* Google tag (gtag.js) — GA4 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-008H8C0BQD"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-008H8C0BQD');
-          `}
-        </Script>
         <ThemeProvider>
           <LocaleProvider>
             <AuthProvider>
