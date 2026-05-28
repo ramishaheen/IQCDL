@@ -781,7 +781,17 @@ const en = {
       "IQCDL exists for one reason: to make the quantum era understandable, measurable and safe for everyone — from boardrooms to classrooms. We turn an intimidating, fast-moving field into a clear, certifiable path that individuals and organizations can actually follow.",
     parentTitle: "Inherited from IAIDL — since 2014, in 94+ countries",
     parentBody:
-      "IQCDL was established in the United States in 2025 as the quantum-focused sister body of IAIDL — the International Artificial Intelligence Driving License, founded in 2014 and now present in more than 94 countries worldwide. IQCDL inherits IAIDL's decade of standards-first, vendor-neutral credentialing and extends that proven legacy from artificial intelligence into the quantum age.",
+      "IQCDL was established in the United States in 2025 as the quantum-focused sister body of IAIDL — the International Artificial Intelligence Driving License: an internationally well-established certification group founded in 2014 and active in more than 94 countries (iaidl.org, with IAIDL College in the UK at iaidlcollege.co.uk). The group is aligned with the leading global AI indices and AI awards, holds several international award programs of its own, is aligned with frameworks of excellence, maintains a strategic alliance with the World Economic Forum (WEF), and is aligned with ISO standards. IQCDL inherits that decade of standards-first, vendor-neutral credentialing and extends the proven legacy from artificial intelligence into the quantum age.",
+    parentHighlights: [
+      "Internationally well-established group · 94+ countries since 2014",
+      "Aligned with global AI indices",
+      "Aligned with global AI awards",
+      "International award programs",
+      "Excellence-aligned",
+      "WEF strategic alliance",
+      "ISO-aligned",
+      "IAIDL College (UK)",
+    ],
     missionTitle: "Our mission",
     mission:
       "To certify one million quantum- and AI-ready professionals and prepare every critical organization for the post-quantum world — before the threats arrive, not after.",
