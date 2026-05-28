@@ -29,11 +29,13 @@ export function PageHero({
               playsInline
               preload="auto"
               poster={videoPoster}
+              aria-hidden
             >
               <source src={videoSrc} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#05060f]/75 via-[#05060f]/55 to-[#05060f]" />
-            <div className="absolute inset-0 grid-bg opacity-20 mix-blend-screen" />
+            {/* Lighter overlay so the video is clearly visible; bottom fades into the page bg. */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#05060f]/35 via-[#05060f]/20 to-[#05060f]/85" />
+            <div className="absolute inset-0 grid-bg opacity-15 mix-blend-screen" />
           </>
         ) : (
           <>

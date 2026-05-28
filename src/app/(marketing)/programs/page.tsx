@@ -10,6 +10,7 @@ import { Pricing } from "@/components/home/Pricing";
 import { SampleCertificates } from "@/components/certificate/SampleCertificates";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import JsonLd from "@/components/JsonLd";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import courseFoundation from "@/lib/schema/course-foundation.json";
 import coursePractitioner from "@/lib/schema/course-practitioner.json";
 import courseFreeIntro from "@/lib/schema/course-free-intro.json";
@@ -61,6 +62,7 @@ export default function ProgramsPage() {
 
       <SampleCertificates />
       <Pricing />
+      <FaqAccordion schema={faqPrograms} title="Program FAQ" />
       <FinalCTA />
     </>
   );
