@@ -1,0 +1,50 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "International Quantum Computing Driving License",
+  "alternateName": "IQCDL",
+  "url": "https://iqcdl.org",
+  "logo": "https://iqcdl.org/icon.svg",
+  "email": "info@iqcdl.org",
+  "foundingDate": "2025",
+  "description": "Vendor-neutral international certification body that takes individuals and organizations from quantum-curious to quantum-ready. Part of the IAIDL group (94+ countries since 2014).",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "IAIDL",
+    "url": "https://iaidl.org"
+  },
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "IAIDL Group",
+      "url": "https://iaidl.org"
+    }
+  ],
+  "subOrganization": [
+    {
+      "@type": "Organization",
+      "name": "IAIDL College",
+      "url": "https://iaidlcollege.co.uk"
+    }
+  ],
+  "sameAs": [
+    "https://iaidl.org",
+    "https://iaidlcollege.co.uk"
+  ],
+  "knowsAbout": [
+    "Quantum computing",
+    "Post-quantum cryptography",
+    "NIST FIPS 203",
+    "NIST FIPS 204",
+    "NIST FIPS 205",
+    "ISO/IEC 4879",
+    "IEEE P7131",
+    "IEEE P7132",
+    "EU PQC Roadmap",
+    "Mosca's theorem",
+    "Crypto-agility",
+    "Quantum readiness",
+    "AI governance",
+    "AI awards"
+  ]
+}

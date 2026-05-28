@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+  IQCDL Open Graph image template — 1200 × 630.
+  Static reference for design tools / manual screenshotting; the live
+  open-graph images on iqcdl.org are produced dynamically via next/og.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>IQCDL — Open Graph template</title>
+    <style>
+      html, body { margin: 0; padding: 0; background: #05060f; }
+      .card {
+        width: 1200px;
+        height: 630px;
+        position: relative;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+        color: #e2e8f0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 80% 20%, rgba(56,189,248,0.18), transparent 55%),
+          radial-gradient(circle at 20% 90%, rgba(43,169,224,0.20), transparent 60%),
+          #05060f;
+      }
+      .grid {
+        position: absolute; inset: 0; opacity: 0.18;
+        background-image:
+          linear-gradient(rgba(56,189,248,0.18) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(56,189,248,0.18) 1px, transparent 1px);
+        background-size: 48px 48px;
+      }
+      .badge {
+        position: absolute;
+        top: 60px; left: 60px;
+        display: inline-flex; align-items: center; gap: 18px;
+        padding: 12px 28px 12px 22px;
+        border: 3px solid #38bdf8;
+        border-radius: 22px;
+      }
+      .atom {
+        width: 56px; height: 56px;
+        border: 2.5px solid #38bdf8;
+        border-radius: 14px;
+        display: grid; place-items: center;
+        font-size: 32px; color: #38bdf8; line-height: 1;
+      }
+      .word {
+        font-family: 'Arial Black', Arial, sans-serif;
+        font-weight: 900; letter-spacing: 4px;
+        font-size: 56px; color: #ffffff;
+      }
+      .subtitle {
+        position: absolute;
+        top: 90px; left: 290px;
+        font-size: 14px;
+        letter-spacing: 3.5px;
+        font-weight: 700;
+        color: rgba(255,255,255,0.78);
+        text-transform: uppercase;
+        line-height: 1.4;
+      }
+      .body {
+        position: absolute;
+        left: 60px; right: 60px; bottom: 70px;
+      }
+      h1 {
+        margin: 0; padding: 0;
+        font-size: 86px; line-height: 1.05; font-weight: 800;
+        background: linear-gradient(120deg, #ffffff 10%, #38bdf8 60%, #7dd3fc 100%);
+        -webkit-background-clip: text; background-clip: text;
+        color: transparent;
+        max-width: 1000px;
+      }
+      .tagline {
+        margin-top: 22px;
+        font-size: 24px;
+        color: #94a3b8;
+        max-width: 900px;
+        line-height: 1.4;
+      }
+      .footer {
+        position: absolute;
+        right: 60px; top: 70px;
+        text-align: right;
+        font-size: 14px;
+        letter-spacing: 2px;
+        color: #94a3b8;
+        text-transform: uppercase;
+        line-height: 1.5;
+      }
+      .footer strong { color: #38bdf8; font-weight: 800; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="grid"></div>
+      <div class="badge">
+        <span class="atom">⚛</span>
+        <span class="word">IQCDL</span>
+      </div>
+      <div class="subtitle">
+        International Quantum<br>Computing Driving License
+      </div>
+      <div class="footer">
+        Part of the <strong>IAIDL group</strong><br>
+        94+ countries · vendor-neutral · ISO-aligned
+      </div>
+      <div class="body">
+        <h1>The international standard for quantum-readiness.</h1>
+        <p class="tagline">
+          AI-guided readiness, immersive training, and a verifiable path to the post-quantum era. iqcdl.org
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

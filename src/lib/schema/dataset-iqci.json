@@ -1,0 +1,40 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "International Quantum Computing Index (IQCI)",
+  "alternateName": "IQCI",
+  "description": "AI-generated, vendor-neutral index scoring every country's quantum readiness across eight weighted categories: research, talent, investment, infrastructure, policy, PQC security, environmental sustainability and ethics. A dedicated country-data agent refreshes the index every quarter and re-scores on new evidence.",
+  "url": "https://iqcdl.org/quantum-index",
+  "creator": {
+    "@type": "Organization",
+    "name": "IQCDL",
+    "url": "https://iqcdl.org"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IQCDL",
+    "url": "https://iqcdl.org"
+  },
+  "license": "https://iqcdl.org",
+  "isAccessibleForFree": true,
+  "keywords": [
+    "Quantum computing index",
+    "AI index",
+    "Country quantum readiness",
+    "Post-quantum cryptography",
+    "Quantum policy",
+    "National AI strategy"
+  ],
+  "spatialCoverage": "Worldwide (94+ countries)",
+  "temporalCoverage": "2025/..",
+  "variableMeasured": [
+    "Research",
+    "Talent",
+    "Investment",
+    "Infrastructure",
+    "Policy",
+    "PQC security",
+    "Environmental sustainability",
+    "Ethics & responsible use"
+  ]
+}

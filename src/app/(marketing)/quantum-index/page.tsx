@@ -20,6 +20,9 @@ import { SectionDivider } from "@/components/visuals/SectionDivider";
 import { QuantumAccent } from "@/components/visuals/QuantumAccent";
 import { Book3D } from "@/components/visuals/Book3D";
 import { QuantumMachine } from "@/components/visuals/QuantumMachine";
+import JsonLd from "@/components/JsonLd";
+import datasetIqci from "@/lib/schema/dataset-iqci.json";
+import faqQuantumIndex from "@/lib/schema/faq-quantum-index.json";
 import { PillarScatter } from "@/components/iqci/PillarScatter";
 import { IndexBook } from "@/components/iqci/IndexBook";
 import { QuarterlyEditions } from "@/components/iqci/QuarterlyEditions";
@@ -37,6 +40,8 @@ export default function QuantumIndexPage() {
 
   return (
     <>
+      <JsonLd data={datasetIqci} />
+      <JsonLd data={faqQuantumIndex} />
       <PageHero eyebrow={x.eyebrow} title={x.title} subtitle={x.subtitle} />
 
       {/* how it works */}

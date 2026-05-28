@@ -1,0 +1,30 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "IQCDL Practitioner Level",
+  "description": "5-day hands-on Practitioner certification for developers, cryptographers and security architects — Qiskit, ML-KEM (Kyber), ML-DSA (Dilithium), SLH-DSA (SPHINCS+) implementation and crypto-agile system design.",
+  "url": "https://iqcdl.org/programs#practitioner",
+  "courseCode": "IQCDL-P",
+  "educationalLevel": "Practitioner",
+  "teaches": "Qiskit programming, ML-KEM / ML-DSA / SLH-DSA implementation, hybrid TLS, crypto-agility, real-world PQC migration patterns.",
+  "coursePrerequisites": "IQCDL Foundation Level and basic Python.",
+  "timeRequired": "P5D",
+  "inLanguage": ["en", "ar", "fr", "es", "de", "zh"],
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "IQCDL",
+    "url": "https://iqcdl.org"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://iqcdl.org/pricing",
+    "priceCurrency": "USD",
+    "price": "890",
+    "category": "International base price; regional pricing applies (see https://iqcdl.org/pricing)"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": ["Online", "Onsite"],
+    "courseWorkload": "P5D"
+  }
+}
