@@ -11,57 +11,7 @@ import {
   totalFor,
   type Region,
 } from "@/lib/pricing";
-
-// Stylized regional tiles — approximate world layout for hover-by-region pricing.
-// Stylised but recognizable continent paths (rough but map-ish) over a
-// 1000×500 viewBox. Each region has a path, a label position and a price
-// position for the on-region price tag.
-interface MapShape {
-  key: string;
-  path: string; // SVG path data
-  labelX: number;
-  labelY: number;
-  priceX: number;
-  priceY: number;
-}
-
-const MAP_SHAPES: MapShape[] = [
-  {
-    key: "north-america",
-    path: "M 65 85 L 215 70 L 290 105 L 295 165 L 270 215 L 230 240 L 175 235 L 95 215 L 55 165 L 50 125 Z",
-    labelX: 175, labelY: 145, priceX: 175, priceY: 175,
-  },
-  {
-    key: "latam",
-    path: "M 200 250 L 280 260 L 295 305 L 280 360 L 250 420 L 215 455 L 195 430 L 185 360 L 190 295 Z",
-    labelX: 240, labelY: 340, priceX: 240, priceY: 370,
-  },
-  {
-    key: "eu",
-    path: "M 460 85 L 575 78 L 595 130 L 575 180 L 500 180 L 465 150 L 450 110 Z",
-    labelX: 522, labelY: 125, priceX: 522, priceY: 150,
-  },
-  {
-    key: "africa",
-    path: "M 495 230 L 605 225 L 625 285 L 615 345 L 580 395 L 530 405 L 485 360 L 475 295 L 480 255 Z",
-    labelX: 550, labelY: 305, priceX: 550, priceY: 335,
-  },
-  {
-    key: "gcc",
-    path: "M 615 200 L 675 195 L 685 235 L 660 270 L 620 260 L 608 225 Z",
-    labelX: 645, labelY: 225, priceX: 645, priceY: 248,
-  },
-  {
-    key: "asia",
-    path: "M 600 70 L 890 75 L 920 145 L 905 215 L 850 270 L 770 285 L 700 280 L 685 240 L 685 200 L 615 190 L 590 130 Z",
-    labelX: 770, labelY: 155, priceX: 770, priceY: 195,
-  },
-  {
-    key: "oceania",
-    path: "M 800 365 L 925 370 L 935 415 L 895 445 L 815 445 L 790 415 Z",
-    labelX: 860, labelY: 400, priceX: 860, priceY: 425,
-  },
-];
+import { PricingWorldMap } from "@/components/pricing/PricingWorldMap";
 
 function fmt(n: number): string {
   return `$${n.toLocaleString("en-US")}`;
@@ -114,90 +64,55 @@ export default function PricingPage() {
           Hover or tap a region to see its per-token price.
         </p>
 
+        {/* Region legend */}
+        <ul className="mt-5 flex flex-wrap gap-2 text-xs">
+          {REGIONS.map((r) => {
+            const dot: Record<string, string> = {
+              "north-america": "bg-[#60a5fa]",
+              latam: "bg-[#34d399]",
+              eu: "bg-[#a78bfa]",
+              africa: "bg-[#fbbf24]",
+              gcc: "bg-[#f87171]",
+              asia: "bg-[#22d3ee]",
+              oceania: "bg-[#f472b6]",
+            };
+            const isActive = hovered === r.key;
+            return (
+              <li key={r.key}>
+                <button
+                  type="button"
+                  onClick={() => setHovered((cur) => (cur === r.key ? null : r.key))}
+                  onMouseEnter={() => setHovered(r.key)}
+                  onMouseLeave={() => setHovered((cur) => (cur === r.key ? null : cur))}
+                  className={`flex items-center gap-2 rounded-full border px-3 py-1.5 transition ${
+                    isActive
+                      ? "border-quantum-cyan/60 bg-quantum-cyan/10 text-fg"
+                      : "border-line/10 bg-surface/5 text-muted hover:text-fg"
+                  }`}
+                >
+                  <span className={`h-2.5 w-2.5 rounded-full ${dot[r.key] ?? "bg-slate-400"}`} />
+                  <span className="font-medium">{r.name}</span>
+                  <span className="text-faint">·</span>
+                  <span className="text-quantum-cyan">{fmt(pricePerToken(r))}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
         <div className="mt-6 grid gap-8 lg:grid-cols-[2fr,1fr]">
-          <div className="relative aspect-[2/1] w-full overflow-hidden rounded-3xl border border-line/10 bg-gradient-to-br from-quantum-indigo/15 via-[#070b14] to-quantum-cyan/10">
-            <div className="pointer-events-none absolute inset-0 opacity-30 [background:linear-gradient(rgba(56,189,248,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.08)_1px,transparent_1px)] [background-size:32px_32px]" />
-            <svg
-              viewBox="0 0 1000 500"
-              className="absolute inset-0 h-full w-full"
-              role="img"
-              aria-label="Regional pricing map"
-            >
-              {MAP_SHAPES.map((shape) => {
-                const region = REGIONS.find((r) => r.key === shape.key);
-                if (!region) return null;
-                const isActive = hovered === shape.key;
-                return (
-                  <g
-                    key={shape.key}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`${region.name} — ${fmt(pricePerToken(region))} per token`}
-                    onMouseEnter={() => setHovered(shape.key)}
-                    onMouseLeave={() =>
-                      setHovered((cur) => (cur === shape.key ? null : cur))
-                    }
-                    onFocus={() => setHovered(shape.key)}
-                    onBlur={() =>
-                      setHovered((cur) => (cur === shape.key ? null : cur))
-                    }
-                    onClick={() => setHovered(shape.key)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <path
-                      d={shape.path}
-                      fill={
-                        isActive
-                          ? "rgba(56,189,248,0.32)"
-                          : "rgba(56,189,248,0.10)"
-                      }
-                      stroke="#38bdf8"
-                      strokeOpacity={isActive ? 0.95 : 0.55}
-                      strokeWidth={isActive ? 2.5 : 1.5}
-                      style={{
-                        filter: isActive
-                          ? "drop-shadow(0 0 18px rgba(56,189,248,0.6))"
-                          : "none",
-                        transition: "all 200ms ease",
-                      }}
-                    />
-                    <text
-                      x={shape.labelX}
-                      y={shape.labelY}
-                      textAnchor="middle"
-                      fontFamily="Arial, Helvetica, sans-serif"
-                      fontSize="14"
-                      fontWeight="700"
-                      letterSpacing="1.5"
-                      fill="#e2e8f0"
-                      style={{ textTransform: "uppercase", pointerEvents: "none" }}
-                    >
-                      {region.name}
-                    </text>
-                    <text
-                      x={shape.priceX}
-                      y={shape.priceY}
-                      textAnchor="middle"
-                      fontFamily="Arial, Helvetica, sans-serif"
-                      fontSize="18"
-                      fontWeight="700"
-                      fill="#38bdf8"
-                      style={{ pointerEvents: "none" }}
-                    >
-                      {fmt(pricePerToken(region))}
-                      <tspan
-                        fontSize="10"
-                        fontWeight="400"
-                        fill="#94a3b8"
-                        dx="4"
-                      >
-                        / token
-                      </tspan>
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
+          <div className="relative aspect-[2/1] w-full overflow-hidden rounded-3xl border border-line/10 bg-gradient-to-br from-[#0b1424] via-[#070b14] to-[#0a192b]">
+            <PricingWorldMap hovered={hovered} onHover={setHovered} />
+            {activeRegion && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center">
+                <div className="rounded-full border border-quantum-cyan/30 bg-[#05060f]/80 px-4 py-1.5 text-xs font-semibold text-fg backdrop-blur">
+                  <span className="text-quantum-cyan">{activeRegion.name}</span>
+                  <span className="mx-2 text-faint">·</span>
+                  <span>{fmt(pricePerToken(activeRegion))}</span>
+                  <span className="ms-1 text-faint">/ token</span>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Region detail + live estimator (merged) */}
