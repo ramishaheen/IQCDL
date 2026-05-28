@@ -26,6 +26,7 @@ import { SectionDivider } from "@/components/visuals/SectionDivider";
 import { Book3D } from "@/components/visuals/Book3D";
 import { Rubric } from "@/components/ui/Rubric";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { AwardSchedule } from "@/components/awards/AwardSchedule";
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   initiative: Sparkles,
@@ -52,7 +53,12 @@ export default function AwardsPage() {
 
   return (
     <>
-      <PageHero eyebrow={g.eyebrow} title={g.title} subtitle={g.subtitle} />
+      <PageHero
+        eyebrow={g.eyebrow}
+        title={g.title}
+        subtitle={g.subtitle}
+        videoSrc="/awards-bg.mp4"
+      />
 
       {/* how it works */}
       <section className="section pt-0">
@@ -181,6 +187,9 @@ export default function AwardsPage() {
         </div>
       </section>
 
+      {/* fixed award schedule timeline (2027 / 2028 / 2029) */}
+      <AwardSchedule />
+
       {/* enroll CTA */}
       <section className="section pt-0">
         <div className="container-x">
@@ -192,16 +201,48 @@ export default function AwardsPage() {
                 {g.enrollNote}
               </p>
               <p className="relative mx-auto mt-3 max-w-2xl text-xs text-faint">{g.criteriaNote}</p>
-              <div className="relative mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link
-                  href="mailto:awards@iqcdl.org?subject=GQA%20enrollment"
-                  className="btn-primary text-white"
-                >
-                  {g.enrollCta}
-                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                </Link>
-                <Link href="/standards" className="btn-ghost">
-                  {dict.nav.standards}
+              <p className="relative mx-auto mt-5 max-w-2xl text-sm text-fg">
+                Two clear ways to enter — pick the one that matches your stage:
+              </p>
+              <div className="relative mx-auto mt-5 grid max-w-3xl gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-line/10 bg-surface/5 p-5 text-start">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                    For an Idea / Initiative
+                  </p>
+                  <p className="mt-2 text-2xl font-bold text-fg">$1,000<span className="ms-1 text-sm font-normal text-muted">/ category</span></p>
+                  <p className="mt-1 text-xs text-faint">SME tier $500 for emerging markets</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    Submit an idea or initiative into one of the GQA categories — including Best Idea, Best Initiative, Best Accelerator and Best Government Programme.
+                  </p>
+                  <Link
+                    href="mailto:awards@iqcdl.org?subject=GQA%20category%20entry"
+                    className="btn-primary mt-4 text-white"
+                  >
+                    {g.submitCtaCategory}
+                    <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                  </Link>
+                </div>
+                <div className="rounded-2xl border border-quantum-cyan/30 bg-quantum-cyan/5 p-5 text-start">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                    For a full Assessment
+                  </p>
+                  <p className="mt-2 text-2xl font-bold text-fg">$5,000<span className="ms-1 text-sm font-normal text-muted">/ entity</span></p>
+                  <p className="mt-1 text-xs text-faint">As per the IQCDL pricing scheme</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    Full entity quantum-readiness assessment — upload your documents and a neutral AI grades you against the standards-aligned criteria.
+                  </p>
+                  <Link
+                    href="mailto:awards@iqcdl.org?subject=GQA%20full%20assessment"
+                    className="btn-primary mt-4 text-white"
+                  >
+                    {g.enrollCta}
+                    <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                  </Link>
+                </div>
+              </div>
+              <div className="relative mt-6 flex justify-center">
+                <Link href="/pricing" className="btn-ghost text-sm">
+                  See the full pricing booklet
                 </Link>
               </div>
             </div>
