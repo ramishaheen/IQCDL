@@ -63,6 +63,7 @@ export default function AwardsPage() {
         title={g.title}
         subtitle={g.subtitle}
         videoSrc="/awards-bg.mp4"
+        videoPoster="/awards-bg-poster.jpg"
       />
 
       {/* how it works */}
