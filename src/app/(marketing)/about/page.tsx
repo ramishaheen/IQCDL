@@ -265,16 +265,22 @@ function ConversionBoardCTA({
                     </motion.li>
                   ))}
                 </ul>
-                <figure className="rounded-2xl border border-line/10 bg-surface/5 p-5">
-                  <blockquote className="text-sm italic leading-relaxed text-muted">
-                    “IQCDL is doing for quantum what IAIDL did for AI — turning a
-                    fast-moving, intimidating field into something every
-                    organisation can plan against.”
-                  </blockquote>
-                  <figcaption className="mt-3 text-xs font-semibold uppercase tracking-wider text-faint">
-                    — IAIDL Group senior advisor
-                  </figcaption>
-                </figure>
+                <div className="rounded-2xl border border-line/10 bg-surface/5 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                    Standards we map to
+                  </p>
+                  <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs text-muted">
+                    <li>NIST FIPS 203 — ML-KEM</li>
+                    <li>NIST FIPS 204 — ML-DSA</li>
+                    <li>NIST FIPS 205 — SLH-DSA</li>
+                    <li>ISO/IEC 4879</li>
+                    <li>IEEE P7131 / P7132</li>
+                    <li>EU PQC Roadmap · NIS2</li>
+                  </ul>
+                  <p className="mt-4 text-xs text-faint">
+                    Inherited from IAIDL — operating across 94+ countries since 2014.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

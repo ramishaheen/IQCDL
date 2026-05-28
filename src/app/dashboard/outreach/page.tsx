@@ -69,6 +69,15 @@ export default function OutreachAdminPage() {
   const [language, setLanguage] = useState("");
   const [notes, setNotes] = useState("");
 
+  // CSV import state
+  const [csv, setCsv] = useState("");
+  const [importSummary, setImportSummary] = useState<{
+    imported: number;
+    skipped: number;
+    total: number;
+    errors: { row: number; reason: string }[];
+  } | null>(null);
+
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -121,6 +130,40 @@ export default function OutreachAdminPage() {
       await load();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to add target");
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function onFile(file: File) {
+    const text = await file.text();
+    setCsv(text);
+  }
+
+  async function importCsv(e: React.FormEvent) {
+    e.preventDefault();
+    if (!csv.trim()) return;
+    setBusy("import");
+    setError(null);
+    setImportSummary(null);
+    try {
+      const res = await fetch("/api/admin/outreach/import", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ csv }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      setImportSummary({
+        total: data.total,
+        imported: data.imported,
+        skipped: data.skipped,
+        errors: data.errors ?? [],
+      });
+      setCsv("");
+      await load();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Import failed");
     } finally {
       setBusy(null);
     }
@@ -258,6 +301,73 @@ export default function OutreachAdminPage() {
         >
           {busy === "add" ? "Adding…" : "Add target"}
         </button>
+      </form>
+
+      {/* CSV bulk import */}
+      <form
+        onSubmit={importCsv}
+        className="space-y-3 rounded-2xl border border-slate-200 bg-white p-5"
+      >
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="font-semibold text-slate-900">Bulk import — CSV</p>
+            <p className="mt-1 text-xs text-slate-500">
+              Headers required: <code>name, email, org, segment</code>. Optional:{" "}
+              <code>title, country, language, notes</code>. Duplicates by email are skipped.
+            </p>
+          </div>
+          <label className="cursor-pointer rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+            Choose CSV file…
+            <input
+              type="file"
+              accept=".csv,text/csv"
+              className="hidden"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) onFile(f);
+              }}
+            />
+          </label>
+        </div>
+        <textarea
+          rows={5}
+          value={csv}
+          onChange={(e) => setCsv(e.target.value)}
+          placeholder={`name,email,org,segment,country,title\nJane Doe,jane@example.org,Ministry of Digital Economy,minister,SG,Minister\n`}
+          className="w-full rounded-xl border border-slate-200 px-3 py-2 font-mono text-xs"
+        />
+        <div className="flex items-center justify-between gap-3">
+          <button
+            type="submit"
+            disabled={busy === "import" || !csv.trim()}
+            className="rounded-full bg-quantum-cyan px-4 py-2 text-sm font-semibold text-white hover:bg-quantum-blue disabled:opacity-50"
+          >
+            {busy === "import" ? "Importing…" : "Import CSV"}
+          </button>
+          {importSummary && (
+            <p className="text-xs text-slate-600">
+              <strong className="text-emerald-700">{importSummary.imported} imported</strong>
+              {" · "}
+              {importSummary.skipped} skipped (duplicate)
+              {" · "}
+              <span className="text-rose-700">{importSummary.errors.length} errors</span>
+              {" / "}
+              {importSummary.total} rows
+            </p>
+          )}
+        </div>
+        {importSummary && importSummary.errors.length > 0 && (
+          <ul className="space-y-1 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-700">
+            {importSummary.errors.slice(0, 8).map((err) => (
+              <li key={`${err.row}-${err.reason}`}>
+                Row {err.row}: {err.reason}
+              </li>
+            ))}
+            {importSummary.errors.length > 8 && (
+              <li>…and {importSummary.errors.length - 8} more.</li>
+            )}
+          </ul>
+        )}
       </form>
 
       <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white">
