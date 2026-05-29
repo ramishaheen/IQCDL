@@ -63,7 +63,7 @@ export function Pricing() {
                   </ul>
 
                   <Link
-                    href={i === 2 ? "mailto:info@iqcdl.org" : "/login"}
+                    href={i === 2 ? "mailto:admin@iqcdl.org" : "/login"}
                     className={cn(
                       "btn mt-7 w-full",
                       featured

@@ -82,7 +82,7 @@ export async function POST(request: Request) {
     try {
       const { Resend } = await import("resend");
       const resend = new Resend(apiKey);
-      const to = process.env.SUBMISSIONS_INBOX || (kind === "award" ? "awards@iqcdl.org" : "index@iqcdl.org");
+      const to = process.env.SUBMISSIONS_INBOX || (kind === "award" ? "admin@iqcdl.org" : "admin@iqcdl.org");
       await resend.emails.send({
         from: process.env.RESEND_FROM || "IQCDL <onboarding@resend.dev>",
         to,

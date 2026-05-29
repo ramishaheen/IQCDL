@@ -235,7 +235,7 @@ function ConversionBoardCTA({
                     </motion.span>
                   </button>
                   <a
-                    href="mailto:board@iqcdl.org?subject=Board%20brief%20request"
+                    href="mailto:admin@iqcdl.org?subject=Board%20brief%20request"
                     className="btn-ghost inline-flex items-center gap-2 text-sm"
                   >
                     Request a Board brief

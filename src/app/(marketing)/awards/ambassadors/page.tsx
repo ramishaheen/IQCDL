@@ -260,14 +260,14 @@ export default function AmbassadorsPage() {
                 </div>
               </dl>
               <Link
-                href="mailto:ambassadors@iqcdl.org?subject=IQCDL%20Country%20Ambassador%20application"
+                href="mailto:admin@iqcdl.org?subject=IQCDL%20Country%20Ambassador%20application"
                 className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 text-white"
               >
                 Apply now
                 <ArrowRight className="h-4 w-4 rtl:rotate-180" />
               </Link>
               <p className="mt-3 text-xs text-faint">
-                Email <a className="underline-offset-2 hover:underline" href="mailto:ambassadors@iqcdl.org">ambassadors@iqcdl.org</a> with your country, CV / LinkedIn and a short note on the network you bring.
+                Email <a className="underline-offset-2 hover:underline" href="mailto:admin@iqcdl.org">admin@iqcdl.org</a> with your country, CV / LinkedIn and a short note on the network you bring.
               </p>
             </div>
           </Reveal>

@@ -110,8 +110,8 @@ The IQCDL international award. AI-jury-assessed against a published rubric.
 - Verify a certificate: https://iqcdl.org/verify
 
 ## Contact
-- General: info@iqcdl.org
-- Admissions: admissions@iqcdl.org
-- Partners & accreditation: partners@iqcdl.org
-- Award outreach: awards@iqcdl.org
-- Board applications: board@iqcdl.org
+- General: admin@iqcdl.org
+- Admissions: admin@iqcdl.org
+- Partners & accreditation: admin@iqcdl.org
+- Award outreach: admin@iqcdl.org
+- Board applications: admin@iqcdl.org

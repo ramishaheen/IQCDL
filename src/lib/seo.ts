@@ -54,7 +54,7 @@ export function organizationLd() {
     description:
       "The international standard for quantum-readiness: AI-powered assessment, immersive training, post-quantum cryptography and a verifiable, vendor-neutral credential.",
     foundingDate: "2025",
-    email: "info@iqcdl.org",
+    email: "admin@iqcdl.org",
     sameAs: [] as string[],
     knowsAbout: [
       "Quantum computing",
