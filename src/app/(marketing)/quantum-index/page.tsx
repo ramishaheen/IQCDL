@@ -43,7 +43,13 @@ export default function QuantumIndexPage() {
     <>
       <JsonLd data={datasetIqci} />
       <JsonLd data={faqQuantumIndex} />
-      <PageHero eyebrow={x.eyebrow} title={x.title} subtitle={x.subtitle} />
+      <PageHero
+        eyebrow={x.eyebrow}
+        title={x.title}
+        subtitle={x.subtitle}
+        videoSrc="/iqci-bg.mp4"
+        videoPoster="/iqci-bg-poster.jpg"
+      />
 
       {/* how it works */}
       <section className="section pt-0">
