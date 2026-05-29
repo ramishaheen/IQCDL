@@ -34,7 +34,7 @@ export function PageHero({
             <source src={videoSrc} type="video/mp4" />
           </video>
           {/* Light overlay so the video reads through. Bottom fades into page bg for legibility. */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#05060f]/25 via-[#05060f]/10 to-[#05060f]/80" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#05060f]/15 via-[#05060f]/5 to-[#05060f]/65" />
           <div className="pointer-events-none absolute inset-0 grid-bg opacity-10 mix-blend-screen" />
         </>
       ) : (
