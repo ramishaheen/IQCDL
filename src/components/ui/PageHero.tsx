@@ -33,8 +33,10 @@ export function PageHero({
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
-          {/* Light overlay so the video reads through. Bottom fades into page bg for legibility. */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#05060f]/15 via-[#05060f]/5 to-[#05060f]/65" />
+          {/* Very light overlay — matches the homepage Hero feel: video reads through
+             clearly across the top/middle, only the bottom fades for legibility. */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#05060f]/55" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#05060f]" />
           <div className="pointer-events-none absolute inset-0 grid-bg opacity-10 mix-blend-screen" />
         </>
       ) : (
