@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode, type ComponentType } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { BookOpen, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { AtomIcon } from "@/components/visuals/AtomIcon";
 
 export interface BookPage {
   title: string;
@@ -19,6 +20,7 @@ export function Book3D({
   closeLabel = "Close",
   pages,
   accent = "from-quantum-indigo to-quantum-cyan",
+  Icon = AtomIcon,
 }: {
   coverTitle: string;
   coverSubtitle?: string;
@@ -27,6 +29,7 @@ export function Book3D({
   closeLabel?: string;
   pages: BookPage[];
   accent?: string;
+  Icon?: ComponentType<{ className?: string; size?: number }>;
 }) {
   const [open, setOpen] = useState(false);
   const [i, setI] = useState(0);
@@ -50,20 +53,45 @@ export function Book3D({
         className="group perspective-1200 mx-auto block w-full max-w-xs text-start"
         aria-label={openLabel}
       >
-        <div className="preserve-3d relative transition-transform duration-500 group-hover:[transform:rotateY(-22deg)]">
+        <div className="preserve-3d relative transition-transform duration-700 ease-out group-hover:[transform:rotateY(-28deg)_translateY(-6px)]">
           {/* spine + cover */}
-          <div className={`relative h-64 rounded-r-xl rounded-l-sm bg-gradient-to-br ${accent} p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)]`}>
-            <div className="absolute inset-y-0 left-0 w-3 rounded-l-sm bg-black/25" />
-            <div className="absolute inset-0 rounded-r-xl rounded-l-sm bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_60%)]" />
-            <BookOpen className="relative h-7 w-7 text-white/90" />
-            <h3 className="relative mt-6 text-xl font-bold leading-tight text-white">{coverTitle}</h3>
-            {coverSubtitle && <p className="relative mt-2 text-sm text-white/80">{coverSubtitle}</p>}
-            <span className="absolute bottom-5 left-6 text-xs font-medium text-white/70">
-              {hint ?? openLabel}
-            </span>
+          <div
+            className={`relative h-72 overflow-hidden rounded-r-2xl rounded-l-sm bg-gradient-to-br ${accent} p-6 shadow-[0_40px_70px_-25px_rgba(0,0,0,0.85)] ring-1 ring-black/20`}
+          >
+            {/* spine shadow strip */}
+            <div className="absolute inset-y-0 left-0 w-4 rounded-l-sm bg-gradient-to-r from-black/55 to-transparent" />
+            {/* embossed inner border */}
+            <div className="pointer-events-none absolute inset-2 rounded-r-xl rounded-l-sm border border-white/20" />
+            <div className="pointer-events-none absolute inset-3 rounded-r-xl rounded-l-sm border border-black/15" />
+            {/* glossy top highlight */}
+            <div className="pointer-events-none absolute inset-0 rounded-r-2xl rounded-l-sm bg-[radial-gradient(120%_60%_at_25%_-10%,rgba(255,255,255,0.35),transparent_60%)]" />
+            {/* subtle linen grain via repeating stripes */}
+            <div className="pointer-events-none absolute inset-0 rounded-r-2xl rounded-l-sm opacity-[0.12] mix-blend-overlay [background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.7)_0_2px,transparent_2px_5px)]" />
+            {/* gold ribbon / bookmark */}
+            <div className="pointer-events-none absolute -top-1 right-5 h-12 w-4 bg-gradient-to-b from-amber-300 via-amber-500 to-amber-700 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.4)] [clip-path:polygon(0_0,100%_0,100%_100%,50%_85%,0_100%)]" />
+            {/* mark + content */}
+            <div className="relative">
+              <Icon className="text-white/95 drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]" size={36} />
+            </div>
+            <h3 className="relative mt-6 text-2xl font-black leading-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.45)]">
+              {coverTitle}
+            </h3>
+            {coverSubtitle && (
+              <p className="relative mt-2 text-sm font-medium text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
+                {coverSubtitle}
+              </p>
+            )}
+            <div className="absolute inset-x-6 bottom-5 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
+              <span>IQCDL</span>
+              <span>{hint ?? openLabel}</span>
+            </div>
           </div>
-          {/* page edges */}
-          <div className="absolute -right-1.5 top-1.5 h-[15rem] w-3 -skew-y-[8deg] rounded-r bg-gradient-to-r from-white/70 to-white/30" />
+          {/* page edges — three stacked thin slabs for depth */}
+          <div className="absolute -right-1.5 top-1.5 h-[17.5rem] w-3 -skew-y-[7deg] rounded-r-md bg-gradient-to-r from-white/85 via-white/65 to-white/30 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]" />
+          <div className="absolute -right-[3px] top-1 h-[17.5rem] w-[3px] -skew-y-[7deg] bg-white/25" />
+          <div className="absolute -right-[6px] top-[3px] h-[17rem] w-[3px] -skew-y-[7deg] bg-white/10" />
+          {/* bottom contact shadow */}
+          <div className="pointer-events-none absolute -bottom-3 left-3 right-1 h-3 rounded-full bg-black/55 blur-md" />
         </div>
       </button>
 
@@ -106,9 +134,12 @@ export function Book3D({
                       transition={{ duration: 0.45, ease: "easeInOut" }}
                       className="preserve-3d"
                     >
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-quantum-cyan">
-                        {coverTitle}
-                      </p>
+                      <div className="flex items-center gap-3">
+                        <Icon className="text-quantum-cyan" size={22} />
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-quantum-cyan">
+                          {coverTitle}
+                        </p>
+                      </div>
                       <h3 className="mt-2 text-2xl font-bold text-white">{pages[i]?.title}</h3>
                       {pages[i]?.lines && (
                         <ul className="mt-4 space-y-2.5">
