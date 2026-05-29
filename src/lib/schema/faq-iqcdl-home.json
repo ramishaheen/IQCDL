@@ -1,0 +1,72 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://iqcdl.org/#faqpage",
+  "url": "https://iqcdl.org",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is IQCDL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IQCDL is the International Quantum Computing Driving License — the world's first international, AI-supported quantum-computing certification. Recognised in 50+ countries. Member of the IAIDL Group."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is quantum certification urgent now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The quantum threat — 'harvest now, decrypt later' — means long-shelf-life data is already at risk. NIST has published the first PQC standards (FIPS 203/204/205), and the EU PQC Roadmap targets 2026-2035 migration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the IQCDL levels?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three progressive levels: (1) Quantum Computing for Everyone — free, zero-code, ~4 hours. (2) IQCDL Foundation — 3 days, 150-MCQ exam, 70% to pass, for leaders. (3) IQCDL Practitioner — 5 days, 150-MCQ exam, 75% to pass, for engineers. Prerequisite: Foundation + basic Python."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What standards is IQCDL aligned to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NIST FIPS 203/204/205, ISO/IEC 4879, ISO/IEC TR 29144, IEEE P7131/P7132, EU PQC Roadmap, NIS2 Directive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is IQCDL recognised globally?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — recognised in 50+ countries and available in six languages (English, Spanish, French, German, Arabic, Chinese)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does IQCDL relate to IAIDL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IQCDL and IAIDL are sister credentials within the IAIDL Group. IAIDL (2016) certifies AI competency; IQCDL applies the same model to quantum computing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the Quantum Guide AI assessment work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Quantum Guide is an AI assistant that interviews you about your organisational context and produces a tailored readiness score, risk profile and next steps in about 2 minutes, in any of the six supported languages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I become an IQCDL accredited training centre?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Centre accreditation is $1,500 USD per year with a minimum three-year commitment. Apply via admin@iqcdl.org."
+      }
+    }
+  ]
+}
