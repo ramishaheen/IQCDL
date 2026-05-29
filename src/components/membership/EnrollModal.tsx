@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Lock, Upload, ShieldCheck, Clock, Check } from "lucide-react";
+import { X, Lock, Upload, ShieldCheck, Clock, Check, Loader2, AlertTriangle } from "lucide-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 
 const inputCls =
   "w-full rounded-xl border border-line/10 bg-surface/5 px-3.5 py-2.5 text-sm text-fg placeholder:text-faint focus:border-brand-400 focus:outline-none";
 
-type Step = "benefits" | "upload" | "review";
+type Step = "benefits" | "upload" | "verifying" | "review";
+type VerifyStatus = "approved" | "manual_review" | "rejected";
 
 function FileRow({
   label,
@@ -49,16 +50,56 @@ export function EnrollModal() {
   const [files, setFiles] = useState({ photo: "", id: "", cv: "" });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [verifyStatus, setVerifyStatus] = useState<VerifyStatus | null>(null);
+  const [verifyReason, setVerifyReason] = useState<string>("");
 
   useEffect(() => {
     const onOpen = () => {
       setStep("benefits");
       setError(null);
+      setVerifyStatus(null);
+      setVerifyReason("");
       setOpen(true);
     };
     window.addEventListener("iqcdl:open-enroll", onOpen);
     return () => window.removeEventListener("iqcdl:open-enroll", onOpen);
   }, []);
+
+  async function verifyWithAI() {
+    setStep("verifying");
+    setError(null);
+    setVerifyStatus(null);
+    setVerifyReason("");
+    try {
+      const res = await fetch("/api/verify-membership", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          country: form.country,
+          photoName: files.photo,
+          idName: files.id,
+          cvName: files.cv,
+        }),
+      });
+      const data = await res.json();
+      const status: VerifyStatus = data?.status ?? "manual_review";
+      setVerifyStatus(status);
+      setVerifyReason(typeof data?.reason === "string" ? data.reason : "");
+      if (status === "rejected") {
+        // Stay on upload step so the applicant can fix and resubmit.
+        setStep("upload");
+        setError(data?.reason || "Verification failed. Please review your details and try again.");
+        return;
+      }
+      // approved + manual_review both go to the review screen.
+      setStep("review");
+    } catch {
+      setError("Network error during verification. Please try again.");
+      setStep("upload");
+    }
+  }
 
   async function pay() {
     setBusy(true);
@@ -155,7 +196,7 @@ export function EnrollModal() {
                       return;
                     }
                     setError(null);
-                    setStep("review");
+                    verifyWithAI();
                   }}
                   className="btn-primary w-full text-white"
                 >
@@ -166,13 +207,43 @@ export function EnrollModal() {
               </div>
             )}
 
+            {step === "verifying" && (
+              <div className="space-y-3 text-center">
+                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-quantum-cyan/15 text-quantum-cyan">
+                  <Loader2 className="h-7 w-7 animate-spin" />
+                </span>
+                <h4 className="text-lg font-semibold text-fg">AI verification in progress</h4>
+                <p className="text-sm text-muted">
+                  Cross-checking your name, email and document references against IQCDL's automated review. This usually takes a few seconds.
+                </p>
+              </div>
+            )}
+
             {step === "review" && (
               <div className="space-y-4 text-center">
-                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-amber-400/15 text-amber-500">
-                  <Clock className="h-7 w-7" />
-                </span>
-                <h4 className="text-lg font-semibold text-fg">{k.reviewTitle}</h4>
-                <p className="text-sm text-muted">{k.reviewBody}</p>
+                {verifyStatus === "approved" ? (
+                  <>
+                    <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-emerald-400/15 text-emerald-400">
+                      <Check className="h-7 w-7" />
+                    </span>
+                    <h4 className="text-lg font-semibold text-fg">Verified by IQCDL AI</h4>
+                  </>
+                ) : verifyStatus === "manual_review" ? (
+                  <>
+                    <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-amber-400/15 text-amber-500">
+                      <AlertTriangle className="h-7 w-7" />
+                    </span>
+                    <h4 className="text-lg font-semibold text-fg">Flagged for human review</h4>
+                  </>
+                ) : (
+                  <>
+                    <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-amber-400/15 text-amber-500">
+                      <Clock className="h-7 w-7" />
+                    </span>
+                    <h4 className="text-lg font-semibold text-fg">{k.reviewTitle}</h4>
+                  </>
+                )}
+                <p className="text-sm text-muted">{verifyReason || k.reviewBody}</p>
                 <button onClick={pay} disabled={busy} className="btn-primary w-full text-white">
                   <Lock className="h-4 w-4" />
                   {busy ? m.processing : k.continuePay}
