@@ -219,23 +219,161 @@ const BOOKS: LibraryBook[] = [
   },
 ];
 
+/* deterministic pseudo-random for SSR-safe particle field */
+function seeded(seed: number) {
+  let s = seed;
+  return () => {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
+  };
+}
+const r = seeded(42);
+const PARTICLES = Array.from({ length: 36 }, () => ({
+  cx: +(r() * 100).toFixed(2),
+  cy: +(r() * 100).toFixed(2),
+  rad: +(0.4 + r() * 1.6).toFixed(2),
+  dur: +(2 + r() * 4).toFixed(2),
+  delay: +(r() * 5).toFixed(2),
+}));
+
+function LightningBolt({
+  d,
+  delay,
+  dur,
+  width = 100,
+  height = 400,
+}: {
+  d: string;
+  delay: number;
+  dur: number;
+  width?: number;
+  height?: number;
+}) {
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      preserveAspectRatio="none"
+      className="absolute inset-0 h-full w-full"
+    >
+      {/* outer glow */}
+      <path
+        d={d}
+        fill="none"
+        stroke="rgba(125,211,252,0.65)"
+        strokeWidth="6"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        opacity="0"
+      >
+        <animate
+          attributeName="opacity"
+          values="0;0.9;0.6;0"
+          keyTimes="0;0.06;0.18;0.4"
+          dur={`${dur}s`}
+          begin={`${delay}s`}
+          repeatCount="indefinite"
+        />
+      </path>
+      {/* core bolt */}
+      <path
+        d={d}
+        fill="none"
+        stroke="white"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        opacity="0"
+      >
+        <animate
+          attributeName="opacity"
+          values="0;1;0.85;0"
+          keyTimes="0;0.05;0.2;0.42"
+          dur={`${dur}s`}
+          begin={`${delay}s`}
+          repeatCount="indefinite"
+        />
+      </path>
+    </svg>
+  );
+}
+
+/* left-edge bolts go from top-left toward the centre */
+const LEFT_BOLTS = [
+  { d: "M 0 40 L 35 95 L 18 130 L 60 200 L 30 245 L 70 320 L 45 380", delay: 0.4, dur: 6.5 },
+  { d: "M 5 80 L 40 140 L 22 175 L 55 245 L 30 295 L 65 360", delay: 3.2, dur: 7.5 },
+];
+/* right-edge bolts mirror from top-right toward the centre */
+const RIGHT_BOLTS = [
+  { d: "M 100 50 L 65 110 L 82 145 L 40 215 L 70 260 L 32 335 L 58 390", delay: 1.6, dur: 6.5 },
+  { d: "M 95 30 L 60 95 L 78 130 L 38 200 L 65 260 L 28 330", delay: 4.8, dur: 7.5 },
+];
+
 export function Library() {
   return (
-    <section className="section">
-      <div className="container-x">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow">The IQCDL library</span>
-          <h2 className="gradient-text-animated mt-3 text-3xl font-bold sm:text-4xl">
-            Four books, one quantum-readiness stack
+    <section className="section relative overflow-hidden">
+      {/* canvas background */}
+      <div className="pointer-events-none absolute inset-0 -z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#06091a] via-[#070b1c] to-[#05070f]" />
+        {/* faint grid */}
+        <div className="absolute inset-0 opacity-[0.08] [background:linear-gradient(rgba(125,211,252,0.6)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,0.6)_1px,transparent_1px)] [background-size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_55%,transparent_85%)]" />
+        {/* central glow */}
+        <div className="absolute left-1/2 top-1/2 h-[36rem] w-[60rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.18),transparent_60%)] blur-2xl" />
+        {/* particle field */}
+        <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" aria-hidden="true">
+          {PARTICLES.map((p, i) => (
+            <circle
+              key={i}
+              cx={`${p.cx}%`}
+              cy={`${p.cy}%`}
+              r={p.rad}
+              fill="white"
+              opacity="0.45"
+            >
+              <animate
+                attributeName="opacity"
+                values="0;0.7;0"
+                dur={`${p.dur}s`}
+                begin={`${p.delay}s`}
+                repeatCount="indefinite"
+              />
+            </circle>
+          ))}
+        </svg>
+        {/* left lightning column */}
+        <div className="absolute inset-y-0 left-0 w-24 sm:w-32 lg:w-40" aria-hidden="true">
+          {LEFT_BOLTS.map((b, i) => (
+            <LightningBolt key={`l-${i}`} d={b.d} delay={b.delay} dur={b.dur} />
+          ))}
+        </div>
+        {/* right lightning column */}
+        <div className="absolute inset-y-0 right-0 w-24 sm:w-32 lg:w-40" aria-hidden="true">
+          {RIGHT_BOLTS.map((b, i) => (
+            <LightningBolt key={`r-${i}`} d={b.d} delay={b.delay} dur={b.dur} />
+          ))}
+        </div>
+        {/* edge fades into page bg */}
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-bg to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-bg to-transparent" />
+      </div>
+
+      <div className="container-x relative z-10">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-quantum-cyan/30 bg-[#05060f]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-quantum-cyan backdrop-blur">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-quantum-cyan" />
+            The IQCDL library
+          </span>
+          <h2 className="mt-5 bg-gradient-to-b from-white via-white to-slate-300 bg-clip-text text-4xl font-black leading-[1.05] text-transparent drop-shadow-[0_4px_24px_rgba(56,189,248,0.25)] sm:text-5xl">
+            Four books,<br className="hidden sm:block" /> one quantum-readiness stack
           </h2>
-          <p className="mt-3 text-balance text-muted">
-            Award guideline, country index, accreditation playbook and per-center token pricing — pick a book, turn the pages.
+          <p className="mx-auto mt-4 max-w-2xl text-balance text-base leading-relaxed text-slate-300/85">
+            Award guideline, country index, accreditation playbook and per-center
+            token pricing — pick a book, turn the pages.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {BOOKS.map((b, i) => (
-            <Reveal key={b.key} delay={(i % 4) * 0.07}>
+            <Reveal key={b.key} delay={(i % 4) * 0.08}>
               <div className="flex h-full flex-col items-center">
                 <Book3D
                   coverTitle={b.coverTitle}
@@ -245,10 +383,10 @@ export function Library() {
                   accent={b.accent}
                   pages={b.pages}
                 />
-                {/* shelf glow under the book */}
-                <div className="mx-auto -mt-1 h-3 w-40 rounded-full bg-gradient-to-r from-transparent via-quantum-cyan/40 to-transparent blur-md" />
-                <h3 className="mt-5 text-center text-lg font-bold text-fg">{b.title}</h3>
-                <p className="mt-2 max-w-xs text-center text-sm leading-relaxed text-muted">
+                {/* shelf glow under each book */}
+                <div className="mx-auto mt-2 h-3 w-44 rounded-full bg-gradient-to-r from-transparent via-quantum-cyan/55 to-transparent blur-md" />
+                <h3 className="mt-5 text-center text-lg font-bold text-white">{b.title}</h3>
+                <p className="mt-2 max-w-xs text-center text-sm leading-relaxed text-slate-300/85">
                   {b.description}
                 </p>
               </div>
