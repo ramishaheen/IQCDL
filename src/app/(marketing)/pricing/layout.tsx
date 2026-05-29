@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "IQCDL Standards Alignment — NIST, ISO/IEC, IEEE & EU PQC",
+  title: "IQCDL Pricing — Per-Region Token Pricing",
   description:
-    "IQCDL is mapped to NIST FIPS 203/204/205 (ML-KEM, ML-DSA, SLH-DSA), ISO/IEC 4879, IEEE P7131/P7132 and the EU PQC Roadmap. Audit-ready credibility.",
-  path: "/standards",
+    "IQCDL pricing is purchasing-power calibrated by region. Centre royalty: $1,500/year, minimum 3-year commitment. Contact admin@iqcdl.org for current local pricing.",
+  path: "/pricing",
 });
 
 export default function Layout({ children }: { children: React.ReactNode }) {

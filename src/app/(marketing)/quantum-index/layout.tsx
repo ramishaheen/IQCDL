@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "International Quantum Computing Index (IQCI)",
+  title: "International Quantum Computing Index — Country by Country",
   description:
-    "An AI-generated, vendor-neutral index scoring every country's quantum readiness across eight categories — research, talent, investment, infrastructure, policy, PQC security, environment and ethics — refreshed every quarter.",
+    "The IQCDL Quantum Index — country-by-country quantum readiness rankings. Methodology, category scoring, regional breakdowns. AI-generated, vendor-neutral, refreshed quarterly.",
   path: "/quantum-index",
 });
 

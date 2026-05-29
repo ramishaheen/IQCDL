@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Global Quantum Award (GQA)",
+  title: "Global Quantum Award — Categories, Criteria, AI Jury Scoring",
   description:
-    "A biennial, AI-assessed award for SMEs and government entities, scored against a published rubric. Enter international categories from $1,000 — all proceeds advance the UN SDGs.",
+    "The IQCDL Global Quantum Award — categories, rubric, and how a neutral AI jury scores entries. Biennial cycle, SDG-funded, Dubai 2027 Grand Ceremony.",
   path: "/awards",
 });
 

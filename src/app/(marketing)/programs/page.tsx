@@ -14,6 +14,7 @@ import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import courseFoundation from "@/lib/schema/course-foundation.json";
 import coursePractitioner from "@/lib/schema/course-practitioner.json";
 import courseFreeIntro from "@/lib/schema/course-free-intro.json";
+import coursesGraph from "@/lib/schema/courses-iqcdl.json";
 import faqPrograms from "@/lib/schema/faq-programs.json";
 
 export default function ProgramsPage() {
@@ -25,6 +26,7 @@ export default function ProgramsPage() {
       <JsonLd data={courseFoundation} />
       <JsonLd data={coursePractitioner} />
       <JsonLd data={courseFreeIntro} />
+      <JsonLd data={coursesGraph} />
       <JsonLd data={faqPrograms} />
       <PageHero
         eyebrow={dict.tracks.eyebrow}

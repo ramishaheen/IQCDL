@@ -1,0 +1,63 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Course",
+      "@id": "https://iqcdl.org/programs#everyone-course",
+      "name": "Quantum Computing for Everyone",
+      "description": "Free zero-code introduction to quantum computing.",
+      "provider": { "@id": "https://iqcdl.org/#organization", "name": "IQCDL" },
+      "educationalLevel": "Introduction",
+      "courseCode": "IQCDL-EVERYONE",
+      "isAccessibleForFree": true,
+      "teaches": "Qubits, superposition, entanglement, no-code quantum tools",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "online",
+        "courseWorkload": "PT4H",
+        "inLanguage": ["en", "es", "fr", "de", "ar", "zh"]
+      }
+    },
+    {
+      "@type": "Course",
+      "@id": "https://iqcdl.org/programs#foundation-course",
+      "name": "IQCDL Foundation",
+      "description": "Quantum literacy for leaders. Three-day programme. 150-MCQ exam, 180 minutes, 70% to pass.",
+      "provider": { "@id": "https://iqcdl.org/#organization" },
+      "educationalLevel": "Foundation",
+      "courseCode": "IQCDL-FND",
+      "teaches": "Qubits, Shor's, Grover's, Mosca's theorem, post-quantum cryptography migration, IBM Quantum Composer, Azure Quantum",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": ["online", "blended", "in-person"],
+        "courseWorkload": "P3D",
+        "inLanguage": ["en", "es", "fr", "de", "ar", "zh"]
+      },
+      "educationalCredentialAwarded": {
+        "@type": "EducationalOccupationalCredential",
+        "name": "IQCDL Foundation"
+      }
+    },
+    {
+      "@type": "Course",
+      "@id": "https://iqcdl.org/programs#practitioner-course",
+      "name": "IQCDL Practitioner",
+      "description": "Hands-on build and migrate. Five-day programme. 150-MCQ exam, 240 minutes, 75% to pass.",
+      "provider": { "@id": "https://iqcdl.org/#organization" },
+      "educationalLevel": "Practitioner",
+      "courseCode": "IQCDL-PRAC",
+      "coursePrerequisites": "IQCDL Foundation + basic Python",
+      "teaches": "Qiskit, CRYSTALS-Kyber, CRYSTALS-Dilithium, SPHINCS+, hybrid classical-PQC, crypto-agile TLS, CBOM, migration roadmaps",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": ["online", "blended", "in-person"],
+        "courseWorkload": "P5D",
+        "inLanguage": ["en", "es", "fr", "de", "ar", "zh"]
+      },
+      "educationalCredentialAwarded": {
+        "@type": "EducationalOccupationalCredential",
+        "name": "IQCDL Practitioner"
+      }
+    }
+  ]
+}

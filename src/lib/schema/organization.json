@@ -1,51 +1,144 @@
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://iqcdl.org/#organization",
-  "name": "International Quantum Computing Driving License",
-  "alternateName": "IQCDL",
-  "url": "https://iqcdl.org",
-  "logo": "https://iqcdl.org/icon.svg",
-  "email": "admin@iqcdl.org",
-  "foundingDate": "2025",
-  "description": "Vendor-neutral international certification body that takes individuals and organizations from quantum-curious to quantum-ready. Part of the IAIDL group (94+ countries since 2014).",
-  "parentOrganization": {
-    "@type": "Organization",
-    "name": "IAIDL",
-    "url": "https://iaidl.org"
-  },
-  "memberOf": [
+  "@graph": [
     {
-      "@type": "Organization",
-      "name": "IAIDL Group",
-      "url": "https://iaidl.org"
-    }
-  ],
-  "subOrganization": [
+      "@type": ["EducationalOrganization", "Organization"],
+      "@id": "https://iqcdl.org/#organization",
+      "name": "International Quantum Computing Driving License",
+      "alternateName": ["IQCDL", "International Quantum Computing Driving Licence"],
+      "url": "https://iqcdl.org",
+      "logo": "https://iqcdl.org/opengraph-image",
+      "image": "https://iqcdl.org/opengraph-image",
+      "description": "IQCDL — the world's first international, AI-supported quantum-computing certification. Recognised in 50+ countries, aligned with NIST FIPS 203/204/205, ISO/IEC 4879, IEEE P7131/P7132 and the EU PQC Roadmap. Member of the IAIDL Group.",
+      "slogan": "Your license to lead the quantum era",
+      "foundingDate": "2025",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://iaidl.org/#group",
+        "name": "IAIDL Group",
+        "url": "https://iaidl.org",
+        "email": "admin@iqcdl.org",
+        "foundingDate": "2016-06",
+        "sameAs": "https://www.wikidata.org/wiki/Q139972499",
+        "hasPart": [
+          {
+            "@type": "Organization",
+            "@id": "https://iaidl.org/#certification-body",
+            "name": "International AI Driving License",
+            "alternateName": "IAIDL",
+            "url": "https://iaidl.org",
+            "sameAs": "https://www.wikidata.org/wiki/Q139972531"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "@id": "https://iaidlcollege.co.uk/#organization",
+            "name": "IAIDL College",
+            "url": "https://iaidlcollege.co.uk",
+            "sameAs": "https://www.wikidata.org/wiki/Q139972583"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://iqcdl.org/#organization",
+            "name": "International Quantum Computing Driving License",
+            "url": "https://iqcdl.org",
+            "sameAs": "https://www.wikidata.org/wiki/Q139972584"
+          }
+        ]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US",
+        "addressRegion": "Wyoming"
+      },
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Worldwide (recognised in 50+ countries)"
+        }
+      ],
+      "email": "admin@iqcdl.org",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "general",
+          "email": "admin@iqcdl.org",
+          "areaServed": "Worldwide",
+          "availableLanguage": ["en", "es", "fr", "de", "ar", "zh"]
+        }
+      ],
+      "sameAs": [
+        "https://iqcdl.com",
+        "https://iqcdl.online",
+        "https://iaidl.org",
+        "https://iaidlcollege.co.uk",
+        "https://twitter.com/iqcdl",
+        "https://x.com/iqcdl",
+        "https://www.linkedin.com/company/iaidl",
+        "https://www.wikidata.org/wiki/Q139972584",
+        "https://www.wikidata.org/wiki/Q139972499"
+      ],
+      "knowsAbout": [
+        "Quantum computing",
+        "Post-quantum cryptography",
+        "Quantum readiness",
+        "CRYSTALS-Kyber (FIPS 203 / ML-KEM)",
+        "CRYSTALS-Dilithium (FIPS 204 / ML-DSA)",
+        "SPHINCS+ (FIPS 205 / SLH-DSA)",
+        "Qiskit",
+        "Shor's algorithm",
+        "Grover's algorithm",
+        "Mosca's theorem",
+        "Crypto-agility",
+        "Cryptographic Bill of Materials (CBOM)",
+        "EU PQC Roadmap",
+        "NIS2 Directive",
+        "ISO/IEC 4879",
+        "ISO/IEC TR 29144",
+        "IEEE P7131",
+        "IEEE P7132"
+      ],
+      "memberOf": [
+        {
+          "@type": "Organization",
+          "name": "IAIDL Group",
+          "url": "https://iaidl.org"
+        }
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "@id": "https://iqcdl.org/programs#everyone",
+          "name": "Quantum Computing for Everyone",
+          "description": "Free zero-code introduction to quantum computing. Self-paced ~4 hours. Completion quiz and digital badge.",
+          "credentialCategory": "badge",
+          "educationalLevel": "Introduction"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "@id": "https://iqcdl.org/programs#foundation",
+          "name": "IQCDL Foundation",
+          "description": "Quantum literacy for leaders — 3-day programme. 150-MCQ exam, 180 minutes, 70% to pass.",
+          "credentialCategory": "certification",
+          "educationalLevel": "Foundation"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "@id": "https://iqcdl.org/programs#practitioner",
+          "name": "IQCDL Practitioner",
+          "description": "Hands-on build and migrate — 5-day programme. 150-MCQ exam, 240 minutes, 75% to pass. Prerequisite: Foundation + basic Python.",
+          "credentialCategory": "certification",
+          "educationalLevel": "Practitioner"
+        }
+      ]
+    },
     {
-      "@type": "Organization",
-      "name": "IAIDL College",
-      "url": "https://iaidlcollege.co.uk"
+      "@type": "WebSite",
+      "@id": "https://iqcdl.org/#website",
+      "url": "https://iqcdl.org",
+      "name": "IQCDL",
+      "description": "International Quantum Computing Driving License",
+      "publisher": { "@id": "https://iqcdl.org/#organization" },
+      "inLanguage": ["en", "es", "fr", "de", "ar", "zh"]
     }
-  ],
-  "sameAs": [
-    "https://iaidl.org",
-    "https://iaidlcollege.co.uk"
-  ],
-  "knowsAbout": [
-    "Quantum computing",
-    "Post-quantum cryptography",
-    "NIST FIPS 203",
-    "NIST FIPS 204",
-    "NIST FIPS 205",
-    "ISO/IEC 4879",
-    "IEEE P7131",
-    "IEEE P7132",
-    "EU PQC Roadmap",
-    "Mosca's theorem",
-    "Crypto-agility",
-    "Quantum readiness",
-    "AI governance",
-    "AI awards"
   ]
 }

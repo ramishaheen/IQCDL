@@ -6,9 +6,10 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { MembershipProvider } from "@/components/providers/MembershipProvider";
 import { PortalProvider } from "@/lib/portal";
 import en from "@/i18n/dictionaries/en";
-import { SITE, organizationLd, websiteLd, faqLd } from "@/lib/seo";
+import { SITE, organizationLd, websiteLd } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
 import organizationSchema from "@/lib/schema/organization.json";
+import faqHomeSchema from "@/lib/schema/faq-iqcdl-home.json";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -130,10 +131,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd()) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd()) }}
-        />
+        <JsonLd data={faqHomeSchema} />
       </head>
       <body>
         <ThemeProvider>
