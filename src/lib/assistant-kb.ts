@@ -107,7 +107,7 @@ const GENERAL_KB: KbEntry[] = [
   {
     patterns: [/contact|reach|support|talk to|speak|phone|help/i],
     answer:
-      "You can reach the team at info@iqcdl.org — and the details you just shared mean we can follow up with you directly. For member or account help, the \"Quantum tutoring & support\" option (for members) connects you to deeper assistance.",
+      "You can reach the team at admin@iqcdl.org — and the details you just shared mean we can follow up with you directly. For member or account help, the \"Quantum tutoring & support\" option (for members) connects you to deeper assistance.",
   },
 ];
 

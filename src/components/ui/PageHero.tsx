@@ -23,7 +23,8 @@ export function PageHero({
         <>
           <video
             key={videoSrc}
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-[filter] duration-700"
+            style={{ filter: "brightness(0.42) saturate(1.05)" }}
             autoPlay
             muted
             loop
@@ -34,11 +35,15 @@ export function PageHero({
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
-          {/* Very light overlay — matches the homepage Hero feel: video reads through
-             clearly across the top/middle, only the bottom fades for legibility. */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#05060f]/55" />
+          {/* Cinematic ambient overlay — ~55% black wash with a soft top
+             vignette, a 2px backdrop-blur for premium-SaaS depth, and a
+             bottom fade into page background. */}
+          <div
+            className="pointer-events-none absolute inset-0 bg-[#05060f]/55"
+            style={{ backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }}
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#05060f]/30 via-transparent to-[#05060f]" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#05060f]" />
-          <div className="pointer-events-none absolute inset-0 grid-bg opacity-10 mix-blend-screen" />
         </>
       ) : (
         <div className="pointer-events-none absolute inset-0">
@@ -49,13 +54,15 @@ export function PageHero({
       )}
       <div className="container-x relative z-10 py-16 text-center sm:py-20">
         {eyebrow && (
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="eyebrow"
-          >
-            {eyebrow}
-          </motion.span>
+          <div className="flex justify-start">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="eyebrow"
+            >
+              {eyebrow}
+            </motion.span>
+          </div>
         )}
         <motion.h1
           initial={{ opacity: 0, y: 18, scale: 0.97 }}

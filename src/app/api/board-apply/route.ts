@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.BOARD_INBOX || "board@iqcdl.org";
+  const to = process.env.BOARD_INBOX || "admin@iqcdl.org";
   if (apiKey) {
     try {
       const { Resend } = await import("resend");

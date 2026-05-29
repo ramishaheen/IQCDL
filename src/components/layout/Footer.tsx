@@ -46,7 +46,7 @@ export function Footer() {
           label: t("footer.links.terms"),
           iubenda: true,
         },
-        { href: "mailto:info@iqcdl.org", label: t("footer.links.contact") },
+        { href: "mailto:admin@iqcdl.org", label: t("footer.links.contact") },
       ],
     },
   ];
@@ -64,10 +64,10 @@ export function Footer() {
             </p>
             <p className="mt-4 text-xs text-faint">
               <a
-                href="mailto:info@iqcdl.org"
+                href="mailto:admin@iqcdl.org"
                 className="transition hover:text-quantum-cyan"
               >
-                info@iqcdl.org
+                admin@iqcdl.org
               </a>
             </p>
             <ul className="mt-2 space-y-1 text-xs text-faint">

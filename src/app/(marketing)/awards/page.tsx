@@ -221,7 +221,7 @@ export default function AwardsPage() {
                     Submit an idea or initiative into one of the GQA categories — including Best Idea, Best Initiative, Best Accelerator and Best Government Programme.
                   </p>
                   <Link
-                    href="mailto:awards@iqcdl.org?subject=GQA%20category%20entry"
+                    href="mailto:admin@iqcdl.org?subject=GQA%20category%20entry"
                     className="btn-primary mt-4 text-white"
                   >
                     {g.submitCtaCategory}
@@ -238,7 +238,7 @@ export default function AwardsPage() {
                     Full entity quantum-readiness assessment — upload your documents and a neutral AI grades you against the standards-aligned criteria.
                   </p>
                   <Link
-                    href="mailto:awards@iqcdl.org?subject=GQA%20full%20assessment"
+                    href="mailto:admin@iqcdl.org?subject=GQA%20full%20assessment"
                     className="btn-primary mt-4 text-white"
                   >
                     {g.enrollCta}
