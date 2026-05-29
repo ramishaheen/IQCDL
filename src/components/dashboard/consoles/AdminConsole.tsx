@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Panel,
   Table,
@@ -18,6 +18,9 @@ import {
 import { usePortal, CONTINENTS, type Level } from "@/lib/portal";
 import { JuryConsole } from "@/components/dashboard/consoles/JuryConsole";
 import { SettingsConsole } from "@/components/dashboard/consoles/SettingsConsole";
+import { EmailButton } from "@/components/dashboard/email/EmailButton";
+import { BroadcastButton, type BroadcastCohort } from "@/components/dashboard/email/BroadcastButton";
+import { OutboxPanel } from "@/components/dashboard/email/OutboxPanel";
 
 export function AdminConsole() {
   const p = usePortal();
@@ -44,10 +47,13 @@ export function AdminConsole() {
           { id: "network", label: "Centers & students" },
           { id: "exams", label: "Exams & monitoring" },
           { id: "jury", label: "Award & Index jury" },
+          { id: "email", label: "Email & CRM" },
           { id: "content", label: "Content & comms" },
           { id: "integrations", label: "Integrations" },
         ]}
       />
+
+      {tab === "email" && <AdminEmailTab />}
 
       {tab === "approvals" && (
         <div className="space-y-5">
@@ -254,7 +260,7 @@ function AddStudentPanel() {
       desc="Add students to a center or enroll self-paced learners."
       action={<Btn variant="primary" onClick={m.show}>+ Add student</Btn>}
     >
-      <Table head={["Student #", "Name", "Mode", "Level", "Progress"]}>
+      <Table head={["Student #", "Name", "Mode", "Level", "Progress", ""]}>
         {p.students.map((s) => (
           <tr key={s.id}>
             <Td className="font-mono text-xs text-slate-900">{s.studentNumber}</Td>
@@ -262,6 +268,7 @@ function AddStudentPanel() {
             <Td>{s.selfPaced ? "Self-paced" : p.centers.find((c) => c.id === s.centerId)?.name ?? "—"}</Td>
             <Td className="capitalize">{s.level}</Td>
             <Td>{s.progress}%</Td>
+            <Td>{s.email && <EmailButton to={s.email} name={s.name} cohort="student" />}</Td>
           </tr>
         ))}
       </Table>
@@ -615,5 +622,38 @@ function EmailPanel() {
         </div>
       </Modal>
     </Panel>
+  );
+}
+
+/* ---------- Email & CRM ---------- */
+function AdminEmailTab() {
+  const p = usePortal();
+
+  const cohorts: BroadcastCohort[] = useMemo(() => {
+    const studentEmails = p.students.map((s) => s.email).filter((e): e is string => !!e);
+    const centerEmails = p.centers
+      .map((c) => (c as { email?: string }).email)
+      .filter((e): e is string => !!e);
+    const trainerEmails = p.trainers
+      .map((t) => (t as { email?: string }).email)
+      .filter((e): e is string => !!e);
+    const chapterEmails = p.chapters
+      .map((c) => (c as { email?: string }).email)
+      .filter((e): e is string => !!e);
+    return [
+      { label: "All students", emails: studentEmails, tag: "all-students" },
+      { label: "All chapter leads", emails: chapterEmails, tag: "all-chapter-leads" },
+      { label: "All accredited centers", emails: centerEmails, tag: "all-centers" },
+      { label: "All trainers", emails: trainerEmails, tag: "all-trainers" },
+    ].map((c) => ({ ...c, label: `${c.label} · ${c.emails.length}` }));
+  }, [p.students, p.centers, p.trainers, p.chapters]);
+
+  return (
+    <div className="space-y-5">
+      <div className="flex items-center justify-end">
+        <BroadcastButton cohorts={cohorts} />
+      </div>
+      <OutboxPanel />
+    </div>
   );
 }
