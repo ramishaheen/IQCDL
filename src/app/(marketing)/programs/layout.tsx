@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Programs & Certification",
+  title: "IQCDL Programs — Foundation, Practitioner & Free Intro",
   description:
-    "Three quantum-readiness tracks — Quantum for Everyone (free, zero-code), Foundation and Practitioner — with full outlines, exams and a verifiable, stamped IQCDL certificate.",
+    "Three quantum certification levels: Quantum Computing for Everyone (free), IQCDL Foundation (leaders), IQCDL Practitioner (engineers). NIST PQC-aligned.",
   path: "/programs",
 });
 

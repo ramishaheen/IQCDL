@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "About IQCDL",
+  title: "About IQCDL — Member of the IAIDL Group",
   description:
-    "Established 2025 in the United States and inherited from IAIDL (since 2014, present in 94+ countries). Our mission, governance, leadership and board of directors.",
+    "IQCDL is the quantum-computing sister credential of IAIDL. Member of the IAIDL Group. Recognised in 50+ countries. 6 languages. NIST + ISO/IEC + IEEE + EU PQC aligned.",
   path: "/about",
 });
 
