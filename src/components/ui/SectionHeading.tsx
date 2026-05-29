@@ -33,7 +33,14 @@ export function SectionHeading({
         className,
       )}
     >
-      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+      {eyebrow &&
+        (align === "center" ? (
+          <div className="flex justify-start">
+            <span className="eyebrow">{eyebrow}</span>
+          </div>
+        ) : (
+          <span className="eyebrow">{eyebrow}</span>
+        ))}
       {typewriter ? (
         <h2 className={headingClass}>
           <Typewriter text={title} />

@@ -516,10 +516,12 @@ export function Library() {
 
       <div className="container-x relative z-10">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-quantum-cyan/30 bg-[#05060f]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-quantum-cyan backdrop-blur">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-quantum-cyan" />
-            The IQCDL library
-          </span>
+          <div className="flex justify-start">
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-quantum-cyan/30 bg-[#05060f]/40 px-4 py-1.5 text-[13px] font-semibold uppercase tracking-[0.28em] text-quantum-cyan backdrop-blur">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-quantum-cyan" />
+              The IQCDL library
+            </span>
+          </div>
           <h2 className="mt-5 bg-gradient-to-b from-white via-white to-slate-300 bg-clip-text text-4xl font-black leading-[1.05] text-transparent drop-shadow-[0_4px_24px_rgba(56,189,248,0.25)] sm:text-5xl">
             Four books,<br className="hidden sm:block" /> one quantum-readiness stack
           </h2>
