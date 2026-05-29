@@ -43,7 +43,7 @@ function envAdminAccount(): DemoAccount | null {
   return {
     id: "u-admin",
     name: process.env.ADMIN_NAME || "Dr. Rami Shaheen",
-    email: (process.env.ADMIN_EMAIL || "admin@iqcdl.org").trim().toLowerCase(),
+    email: (process.env.ADMIN_EMAIL || "info@iaidl.org").trim().toLowerCase(),
     role: "admin",
     password,
   };
