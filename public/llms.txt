@@ -1,36 +1,34 @@
 # IQCDL — International Quantum Computing Driving License
 
-> IQCDL is the vendor-neutral international standard for quantum-readiness. It takes individuals and organizations from quantum-curious to quantum-ready with an AI-powered readiness assessment, immersive training, post-quantum cryptography guidance, and a verifiable, standards-aligned credential. Established 2025 in the United States; inherited from IAIDL (founded 2014, present in 94+ countries).
+> IQCDL is the world's first international, AI-supported quantum-computing certification. Recognised in 50+ countries, available in six languages, aligned to NIST FIPS 203/204/205, ISO/IEC 4879, IEEE P7131/P7132 and the EU PQC Roadmap. Member of the IAIDL Group.
 
-## What IQCDL offers
-- Readiness assessment: a Mosca's-Theorem-based quantum risk score with a recommended track.
-- Training tracks: Quantum Computing for Everyone (free, zero-code), Foundation (leaders & decision-makers), Practitioner (developers & security architects).
-- Verifiable certificates with an official IQCDL seal, recognized worldwide.
-- Membership ($19/year): member community, AI quantum-expert agents, the Quantum Guide chat, a free course and a 10% course discount.
+## Group structure
+- IAIDL Group — Wikidata Q139972499 · admin@iqcdl.org · https://iaidl.org · founded June 2016
+  - IAIDL — Wikidata Q139972531
+  - IAIDL College (UK) — Wikidata Q139972583
+  - IQCDL (this entity) — Wikidata Q139972584
 
-## Standards alignment
-- NIST FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA)
-- ISO/IEC, IEEE, and the EU Post-Quantum Cryptography roadmap
+## Levels
+1. Quantum Computing for Everyone — free, zero-code, ~4h
+2. IQCDL Foundation — 3 days, 150 MCQs, 180 min, 70% to pass
+3. IQCDL Practitioner — 5 days, 150 MCQs, 240 min, 75% to pass
 
-## International Quantum Computing Index (IQCI)
-An AI-generated, vendor-neutral index scoring every country's quantum readiness across eight categories — research, talent, investment, infrastructure, policy, PQC security, environmental sustainability and ethics. A dedicated country-data agent refreshes it each quarter and re-scores on new evidence or news.
+## Standards
+NIST FIPS 203/204/205, ISO/IEC 4879, ISO/IEC TR 29144, IEEE P7131/P7132, EU PQC Roadmap (2026-2035), NIS2 Directive
 
-## Global Quantum Award (GQA)
-A biennial award for SMEs and government entities, assessed by a neutral AI jury against a published rubric. International category entry is $1,000; all proceeds advance the UN Sustainable Development Goals.
-
-## Key facts
-- The quantum threat ("harvest now, decrypt later") exposes long-lived secrets today.
-- Shor's algorithm breaks RSA and elliptic-curve cryptography.
-- Mosca's Theorem: if data-secrecy-lifetime + migration-time > time-to-quantum, you are already exposed.
-
-## Links
-- Home: https://iqcdl.org/
-- Why Quantum AI: https://iqcdl.org/why-quantum-ai
+## Key URLs
 - Programs: https://iqcdl.org/programs
-- Quantum Index: https://iqcdl.org/quantum-index
-- Global Quantum Award: https://iqcdl.org/awards
 - Standards: https://iqcdl.org/standards
-- Membership: https://iqcdl.org/membership
+- Assessment: https://iqcdl.org/assessment
 - About: https://iqcdl.org/about
+- What is IQCDL?: https://iqcdl.org/what-is-iqcdl
 
-Contact: admin@iqcdl.org
+## Comparisons
+- IQCDL vs ISC2 PQC: https://iqcdl.org/iqcdl-vs-isc2-pqc
+- IQCDL vs IBM Quantum: https://iqcdl.org/iqcdl-vs-ibm-quantum
+- IQCDL vs Qiskit Developer: https://iqcdl.org/iqcdl-vs-qiskit-developer
+- IQCDL vs Microsoft Azure Quantum: https://iqcdl.org/iqcdl-vs-microsoft-azure-quantum
+
+## Contact
+- admin@iqcdl.org (single contact address — admissions, partnerships and administration)
+- Twitter / X: @iqcdl
