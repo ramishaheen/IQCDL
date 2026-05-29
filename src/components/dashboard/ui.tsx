@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -162,18 +163,29 @@ export function Modal({
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  return (
+  // Body scroll lock while open — the modal is now portalled to document.body,
+  // so the page underneath would still be scrollable without this.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  const overlay = (
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[80] grid place-items-center bg-slate-900/40 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[80] grid place-items-center overflow-y-auto bg-slate-900/40 p-4 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
           <motion.div
-            className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-card"
+            className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-card my-auto"
             initial={{ opacity: 0, scale: 0.95, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 12 }}
@@ -195,6 +207,13 @@ export function Modal({
       )}
     </AnimatePresence>
   );
+
+  // Portal to document.body so the modal escapes any ancestor that creates a
+  // containing block for fixed positioning (e.g. .card has
+  // `will-change-transform`, which would otherwise re-anchor `fixed inset-0`
+  // to the Panel rather than the viewport).
+  if (typeof document === "undefined") return null;
+  return createPortal(overlay, document.body);
 }
 
 export function Field({
