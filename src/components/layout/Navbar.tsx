@@ -54,7 +54,7 @@ export function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium text-muted transition hover:bg-surface/5 hover:text-accent"
+                className="link-underline whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium text-muted transition hover:bg-surface/5 hover:text-accent"
               >
                 {l.label}
               </Link>

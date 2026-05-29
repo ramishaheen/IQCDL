@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ScrollCue } from "@/components/visuals/ScrollCue";
 
 export function PageHero({
   eyebrow,
@@ -75,6 +76,7 @@ export function PageHero({
           </motion.p>
         )}
       </div>
+      {videoSrc && <ScrollCue />}
     </section>
   );
 }

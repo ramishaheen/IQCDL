@@ -7,6 +7,7 @@ import { ArrowRight, ShieldCheck, Globe } from "lucide-react";
 import { QuantumSpark } from "@/components/visuals/QuantumSpark";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { LicenseCard } from "@/components/home/LicenseCard";
+import { ScrollCue } from "@/components/visuals/ScrollCue";
 
 export function Hero() {
   const { t, dict } = useLocale();
@@ -130,6 +131,7 @@ export function Hero() {
 
       {/* bottom fade into the page */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#05060f]" />
+      <ScrollCue />
     </section>
   );
 }
