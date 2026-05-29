@@ -111,31 +111,86 @@
       will-change-transform focus:outline-none focus-visible:ring-2
       focus-visible:ring-brand-400/60;
     background-image: linear-gradient(100deg, #2ba9e0, #1d8ec2);
-    background-size: 200% 100%;
+    background-size: 220% 100%;
+    background-position: 0% 0%;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.32) 50%,
+      transparent 65%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
   }
   .btn-primary:hover {
     background-position: 100% 0;
     transform: translateY(-2px);
     box-shadow: 0 22px 48px -16px rgba(43, 169, 224, 0.7);
   }
+  .btn-primary:hover::after {
+    transform: translateX(120%);
+  }
 
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
-      text-sm font-semibold transition-all duration-300 focus:outline-none
-      focus-visible:ring-2 focus-visible:ring-brand-400/60 border
+      text-sm font-semibold transition-all duration-300 will-change-transform
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60 border
       border-brand-200 bg-white text-brand-700 hover:bg-brand-50
       hover:border-brand-300;
   }
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+  }
 
   .card {
-    @apply rounded-2xl shadow-card transition-all duration-300;
+    @apply rounded-2xl shadow-card transition-all duration-300 will-change-transform;
     background: #ffffff;
     border: 1px solid rgba(15, 34, 49, 0.08);
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(43, 169, 224, 0.28);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.6) inset,
+      0 24px 60px -28px rgba(43, 169, 224, 0.35),
+      0 12px 30px -16px rgba(15, 34, 49, 0.18);
   }
 
   .eyebrow {
     @apply inline-flex items-center gap-2 rounded-full border border-brand-100
       bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600;
+  }
+
+  /* Animated underline used on nav links and inline text links. */
+  .link-underline {
+    @apply relative inline-flex items-center gap-1.5 transition-colors duration-200;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1.5px;
+    background: linear-gradient(90deg, #38bdf8, #7dd3fc);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.32s ease;
+    border-radius: 999px;
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after,
+  .link-underline[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left center;
   }
 
   /* Theme-adaptive language switcher (used on both dark and light surfaces) */
@@ -178,6 +233,9 @@
   }
   .perspective-1200 {
     perspective: 1200px;
+  }
+  .perspective-2000 {
+    perspective: 2000px;
   }
   .preserve-3d {
     transform-style: preserve-3d;
@@ -246,6 +304,13 @@
   border-color: rgba(255, 255, 255, 0.09);
   box-shadow:
     0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 60px -28px rgba(0, 0, 0, 0.8);
+}
+.theme-dark .card:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+    0 28px 70px -22px rgba(56, 189, 248, 0.35),
     0 24px 60px -28px rgba(0, 0, 0, 0.8);
 }
 .theme-dark .glass {
