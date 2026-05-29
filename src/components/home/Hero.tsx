@@ -26,10 +26,10 @@ export function Hero() {
       ref={ref}
       className="theme-dark relative flex min-h-[88vh] items-center overflow-hidden bg-[#05060f]"
     >
-      {/* video background (parallax) */}
+      {/* video background (parallax + cinematic brightness clamp) */}
       <motion.video
-        style={{ y: videoY, scale: videoScale }}
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        style={{ y: videoY, scale: videoScale, filter: "brightness(0.42) saturate(1.05)" }}
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-[filter] duration-700"
         autoPlay
         muted
         loop
@@ -40,10 +40,13 @@ export function Hero() {
         <source src="/hero.mp4" type="video/mp4" />
       </motion.video>
 
-      {/* legibility overlays */}
-      <div className="pointer-events-none absolute inset-0 bg-[#05060f]/55" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#05060f] via-[#05060f]/35 to-[#05060f]/70" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#05060f]/85 via-[#05060f]/30 to-transparent" />
+      {/* legibility overlays — cinematic ambient feel + soft backdrop blur */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-[#05060f]/55"
+        style={{ backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#05060f] via-[#05060f]/30 to-[#05060f]/55" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#05060f]/75 via-[#05060f]/20 to-transparent" />
 
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}

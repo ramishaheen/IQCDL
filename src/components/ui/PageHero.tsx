@@ -23,7 +23,8 @@ export function PageHero({
         <>
           <video
             key={videoSrc}
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-[filter] duration-700"
+            style={{ filter: "brightness(0.42) saturate(1.05)" }}
             autoPlay
             muted
             loop
@@ -34,12 +35,15 @@ export function PageHero({
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
-          {/* Legibility overlays — matches the homepage Hero stack so the video sits at
-             the same brightness across pages. */}
-          <div className="pointer-events-none absolute inset-0 bg-[#05060f]/55" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#05060f] via-[#05060f]/35 to-[#05060f]/70" />
+          {/* Cinematic ambient overlay — ~55% black wash with a soft top
+             vignette, a 2px backdrop-blur for premium-SaaS depth, and a
+             bottom fade into page background. */}
+          <div
+            className="pointer-events-none absolute inset-0 bg-[#05060f]/55"
+            style={{ backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }}
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#05060f]/30 via-transparent to-[#05060f]" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#05060f]" />
-          <div className="pointer-events-none absolute inset-0 grid-bg opacity-10 mix-blend-screen" />
         </>
       ) : (
         <div className="pointer-events-none absolute inset-0">
