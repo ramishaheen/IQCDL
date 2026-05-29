@@ -54,13 +54,15 @@ export function PageHero({
       )}
       <div className="container-x relative z-10 py-16 text-center sm:py-20">
         {eyebrow && (
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="eyebrow"
-          >
-            {eyebrow}
-          </motion.span>
+          <div className="flex justify-start">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="eyebrow"
+            >
+              {eyebrow}
+            </motion.span>
+          </div>
         )}
         <motion.h1
           initial={{ opacity: 0, y: 18, scale: 0.97 }}
