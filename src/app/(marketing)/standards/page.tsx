@@ -13,6 +13,8 @@ export default function StandardsPage() {
         eyebrow={dict.standards.eyebrow}
         title={dict.standards.title}
         subtitle={dict.standards.subtitle}
+        videoSrc="/standards-bg.mp4"
+        videoPoster="/standards-bg-poster.jpg"
       />
       <StandardsGrid withHeading={false} />
       <FinalCTA />
